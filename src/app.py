@@ -12,12 +12,12 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/process_data', methods=['POST'])
+@app.route('/process_data', methods=['GET'])
 def process_data():
     print(request)
     print(dir(request))
     print(request.form)
-    json_path = '/Users/camilodelgado/Desktop/Pagina_Talento_Tech/data/processed_data/consumo_energia.json'
+    json_path = 'data/processed_data/consumo_energia_renovable.json'
     if not os.path.exists(json_path):
         print(f"El archivo JSON no existe en la ruta: {json_path}")
         return jsonify({"error": "El archivo JSON no existe"}), 404
