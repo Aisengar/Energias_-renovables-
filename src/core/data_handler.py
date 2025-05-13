@@ -10,7 +10,7 @@ latin_american_countries = [
     "República Dominicana", "Uruguay", "Venezuela"
 ]
 file_path = 'src/data/biofuel-production.csv'
-file_jason_direction = 'src/data/energias_renovables.json'
+file_jason_direction = 'data/procesed_data/energias_renovables.json'
 
 
 def read_csv(file_path):    

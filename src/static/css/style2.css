@@ -115,20 +115,3 @@ label {
     background-position: -200% 0;
   }
 }
-
-/* Ejemplo: aplicar a un gráfico o tabla en carga */
-/*
-.chart-container.loading canvas,
-.table-container.loading table {
-  display: none;
-}
-.chart-container.loading::after,
-.table-container.loading::after {
-  content: "";
-  display: block;
-  height: 200px;
-  border-radius: 8px;
-  background-color: #f0f0f0;
-  animation: loading 1.5s infinite;
-}
-*/
