@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRenova</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <!--<link rel="stylesheet" href="css/normalize.css">-->
+    <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='estilos.css')}}">
+    <script src="{{ url_for('static', filename='script.js')}}"></script>
+</head>
+
+<body>
+    <div class="pagina">
+        <header class="header">
+            <div class="header-contenido contenedor-pagina">
+                <div class="header-logo">
+                    <img class="header-logo" src="static/images/EcoRenova_Logo.png" alt="EcoRenova-logo" />
+                    <h1 class="header-title">EcoRenova</h1>
+                </div>
+                <nav class="header-menu">
+                    <div class="header-menu-logo-responsive">
+                        <img src="static/images/EcoRenova_Logo.png" alt="EcoRenova-logo-responsive">
+                    </div>
+                    <a class="header-menu-link" href="#energia-solar">Energía solar</a>
+                    <a class="header-menu-link" href="#energia-eolica">Energía eólica</a>
+                    <a class="header-menu-link" href="#energia-hidraulica">Energía hidráulica</a>
+                    <a class="header-menu-link" href="#energia-biomasa">Energía de biomasa</a>
+                    <a class="header-menu-link" href="#calcular-consumo">Calcula tu consumo</a>
+                    <button class="modo-oscuro-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+                            <defs>
+                                <mask id="lineMdLightDark0">
+                                    <circle cx="7.5" cy="7.5" r="5.5" fill="#fff" />
+                                    <circle cx="7.5" cy="7.5" r="5.5">
+                                        <animate fill="freeze" attributeName="cx" dur="0.6s" values="7.5;11" />
+                                        <animate fill="freeze" attributeName="r" dur="0.6s" values="5.5;6.5" />
+                                    </circle>
+                                </mask>
+                                <mask id="lineMdLightDark1">
+                                    <g fill="#fff">
+                                        <circle cx="12" cy="9" r="5.5">
+                                            <animate fill="freeze" attributeName="cy" begin="1.5s" dur="0.75s"
+                                                values="9;15" />
+                                        </circle>
+                                        <g fill-opacity="0">
+                                            <use href="#lineMdLightDark2" transform="rotate(-75 12 15)" />
+                                            <use href="#lineMdLightDark2" transform="rotate(-25 12 15)" />
+                                            <use href="#lineMdLightDark2" transform="rotate(25 12 15)" />
+                                            <use href="#lineMdLightDark2" transform="rotate(75 12 15)" />
+                                            <set fill="freeze" attributeName="fill-opacity" begin="2.25s" to="1" />
+                                        </g>
+                                    </g>
+                                    <path d="M0 10h26v5h-26z" />
+                                    <path stroke="#fff" stroke-dasharray="26" stroke-dashoffset="26" stroke-width="2"
+                                        d="M23 12h-22">
+                                        <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.75s"
+                                            dur="0.6s" values="26;0" />
+                                    </path>
+                                </mask>
+                                <symbol id="lineMdLightDark2">
+                                    <path d="M11 18h2L12 20z" opacity="0">
+                                        <animate fill="freeze" attributeName="d" begin="2.25s" dur="0.6s"
+                                            values="M11 18h2L12 20z;M10.5 21.5h3L12 24z" />
+                                        <set fill="freeze" attributeName="opacity" begin="2.25s" to="1" />
+                                    </path>
+                                </symbol>
+                            </defs>
+                            <g fill="#23816f">
+                                <rect width="13" height="13" x="1" y="1" mask="url(#lineMdLightDark0)" />
+                                <path d="M-2 11h28v13h-28z" mask="url(#lineMdLightDark1)"
+                                    transform="rotate(-45 12 12)" />
+                            </g>
+                        </svg>
+                    </button>
+                </nav>
+                <button class="header-menu-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+                        <path fill="#ddd"
+                            d="M12 22c-4.714 0-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22"
+                            opacity="0.5" />
+                        <path fill="#555"
+                            d="M18.75 8a.75.75 0 0 1-.75.75H6a.75.75 0 0 1 0-1.5h12a.75.75 0 0 1 .75.75m0 4a.75.75 0 0 1-.75.75H6a.75.75 0 0 1 0-1.5h12a.75.75 0 0 1 .75.75m0 4a.75.75 0 0 1-.75.75H6a.75.75 0 0 1 0-1.5h12a.75.75 0 0 1 .75.75" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <div class="secciones contenedor-pagina">
+            <section id="energia-solar" class="seccion-pagina">
+                <h2>Energía Solar: Aprovechando El Poder Del Sol</h2>
+                <div class="contenedor-tarjetas">
+                    <article class="tarjeta-seccion">
+                        <h3>¿Qué es la Energía Solar?</h3>
+                        <p>
+                            Es la energía proveniente de la radiación del Sol, capturada principalmente mediante paneles
+                            fotovoltaicos (para generar electricidad) y colectores térmicos (para generar calor). Es una
+                            fuente de energía renovable y prácticamente inagotable.
+                        </p>
+                    </article>
+                    <article class="tarjeta-seccion">
+                        <h3>¿Por Qué es Importante la Energía Solar?</h3>
+                        <ul>
+                            <li>
+                                <strong>Ambientalmente:</strong>
+                                Es limpia, no emite gases de efecto invernadero durante su operación, combate el cambio
+                                climático y reduce la contaminación.
+                            </li>
+                            <li>
+                                <strong>Economicamente:</strong>
+                                Sus costos han bajado drásticamente, genera empleo y reduce la dependencia de
+                                combustibles fósiles caros y volátiles.
+                            </li>
+                            <li>
+                                <strong>Socialmente:</strong>
+                                Es un recurso inagotable, aumenta la independencia energética y permite el acceso a la
+                                electricidad en zonas remotas.
+                            </li>
+                        </ul>
+                    </article>
+                    <article class="tarjeta-seccion">
+                        <h3>¿Hacia Dónde Tenemos que Ir? El Futuro de la Energía Solar</h3>
+                        <p>El futuro requiere:</p>
+                        <ul>
+                            <li>Innovación continua para mejorar la eficiencia y bajar costos.</li>
+                            <li>Modernización de las redes eléctricas e integración masiva de almacenamiento (baterías).
+                            </li>
+                            <li>Políticas de apoyo e inversión sostenida.</li>
+                            <li>Acelerar su despliegue a nivel global.</li>
+                            <li>Integrarla con otros sectores (transporte eléctrico, industria).</li>
+                            <li>Desarrollar soluciones para el reciclaje de paneles (economía circular).</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+            <section id="energia-eolica" class="seccion-pagina">
+                <h2>Energía Eólica: Desatando la Fuerza del Viento</h2>
+                <div class="contenedor-tarjetas">
+                    <article class="tarjeta-seccion">
+                        <h3>¿Qué es la Energía Eólica?</h3>
+                        <p>
+                            Es la energía cinética presente en el viento, convertida principalmente en electricidad mediante aerogeneradores. Estos capturan la fuerza del viento con sus palas, que a su vez accionan un generador eléctrico. Es una fuente de energía renovable y abundante en muchas regiones.
+                        </p>
+                    </article>
+                    <article class="tarjeta-seccion">
+                        <h3>¿Por Qué es Importante la Energía Eólica?</h3>
+                        <ul>
+                            <li>
+                                <strong>Ambientalmente:</strong>
+                                Es limpia, no emite gases de efecto invernadero durante su operación, contribuye a mitigar el cambio climático y mejora la calidad del aire.
+                            </li>
+                            <li>
+                                <strong>Economicamente:</strong>
+                                Sus costos han disminuido significativamente, genera empleo en la fabricación, instalación y mantenimiento de parques eólicos, y reduce la dependencia de combustibles fósiles.
+                            </li>
+                            <li>
+                                <strong>Socialmente:</strong>
+                                Es un recurso renovable, aumenta la independencia energética y puede proporcionar electricidad en áreas remotas o aisladas.
+                            </li>
+                        </ul>
+                    </article>
+                    <article class="tarjeta-seccion">
+                        <h3>¿Hacia Dónde Tenemos que Ir? El Futuro de la Energía Eólica</h3>
+                        <p>El futuro requiere:</p>
+                        <ul>
+                            <li>Innovación continua para desarrollar aerogeneradores más eficientes, potentes y silenciosos.</li>
+                            <li>Expansión de la energía eólica marina (offshore), donde los vientos son más fuertes y constantes.
+                            </li>
+                            <li>Mejora de los sistemas de almacenamiento de energía para gestionar la intermitencia del viento.</li>
+                            <li>Modernización de las redes eléctricas para integrar de manera eficiente grandes cantidades de energía eólica.</li>
+                            <li>Políticas de apoyo e inversión a largo plazo para fomentar su desarrollo.</li>
+                            <li>Consideración de la integración con otros sectores y la coexistencia con el medio ambiente y las comunidades locales.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+            <section id="energia-hidraulica" class="seccion-pagina">
+                <h2>Energía Hidráulica: Canalizando la Energía del Agua</h2>
+                <div class="contenedor-tarjetas">
+                    <article class="tarjeta-seccion">
+                        <h3>¿Qué es la Energía Hidráulica?</h3>
+                        <p>
+                            Es la energía que se obtiene del movimiento del agua, ya sea por la caída desde una altura (en embalses) o por el flujo de ríos (hidráulica de pasada). Esta energía mecánica se convierte en electricidad mediante turbinas acopladas a generadores. Es una fuente de energía renovable con una larga trayectoria de uso.
+                        </p>
+                    </article>
+                    <article class="tarjeta-seccion">
+                        <h3>¿Por Qué es Importante la Energía Hidráulica?</h3>
+                        <ul>
+                            <li>
+                                <strong>Ambientalmente:</strong>
+                                Es una fuente de energía renovable con bajas emisiones directas de gases de efecto invernadero durante su operación.
+                            </li>
+                            <li>
+                                <strong>Economicamente:</strong>
+                                Una vez construida la infraestructura, tiene bajos costos operativos y una larga vida útil. Las grandes represas pueden ofrecer beneficios adicionales económicos como control de inundaciones y suministro de agua.
+                            </li>
+                            <li>
+                                <strong>Socialmente:</strong>
+                                Es una fuente de energía confiable y establecida, puede contribuir al desarrollo regional y, en algunos casos, mejorar el acceso al agua.
+                            </li>
+                        </ul>
+                    </article>
+                    <article class="tarjeta-seccion">
+                        <h3>¿Hacia Dónde Tenemos que Ir? El Futuro de la Energía Hidráulica</h3>
+                        <p>El futuro requiere:</p>
+                        <ul>
+                            <li>Modernización de las instalaciones existentes para aumentar la eficiencia y reducir el impacto ambiental.</li>
+                            <li>Implementación de tecnologías para mejorar el manejo de los caudales ecológicos y la protección de la biodiversidad acuática.
+                            </li>
+                            <li>Desarrollo de proyectos hidroeléctricos más pequeños y con menor impacto ambiental (mini-hidro).</li>
+                            <li>Consideración de los efectos del cambio climático en la disponibilidad de agua y la gestión de embalses.</li>
+                            <li>Exploración y desarrollo de la energía mareomotriz y undimotriz como fuentes de energía oceánica.</li>
+                            <li>Fomentar la colaboración entre los sectores energético, ambiental y social para asegurar un desarrollo sostenible.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+            <section id="energia-biomasa" class="seccion-pagina">
+                <h2>Energía de Biomasa: Cultivando la Energía de la Naturaleza</h2>
+                <div class="contenedor-tarjetas">
+                    <article class="tarjeta-seccion">
+                        <h3>¿Qué es la Energía de Biomasa?</h3>
+                        <p>
+                            Es la energía que se obtiene de materia orgánica de origen vegetal o animal (residuos agrícolas y forestales, cultivos energéticos, residuos orgánicos urbanos, etc.). Esta biomasa puede quemarse directamente para generar calor o electricidad, o transformarse en biocombustibles líquidos o gaseosos. Puede ser una fuente de energía renovable si se gestiona de manera sostenible.
+                        </p>
+                    </article>
+                    <article class="tarjeta-seccion">
+                        <h3>¿Por Qué es Importante la Energía de Biomasa?</h3>
+                        <ul>
+                            <li>
+                                <strong>Ambientalmente:</strong>
+                                Puede ser neutra en carbono si la biomasa se repone a la misma velocidad en que se consume. Permite aprovechar residuos, reduciendo la presión sobre los vertederos y la contaminación.
+                            </li>
+                            <li>
+                                <strong>Economicamente:</strong>
+                                Puede generar nuevas oportunidades en los sectores agrícola y forestal, y reducir la dependencia de los combustibles fósiles. Los biocombustibles pueden utilizarse en la infraestructura de transporte existente.
+                            </li>
+                            <li>
+                                <strong>Socialmente:</strong>
+                                Puede mejorar la gestión de residuos, crear empleo en zonas rurales y contribuir a la seguridad energética.
+                            </li>
+                        </ul>
+                    </article>
+                    <article class="tarjeta-seccion">
+                        <h3>¿Hacia Dónde Tenemos que Ir? El Futuro de la Energía de Biomasa</h3>
+                        <p>El futuro requiere:</p>
+                        <ul>
+                            <li>Fomentar la producción sostenible de biomasa, evitando la deforestación y la competencia con la producción de alimentos.</li>
+                            <li>Priorizar el uso de residuos y subproductos como materia prima para la producción de bioenergía.
+                            </li>
+                            <li>Desarrollar cultivos energéticos eficientes y sostenibles que no afecten la biodiversidad ni el uso del suelo.</li>
+                            <li>Mejorar las tecnologías de conversión para aumentar la eficiencia y reducir las emisiones contaminantes.</li>
+                            <li>Promover la investigación y el desarrollo de biocombustibles avanzados y otras formas de bioenergía más sostenibles.</li>
+                            <li>Implementar marcos regulatorios que incentiven la sostenibilidad y la eficiencia en toda la cadena de valor de la biomasa.</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+            <section id="calcular-consumo" class="seccion-pagina">
+                <div class="calcular-contenedor">
+                    <h2>Calcula tu consumo</h2>
+                    <form>
+                        <div>
+                            <label for="id_consumo">Ingresa el consumo eléctrico total en kWh</label>
+                            <div>
+                                <input class="input-calcular" placeholder="270" name="consumo">
+                                <button type="submit">Calcular</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <footer class="footer">
+                <div class="footer-contenido"></div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -9,7 +9,7 @@ app = Flask(__name__)
 # Ruta de la pagina principa, Cargando un formulario
 @app.route('/')
 def index():
-    return render_template('main.html')
+    return render_template('index.html')
 
 
 @app.route('/process_data', methods=['POST'])
