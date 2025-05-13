@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-import csv
+import json
 import os
 
 
@@ -10,6 +10,21 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('main.html')
+
+
+@app.route('/process_data', methods=['POST'])
+def process_data():
+    print(request)
+    print(dir(request))
+    print(request.form)
+    json_path = '/Users/camilodelgado/Desktop/Pagina_Talento_Tech/data/processed_data/consumo_energia.json'
+    if not os.path.exists(json_path):
+        print(f"El archivo JSON no existe en la ruta: {json_path}")
+        return jsonify({"error": "El archivo JSON no existe"}), 404
+    with open(json_path, 'r') as archivo:
+        datos_json = json.load(archivo)
+    return jsonify(datos_json)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
