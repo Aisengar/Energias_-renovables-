@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <!--<link rel="stylesheet" href="css/normalize.css">-->
     <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="static/css/estilos.css">
     <script src="static/js/script.js"></script>
@@ -99,6 +98,10 @@
             </div>
         </header>
         <div class="secciones contenedor-pagina">
+            <section id="inicio" class="seccion-pagina">
+                <h1>Transición Energética Justa</h1>
+                <p>La transición energética justa busca cambiar a energías renovables de forma equitativa, minimizando los impactos negativos en trabajadores y comunidades dependientes de combustibles fósiles. Implica abordar desigualdades energéticas, fomentar el desarrollo sostenible en energías limpias e involucrar a todos para construir un futuro energético que beneficie tanto al planeta como a las personas.</p>
+            </section>
             <section id="energia-solar" class="seccion-pagina">
                 <h2>Energía Solar: Aprovechando El Poder Del Sol</h2>
                 <div class="contenedor-tarjetas">
@@ -254,7 +257,7 @@
                         </ul>
                     </article>
                     <article class="tarjeta-seccion">
-                        <h3>¿Hacia Dónde Tenemos que Ir? El Futuro de la Energía de Biomasa</h3>
+                        <h3>¿Hacia Dónde Tenemos que Ir? El Futuro de la Energía Hidráulica</h3>
                         <p>El futuro requiere:</p>
                         <ul>
                             <li>Fomentar la producción sostenible de biomasa, evitando la deforestación y la competencia con la producción de alimentos.</li>
@@ -268,6 +271,18 @@
                     </article>
                 </div>
             </section>
+            <section id="historico-datos" class="seccion-pagina">
+                <h2>Datos Històricos</h2>
+                <div class="contenedor-tarjetas">
+                    
+                </div>
+            </section>
+            <section id="dashboard" class="seccion-pagina">
+                <h2>Dashboard</h2>
+                <div class="contenedor-tarjetas">
+                    
+                </div>
+            </section>
             <section id="calcular-consumo" class="seccion-pagina">
                 <div class="calcular-contenedor">
                     <h2>Calcula tu consumo</h2>
@@ -275,7 +290,7 @@
                         <div>
                             <label for="id_consumo">Ingresa tu consumo eléctrico total por año en kWh</label>
                             <div>
-                                <input class="input-calcular" placeholder="270" name="consumo">
+                                <input type="number" id="consumo-usuario" class="input-calcular" placeholder="270" name="consumo">
                                 <button type="submit">Calcular</button>
                             </div>
                         </div>

@@ -60,6 +60,19 @@ body.modo-oscuro .tarjeta-seccion {
     color: #fff;
 }
 
+body.modo-oscuro .opcion-desplegable .title {
+    color: #fff;
+}
+
+body.modo-oscuro .contenedor-desplegable {
+    background-color: #333;
+    color: #fff;
+}
+
+body.modo-oscuro .contenedor-desplegable .link {
+    color: #fff;
+}
+
 a {
     text-decoration: none;
 }
@@ -226,6 +239,20 @@ a {
 
 #energia-biomasa {
     background-image: url("/static/images/Energia_Biomasa.jpg");
+}
+
+#inicio {
+    background-image: url("/static/images/hero_energias.jpg");
+    text-align: center;
+}
+
+#inicio h1 {
+    font-size: 50px;
+}
+
+#inicio p {
+    font-size: 20px;
+    line-height: 1.5;
 }
 
 .seccion-pagina {
