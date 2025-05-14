@@ -135,9 +135,54 @@ a {
     transition: all 0.3s ease-in-out;
 }
 
+.opcion-desplegable {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border: none;
+    background-color: transparent;
+}
+
+.contenedor-desplegable {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    z-index: 1000;
+    transform: translateX(-50%);
+    background-color: #fff;
+    width: 200px;
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+}
+
+.opcion-desplegable .title {
+    color: var(--color-texto-header);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+}
+
+.contenedor-desplegable .link {
+    display: block;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    color: var(--color-texto-header);
+}
+
+.contenedor-desplegable .link:hover {
+    background-color: var(--color-texto-header);
+    color: #fff;
+}
+
 .header-menu-link:hover {
     background-color: var(--color-texto-header);
     color: var(--color-texto-header-hover);
+}
+
+.opcion-desplegable:hover .contenedor-desplegable {
+    display: block;
 }
 
 .header-menu-link.activo {
