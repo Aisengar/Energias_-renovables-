@@ -12,7 +12,7 @@
     <!--<link rel="stylesheet" href="css/normalize.css">-->
     <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{url_for('static', filename='estilos.css')}}">
-    <script src="{{ url_for('static', filename='script.js')}}"></script>
+    <script src="static/js/script.js"></script>
 </head>
 
 <body>
@@ -27,10 +27,13 @@
                     <div class="header-menu-logo-responsive">
                         <img src="static/images/EcoRenova_Logo.png" alt="EcoRenova-logo-responsive">
                     </div>
+                    <a class="header-menu-link" href="#tipos-energias">Energías renovables</a>
                     <a class="header-menu-link" href="#energia-solar">Energía solar</a>
                     <a class="header-menu-link" href="#energia-eolica">Energía eólica</a>
                     <a class="header-menu-link" href="#energia-hidraulica">Energía hidráulica</a>
                     <a class="header-menu-link" href="#energia-biomasa">Energía de biomasa</a>
+                    <a class="header-menu-link" href="#historico-datos">Datos históricos</a>
+                    <a class="header-menu-link" href="#dashboard">Dashboard</a>
                     <a class="header-menu-link" href="#calcular-consumo">Calcula tu consumo</a>
                     <button class="modo-oscuro-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
@@ -265,7 +268,7 @@
                     <h2>Calcula tu consumo</h2>
                     <form>
                         <div>
-                            <label for="id_consumo">Ingresa el consumo eléctrico total en kWh</label>
+                            <label for="id_consumo">Ingresa tu consumo eléctrico total por año en kWh</label>
                             <div>
                                 <input class="input-calcular" placeholder="270" name="consumo">
                                 <button type="submit">Calcular</button>
