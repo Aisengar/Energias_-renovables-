@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeButton = document.querySelector('.modo-oscuro-btn');
     const opcionDesplegable = document.querySelector('.opcion-desplegable');
     const contenedorDesplegable = document.querySelector('.contenedor-desplegable');
+    const consumptionForm = document.getElementById('consumo-form');
 
     // FUNCTIONS
     
@@ -41,6 +42,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modo oscuro function
     function toggleDarkMode() {
         document.body.classList.toggle('modo-oscuro');
+    }
+
+    function onSubmitCalculator(ev) {
+        ev.preventDefault();
+        // Porcentaje de energías que provienen de fuentes renovables.
+        // En base a la producción de energía total
+        const PORCENTAGE = 0.37;
+        const userInput = document.getElementById('consumo-usuario');
+        const resultContainer = document.getElementById('resultado-calculadora');
+        const resultElement = document.getElementById('consumo-resultado');
+
+        if (!userInput || !resultContainer) {
+            alert('No se han obtenido los elementos necesarios para realizar los calculos');
+            return;
+        }
+
+        const value = Number(userInput.value);
+
+        if (Number.isNaN(value)) {
+            alert('El valor ingresado no es un número');
+        }
+
+        const result = Number(value * PORCENTAGE).toFixed(0);
+
+        resultContainer.style.visibility = 'visible';
+        resultElement.innerHTML = `${Intl.NumberFormat('es-CO').format(result)} kWh`
     }
 
     // Mejorar el comportamiento del menú desplegable
@@ -95,5 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
         darkModeButton.addEventListener('click', toggleDarkMode);
     }
 
-    //calculadora
+    // Calculadora
+    if (consumptionForm) {
+        consumptionForm.addEventListener('submit', onSubmitCalculator)
+    }
 });
