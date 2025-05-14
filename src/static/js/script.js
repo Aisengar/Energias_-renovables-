@@ -1,62 +1,62 @@
-//Menú button
-
 document.addEventListener('DOMContentLoaded', () => {
-    const boton = document.querySelector('.header-menu-btn'); 
 
-    if (boton) {
-        boton.addEventListener('click', (ev) => {
-            const headerMenu = document.querySelector('.header-menu');
-
-            if (!headerMenu) {
-                console.error('No se encontró el elemento .header-menu');
-                return;
-            }
-
-            headerMenu.classList.toggle('show');
-        })
-    }
-});
-
-//Menú link
-
-document.addEventListener('DOMContentLoaded', () => {
-    const enlacesInternos = document.querySelectorAll('.header-menu-link'); 
-
-  
-  const quitarClaseActiva = () => {
-    enlacesInternos.forEach(enlace => {
-      enlace.classList.remove('activo');
-    });
-  };
-
-  const ocultarMenu = () => {
+    // VARIABLES
+    const menuButton = document.querySelector('.header-menu-btn');
     const headerMenu = document.querySelector('.header-menu');
-    if (headerMenu) {
-      headerMenu.classList.remove('show');
+    const menuLinks = document.querySelectorAll('.header-menu-link');
+    const darkModeButton = document.querySelector('.modo-oscuro-btn');
+
+    // FUNCTIONS
+    
+    // Menú functions
+    function toggleMenu() {
+        if (!headerMenu) {
+            console.error('No se encontró el elemento .header-menu');
+            return;
+        }
+        headerMenu.classList.toggle('show');
     }
-  };
+    
+    function hideMenu() {
+        if (headerMenu) {
+            headerMenu.classList.remove('show');
+        }
+    }
 
-  
-  enlacesInternos.forEach(enlace => {
-    enlace.addEventListener('click', function(event) {
-      quitarClaseActiva();
-      this.classList.add('activo'); 
-      ocultarMenu();
-    });
-  });
-});
-
-//Modo oscuro
-
-document.addEventListener('DOMContentLoaded', () => {
-    const boton = document.querySelector('.modo-oscuro-btn');
-
-    if (boton) {
-        boton.addEventListener('click', () => {
-            document.body.classList.toggle('modo-oscuro');
+    // Menú link functions
+    function removeActiveClass() {
+        menuLinks.forEach(link => {
+            link.classList.remove('activo');
         });
     }
+    
+    function handleMenuLinkClick(event) {
+        removeActiveClass();
+        this.classList.add('activo');
+        hideMenu();
+    }
+
+    // Modo oscuro function
+    function toggleDarkMode() {
+        document.body.classList.toggle('modo-oscuro');
+    }
+
+    //EVENT LISTENERS
+    
+    // Menú button listener
+    if (menuButton) {
+        menuButton.addEventListener('click', toggleMenu);
+    }
+    
+    // Menú links listeners
+    menuLinks.forEach(link => {
+        link.addEventListener('click', handleMenuLinkClick);
+    });
+    
+    // Modo oscuro listener
+    if (darkModeButton) {
+        darkModeButton.addEventListener('click', toggleDarkMode);
+    }
+
+    //calculadora
 });
-
-//Calculadora
-
