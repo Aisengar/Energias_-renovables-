@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerMenu = document.querySelector('.header-menu');
     const menuLinks = document.querySelectorAll('.header-menu-link');
     const darkModeButton = document.querySelector('.modo-oscuro-btn');
+    const opcionDesplegable = document.querySelector('.opcion-desplegable');
+    const contenedorDesplegable = document.querySelector('.contenedor-desplegable');
 
     // FUNCTIONS
     
@@ -39,6 +41,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modo oscuro function
     function toggleDarkMode() {
         document.body.classList.toggle('modo-oscuro');
+    }
+
+    // Mejorar el comportamiento del menú desplegable
+    if (opcionDesplegable && contenedorDesplegable) {
+        let timeoutId; //
+        opcionDesplegable.addEventListener('mouseenter', () => {
+            clearTimeout(timeoutId);
+            contenedorDesplegable.style.visibility = 'visible';
+            contenedorDesplegable.style.opacity = '1';
+            contenedorDesplegable.style.pointerEvents = 'auto';
+        });
+        
+        // Al salir del menú principal
+        opcionDesplegable.addEventListener('mouseleave', () => {
+            timeoutId = setTimeout(() => {
+                // Solo ocultamos si el ratón no está sobre el menú desplegable
+                if (!contenedorDesplegable.matches(':hover')) {
+                    contenedorDesplegable.style.visibility = 'hidden';
+                    contenedorDesplegable.style.opacity = '0';
+                    contenedorDesplegable.style.pointerEvents = 'none';
+                }
+            }, 50); // Retraso de 300ms
+        });
+        
+        // Al salir del menú desplegable
+        contenedorDesplegable.addEventListener('mouseleave', () => {
+            timeoutId = setTimeout(() => {
+                // Solo ocultamos si el ratón no está sobre el menú principal
+                if (!opcionDesplegable.matches(':hover')) {
+                    contenedorDesplegable.style.visibility = 'hidden';
+                    contenedorDesplegable.style.opacity = '0';
+                    contenedorDesplegable.style.pointerEvents = 'none';
+                }
+            }, 300); // Retraso de 300ms
+        });
     }
 
     //EVENT LISTENERS
