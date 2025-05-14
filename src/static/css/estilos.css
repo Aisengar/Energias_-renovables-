@@ -59,6 +59,26 @@ body.modo-oscuro .tarjeta-seccion {
     background-color: rgba(0, 0, 0, 0.65);
     color: #fff;
 }
+body.modo-oscuro .opcion-desplegable .title {
+    color: #fff; /* Asegura que el título del desplegable sea blanco en modo oscuro */
+}
+body.modo-oscuro .contenedor-desplegable .link {
+    color: #fff; /* Asegura que los enlaces dentro del desplegable sean blancos en modo oscuro */
+}
+
+
+
+body.modo-oscuro .opcion-desplegable {
+    color: #fff;
+    background-color: #333;
+}
+
+body.modo-oscuro .contenedor-desplegable {
+    background-color: #333;
+    color: #fff;
+}
+
+
 
 body.modo-oscuro .opcion-desplegable .title {
     color: #fff;
@@ -148,32 +168,45 @@ a {
     transition: all 0.3s ease-in-out;
 }
 
+
 .opcion-desplegable {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
     border: none;
     background-color: transparent;
 }
 
 .contenedor-desplegable {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
-    left: 50%;
-    top: 0;
+    left: 0;
+    top: 100%;
+    margin-top: 5px;
     z-index: 1000;
-    transform: translateX(-50%);
+    transform: none;
     background-color: #fff;
     width: 200px;
     box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.12);
     border-radius: 10px;
+    transition: visibility 0s 0.3s, opacity 0.3s; 
+    pointer-events: none;
+    display: block;
+}
+
+.contenedor-desplegable:hover {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .opcion-desplegable .title {
     color: var(--color-texto-header);
     font-size: 1rem;
     font-weight: bold;
+    transition: color 0.3s ease-in-out; /* Añade transición para el color */
     padding: 0.25rem 0.5rem;
 }
 
@@ -195,7 +228,10 @@ a {
 }
 
 .opcion-desplegable:hover .contenedor-desplegable {
-    display: block;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0s;
 }
 
 .header-menu-link.activo {
@@ -382,5 +418,3 @@ a {
         font-size: 1.5rem;
     }
 }
-
-
