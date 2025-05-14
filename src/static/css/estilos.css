@@ -168,19 +168,19 @@ a {
 
 /* Estilos de las secciones */
 #energia-solar {
-    background-image: url("images/Energia_Solar.jpg");
+    background-image: url("/static/images/Energia_Solar.jpg");
 }
 
 #energia-eolica {
-    background-image: url("images/Energia_Eolica.webp");
+    background-image: url("/static/images/Energia_Eolica.webp");
 }
 
 #energia-hidraulica {
-    background-image: url("images/Energia_Hidraulica.jpg");
+    background-image: url("/static/images/Energia_Hidraulica.jpg");
 }
 
 #energia-biomasa {
-    background-image: url("images/Energia_Biomasa.jpg");
+    background-image: url("/static/images/Energia_Biomasa.jpg");
 }
 
 .seccion-pagina {
