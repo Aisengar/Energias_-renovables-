@@ -101,6 +101,10 @@ body.modo-oscuro #titulo-dashboard {
     color: #fff;
 }
 
+body.modo-oscuro #consumo-usuario {
+    color: #000;
+}
+
 /*//////////////////////////////////////*/
 
 /* Estilos de layout */
