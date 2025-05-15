@@ -18,9 +18,6 @@ def pagina_no_encontrada(error):
 
 @app.route('/process_data', methods=['GET'])
 def process_data():
-    print(request)
-    print(dir(request))
-    print(request.form)
     json_path = 'data/processed_data/consumo_energia_renovable.json'
     if not os.path.exists(json_path):
         print(f"El archivo JSON no existe en la ruta: {json_path}")
