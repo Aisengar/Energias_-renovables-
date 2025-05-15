@@ -97,6 +97,10 @@ a {
     text-decoration: none;
 }
 
+body.modo-oscuro #titulo-dashboard {
+    color: #fff;
+}
+
 /*//////////////////////////////////////*/
 
 /* Estilos de layout */
@@ -282,6 +286,10 @@ a {
     text-align: center;
 }
 
+#dashboard {
+    background-image: url("/static/images/Fondo_inicio.webp");
+}
+
 #inicio h1 {
     font-size: 50px;
 }
@@ -304,6 +312,12 @@ a {
 .contenedor-tarjetas {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+#contenedor-dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
