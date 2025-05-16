@@ -26,7 +26,7 @@ body.modo-oscuro {
 }
 
 body.modo-oscuro .header {
-    background-color: #333;
+    background-color: #23816f;
 }
 
 body.modo-oscuro .header-title {
@@ -38,7 +38,7 @@ body.modo-oscuro .header-menu-link {
 }
 
 body.modo-oscuro .header-menu {
-    background-color: #333;
+    background-color: #23816f;
 }
 
 body.modo-oscuro .header-menu-link.activo {
@@ -70,7 +70,7 @@ body.modo-oscuro .contenedor-desplegable .link {
 
 body.modo-oscuro .opcion-desplegable {
     color: #fff;
-    background-color: #333;
+    background-color: #23816f;
 }
 
 body.modo-oscuro .contenedor-desplegable {
@@ -103,6 +103,10 @@ body.modo-oscuro #titulo-dashboard {
 
 body.modo-oscuro #consumo-usuario {
     color: #000;
+}
+
+body.modo-oscuro .header-menu-link:hover {
+    background-color: #000;
 }
 
 /*//////////////////////////////////////*/
@@ -296,11 +300,11 @@ body.modo-oscuro #consumo-usuario {
 }
 
 #inicio h1 {
-    font-size: 50px;
+    font-size: 40px;
 }
 
 #inicio p {
-    font-size: 20px;
+    font-size: 19px;
     line-height: 1.5;
 }
 
