@@ -271,10 +271,44 @@
                     </article>
                 </div>
             </section>
-            <section id="historico-datos" class="seccion-pagina">
-                <h2>Datos Històricos</h2>
-                <div class="contenedor-tarjetas">
-                    
+               <!-- Datos Históricos Section -->
+            <section id="datos" class="seccion-pagina">
+                <div class="container">
+                    <h2>Datos Históricos de Energía Renovable</h2>
+                    <div class="upload-container">
+                        <p>Carga el conjunto de datos o utiliza nuestra base de datos precargada:</p>
+                    <div class="form-group">
+                    <label for="region">Región:</label>
+                    <select id="region">
+                        <option value="none"></option>
+                        <option value="europe">Europa</option>
+                        <option value="northamerica">América del Norte</option>
+                        <option value="latinamerica">América Latina</option>
+                        <option value="asia">Asia</option>
+                        <option value="africa">África</option>
+                        <option value="oceania">Oceanía</option>
+                    </select>
+                    </div>
+                        <button id="load-data-btn" class="btn btn-secondary">Cargar Datos Precargados</button>
+                    </div>
+                    <div class="table-container">
+                        <table id="data-table" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Año</th>
+                                    <th>País</th>
+                                    <th>Hidráulica (TWh)</th>
+                                    <th>Eólica (TWh)</th>
+                                    <th>Solar (TWh)</th>
+                                    <th>Biocombustibles (TWh)</th>
+                                    <th>Geotérmica (TWh)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
             <section id="dashboard" class="seccion-pagina">
