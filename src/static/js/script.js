@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
+
     // VARIABLES GLOBALES
     const menuButton = document.querySelector('.header-menu-btn');
     const headerMenu = document.querySelector('.header-menu');
@@ -9,12 +10,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const consumptionForm = document.getElementById('consumo-form');
     const regions_lists = document.getElementById('region');
     const tablebody = document.getElementById('table-body');
+    
+    // Variable para almacenar todos los datos cargados
+    let allFetchedData = null; 
 
     // FUNCIONES DE LA TABLA DE DATOS
     function populateDataTable(data) {
         const tablebody = document.getElementById('table-body');
-        
-        // Validar la existencia del elemento DOM
         if (!tablebody) {
             console.error('Elemento tbody con id "table-body" no encontrado.');
             return;
@@ -102,23 +104,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         
         regions_lists.innerHTML = '';
-        regions_lists.appendChild(placeholderOption); // Añadimos el placeholder nuevamente
-        placeholderOption.selected = true; // Nos aseguramos que esté seleccionado
+        regions_lists.appendChild(placeholderOption); 
+        placeholderOption.selected = true; 
 
         if (countries && countries.length > 0) {
-            countries.sort(); // Ordenamos los países alfabéticamente
+            countries.sort();
             countries.forEach(country => {
                 const option = document.createElement('option');
-                option.value = country; // Usamos el nombre del país como valor
+                option.value = country;
                 option.textContent = country;
                 regions_lists.appendChild(option);
             });
-        } else {
-            const noDataOption = document.createElement('option');
-            noDataOption.textContent = "No hay países disponibles";
-            noDataOption.disabled = true;
-            regions_lists.appendChild(noDataOption);
-        }
+        } 
     }
     
     // FUNCIONES DEL MENÚ DE NAVEGACIÓN
@@ -156,8 +153,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // FUNCIONES DE LA CALCULADORA
     function onSubmitCalculator(ev) {
         ev.preventDefault();
-        // Porcentaje de energías que provienen de fuentes renovables.
-        // En base a la producción de energía total
         const PORCENTAGE = 0.37;
         const userInput = document.getElementById('consumo-usuario');
         const resultContainer = document.getElementById('resultado-calculadora');
@@ -216,7 +211,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Al salir del menú principal
         opcionDesplegable.addEventListener('mouseleave', () => {
             timeoutId = setTimeout(() => {
-                // Solo ocultamos si el ratón no está sobre el menú desplegable
                 if (!contenedorDesplegable.matches(':hover')) {
                     contenedorDesplegable.style.visibility = 'hidden';
                     contenedorDesplegable.style.opacity = '0';
@@ -224,7 +218,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }, 50); // Retraso de 50ms
         });
-        
 
         // Al salir del menú desplegable
         contenedorDesplegable.addEventListener('mouseleave', () => {
@@ -235,8 +228,44 @@ document.addEventListener('DOMContentLoaded', async () => {
                     contenedorDesplegable.style.opacity = '0';
                     contenedorDesplegable.style.pointerEvents = 'none';
                 }
-            }, 300); // Retraso de 300ms
+            }, 50); // Retraso de 300ms
         });
+    }
+    
+    // CAMBIO DE REGIÓN FILTRADO DE TABLA
+    function handleRegionChange() {
+        if (!allFetchedData || !allFetchedData.biofuelData || !allFetchedData.biofuelData.data_by_country) {
+            console.warn("No hay datos cargados para filtrar o la estructura de datos es incorrecta.");
+            if (tablebody) renderEmptyTable(tablebody, 'Datos no disponibles para filtrar. Intente cargar de nuevo.');
+            return;
+        }
+        const selectedCountry = regions_lists.value;
+        console.log("Region seleccionada:", selectedCountry);
+        if (selectedCountry === "none") {
+            // Si se selecciona "none" mostrar todos los datos
+            tablebody.innerHTML = ''
+            renderEmptyTable(tablebody,'Seleccione un pais para ver los datos Historicos');
+        } else {
+            // Filtrar datos para el país seleccionado
+            const countrySpecificRawData = allFetchedData.biofuelData.data_by_country[selectedCountry];
+            
+            if (countrySpecificRawData) {
+                // Crear un objeto de datos filtrados con la misma estructura que espera populateDataTable
+                const filteredData = {
+                    ...allFetchedData,
+                    biofuelData: {
+                        ...allFetchedData.biofuelData,
+                        data_by_country: {
+                            [selectedCountry]: countrySpecificRawData
+                        }
+                    }
+                };
+                populateDataTable(filteredData);
+            } else {
+                console.warn(`No se encontraron datos para el país seleccionado: ${selectedCountry}`);
+                if (tablebody) renderEmptyTable(tablebody, `No se encontraron datos para ${selectedCountry}.`);
+            }
+        }
     }
 
     // CARGA INICIAL DE DATOS
@@ -246,19 +275,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Poblar el dropdown de regiones
             if (data?.countries) {
-                populateRegionsDropdown(data.countries);
+                allFetchedData = data; // Almacenar los datos completos
+                populateRegionsDropdown(allFetchedData.countries);
             } else {
                 console.warn("No se recibieron datos de países de loadAndProcessBiofuelData.");
                 populateRegionsDropdown([]); // Array vacío para mostrar mensaje de "no disponibles"
             }
             
             // Poblar la tabla de datos
-            populateDataTable(data);
+            if (tablebody) {
+                renderEmptyTable(tablebody, 'Seleccione un país para ver los datos Históricos');
+            }
+
         } else {
             console.error('La función loadAndProcessBiofuelData no está definida. Asegúrate de que fetching.js se carga antes que script.js.');
             populateRegionsDropdown([]);
-            
-            const tablebody = document.getElementById('table-body');
             if (tablebody) {
                 renderEmptyTable(tablebody, 'Error: La función para cargar datos no está disponible.');
             }
@@ -266,10 +297,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error al cargar y procesar los datos para el dropdown y la tabla:', error);
         populateRegionsDropdown([]);
-        
-        const tablebody = document.getElementById('table-body');
         if (tablebody) {
             renderEmptyTable(tablebody, `Error al cargar los datos: ${error.message}`);
         }
+    }
+
+    // Event listener para el cambio en el selector de región
+    if (regions_lists) {
+        regions_lists.addEventListener('change', handleRegionChange);
     }
 });
