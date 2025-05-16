@@ -11,7 +11,9 @@
         rel="stylesheet">
     <link rel="shortcut icon" href="static/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="static/css/estilos.css">
-    <script src="static/js/script.js"></script>
+    <!-- Cargar fetching.js ANTES de script.js -->
+    <script src="static/js/fetching.js"></script> 
+    <script src="static/js/script.js"></script> 
 </head>
 
 <body>
@@ -280,15 +282,9 @@
                     <div class="upload-container">
                         <p>Carga el conjunto de datos o utiliza nuestra base de datos precargada:</p>
                     <div class="form-group">
-                    <label for="region">Región:</label>
-                    <select id="region">
-                        <option value="none"></option>
-                        <option value="europe">Europa</option>
-                        <option value="northamerica">América del Norte</option>
-                        <option value="latinamerica">América Latina</option>
-                        <option value="asia">Asia</option>
-                        <option value="africa">África</option>
-                        <option value="oceania">Oceanía</option>
+                    <label for="region">Pais:</label>
+                    <select id="region"> <!-- Las opciones se poblarán dinámicamente -->
+                        <option value="none"></option> <!-- Opción inicial/placeholder -->
                     </select>
                     </div>
                         <button id="load-data-btn" class="btn btn-secondary">Cargar Datos Precargados</button>

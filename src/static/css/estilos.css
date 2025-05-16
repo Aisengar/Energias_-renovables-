@@ -434,7 +434,7 @@ body.modo-oscuro #datos .container {
 
 /* Botón de cargar datos */
 #datos .upload-container button {
-    background-color: #78bb44; /* Mismo color que el botón de calcular */
+    background-color: #78bb44;
     color: #fff;
     padding: 0.5rem 1rem;
     border: none;
