@@ -25,20 +25,26 @@ async function loadAndProcessBiofuelData() {
         const biofuelData = await fetchData(web_url_link);
         console.log("Biofuel data successfully fetched:", biofuelData);
 
-        // For example:
         const countries = getCountryList(biofuelData);
         const uniqueYears = getUniqueYears(biofuelData);
         const decadeSums = sumProductionByDecade(biofuelData);
-
+        // Devuelve los datos procesados para que puedan ser utilizados por otros scripts
+        return {
+            biofuelData,
+            countries,
+            uniqueYears,
+            decadeSums
+        };
     } catch (error) {
         console.error("Failed to load or process biofuel data:", error.message);
+        throw error;
     }
 }
 
 function getCountryList(jsonData) {
     if (!jsonData || typeof jsonData.data_by_country!== 'object' || jsonData.data_by_country === null) {
         console.error("Invalid JSON data: 'data_by_country' field is missing or not an object.");
-        return;
+        return [];
     }
     const countries = Object.keys(jsonData.data_by_country);
     console.log("List of countries:", countries);
@@ -93,17 +99,10 @@ function sumProductionByDecade(jsonData) {
         }
     });
 
-    // Optional: Round the sums to a reasonable number of decimal places
     for (const decade in productionByDecade) {
         productionByDecade[decade] = parseFloat(productionByDecade[decade].toFixed(3)); // Example: 3 decimal places
     }
 
     console.log("Total biofuel production by decade (global):", productionByDecade);
-    // Example output: {"1990s": 200.573, "2000s": 1500.891,...}
     return productionByDecade;
 }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     loadAndProcessBiofuelData();
-// });
-loadAndProcessBiofuelData();
