@@ -482,7 +482,7 @@
             }
         }
     },
-    "Brazil": {
+    "Brasil": {
         "country_code": "BRA",
         "yearly_data": {
             "1990": {
@@ -492,7 +492,8 @@
                 "MOD_RENEW_CONSUM": 210.5670624,
                 "RENEW_SHARE_TFEC": 44.53114,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 49.8
             },
             "1991": {
                 "BIOFUEL_PROD": 76.815605,
@@ -501,7 +502,8 @@
                 "MOD_RENEW_CONSUM": 221.78161260000002,
                 "RENEW_SHARE_TFEC": 45.268887,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 48.9
             },
             "1992": {
                 "BIOFUEL_PROD": 70.370445,
@@ -510,7 +512,8 @@
                 "MOD_RENEW_CONSUM": 228.272361,
                 "RENEW_SHARE_TFEC": 45.73639,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 48.7
             },
             "1993": {
                 "BIOFUEL_PROD": 68.25598,
@@ -519,7 +522,8 @@
                 "MOD_RENEW_CONSUM": 240.0489373,
                 "RENEW_SHARE_TFEC": 45.985283,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 48.2
             },
             "1994": {
                 "BIOFUEL_PROD": 74.95961,
@@ -528,7 +532,8 @@
                 "MOD_RENEW_CONSUM": 248.0933236,
                 "RENEW_SHARE_TFEC": 45.4955,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 48.3
             },
             "1995": {
                 "BIOFUEL_PROD": 76.39262,
@@ -537,7 +542,8 @@
                 "MOD_RENEW_CONSUM": 259.49884050000003,
                 "RENEW_SHARE_TFEC": 44.73329,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 46.1
             },
             "1996": {
                 "BIOFUEL_PROD": 85.02924,
@@ -546,7 +552,8 @@
                 "MOD_RENEW_CONSUM": 272.49051,
                 "RENEW_SHARE_TFEC": 44.30005,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.002
+                "WIND_CONSUM": 0.002,
+                "EG.FEC.RNEW.ZS": 44.5
             },
             "1997": {
                 "BIOFUEL_PROD": 93.43981,
@@ -555,7 +562,8 @@
                 "MOD_RENEW_CONSUM": 286.355451,
                 "RENEW_SHARE_TFEC": 43.421165,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.004
+                "WIND_CONSUM": 0.004,
+                "EG.FEC.RNEW.ZS": 43.7
             },
             "1998": {
                 "BIOFUEL_PROD": 85.30479,
@@ -564,7 +572,8 @@
                 "MOD_RENEW_CONSUM": 298.979413,
                 "RENEW_SHARE_TFEC": 43.59449,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.005
+                "WIND_CONSUM": 0.005,
+                "EG.FEC.RNEW.ZS": 43.8
             },
             "1999": {
                 "BIOFUEL_PROD": 78.68598,
@@ -573,7 +582,8 @@
                 "MOD_RENEW_CONSUM": 301.37803199999996,
                 "RENEW_SHARE_TFEC": 43.436108,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.002
+                "WIND_CONSUM": 0.002,
+                "EG.FEC.RNEW.ZS": 44.0
             },
             "2000": {
                 "BIOFUEL_PROD": 65.01594,
@@ -582,7 +592,8 @@
                 "MOD_RENEW_CONSUM": 312.259663,
                 "RENEW_SHARE_TFEC": 42.443245,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 42.7
             },
             "2001": {
                 "BIOFUEL_PROD": 69.79248,
@@ -591,7 +602,8 @@
                 "MOD_RENEW_CONSUM": 276.93330699999996,
                 "RENEW_SHARE_TFEC": 38.569214,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.03
+                "WIND_CONSUM": 0.03,
+                "EG.FEC.RNEW.ZS": 41.3
             },
             "2002": {
                 "BIOFUEL_PROD": 76.622284,
@@ -600,7 +612,8 @@
                 "MOD_RENEW_CONSUM": 296.423347,
                 "RENEW_SHARE_TFEC": 40.180744,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.06
+                "WIND_CONSUM": 0.06,
+                "EG.FEC.RNEW.ZS": 42.9
             },
             "2003": {
                 "BIOFUEL_PROD": 88.292885,
@@ -609,7 +622,8 @@
                 "MOD_RENEW_CONSUM": 317.616463,
                 "RENEW_SHARE_TFEC": 41.64891,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.06
+                "WIND_CONSUM": 0.06,
+                "EG.FEC.RNEW.ZS": 45.1
             },
             "2004": {
                 "BIOFUEL_PROD": 89.07529,
@@ -618,7 +632,8 @@
                 "MOD_RENEW_CONSUM": 333.372956,
                 "RENEW_SHARE_TFEC": 41.635994,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.06
+                "WIND_CONSUM": 0.06,
+                "EG.FEC.RNEW.ZS": 45.2
             },
             "2005": {
                 "BIOFUEL_PROD": 97.43511,
@@ -627,7 +642,8 @@
                 "MOD_RENEW_CONSUM": 351.192777,
                 "RENEW_SHARE_TFEC": 42.51229,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.09
+                "WIND_CONSUM": 0.09,
+                "EG.FEC.RNEW.ZS": 46.1
             },
             "2006": {
                 "BIOFUEL_PROD": 108.2094,
@@ -636,7 +652,8 @@
                 "MOD_RENEW_CONSUM": 363.888109,
                 "RENEW_SHARE_TFEC": 42.397827,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.24
+                "WIND_CONSUM": 0.24,
+                "EG.FEC.RNEW.ZS": 46.7
             },
             "2007": {
                 "BIOFUEL_PROD": 139.81993,
@@ -645,7 +662,8 @@
                 "MOD_RENEW_CONSUM": 392.74136582999995,
                 "RENEW_SHARE_TFEC": 43.479145,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.66
+                "WIND_CONSUM": 0.66,
+                "EG.FEC.RNEW.ZS": 47.2
             },
             "2008": {
                 "BIOFUEL_PROD": 174.39844,
@@ -654,7 +672,8 @@
                 "MOD_RENEW_CONSUM": 390.525657,
                 "RENEW_SHARE_TFEC": 42.63199,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 1.18
+                "WIND_CONSUM": 1.18,
+                "EG.FEC.RNEW.ZS": 47.0
             },
             "2009": {
                 "BIOFUEL_PROD": 171.59833,
@@ -663,7 +682,8 @@
                 "MOD_RENEW_CONSUM": 415.101942,
                 "RENEW_SHARE_TFEC": 45.54154,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 1.24
+                "WIND_CONSUM": 1.24,
+                "EG.FEC.RNEW.ZS": 48.9
             },
             "2010": {
                 "BIOFUEL_PROD": 189.93903,
@@ -672,7 +692,8 @@
                 "MOD_RENEW_CONSUM": 437.408763,
                 "RENEW_SHARE_TFEC": 43.85847,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 2.18
+                "WIND_CONSUM": 2.18,
+                "EG.FEC.RNEW.ZS": 46.8
             },
             "2011": {
                 "BIOFUEL_PROD": 163.06369,
@@ -681,7 +702,8 @@
                 "MOD_RENEW_CONSUM": 463.66672900000003,
                 "RENEW_SHARE_TFEC": 43.93462,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 2.7
+                "WIND_CONSUM": 2.7,
+                "EG.FEC.RNEW.ZS": 45.2
             },
             "2012": {
                 "BIOFUEL_PROD": 166.94719,
@@ -690,7 +712,8 @@
                 "MOD_RENEW_CONSUM": 456.159445116,
                 "RENEW_SHARE_TFEC": 41.70022,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 5.05
+                "WIND_CONSUM": 5.05,
+                "EG.FEC.RNEW.ZS": 43.5
             },
             "2013": {
                 "BIOFUEL_PROD": 193.97246,
@@ -699,7 +722,8 @@
                 "MOD_RENEW_CONSUM": 438.544504593,
                 "RENEW_SHARE_TFEC": 39.92749,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 6.58
+                "WIND_CONSUM": 6.58,
+                "EG.FEC.RNEW.ZS": 42.3
             },
             "2014": {
                 "BIOFUEL_PROD": 204.10724,
@@ -708,7 +732,8 @@
                 "MOD_RENEW_CONSUM": 432.744573803,
                 "RENEW_SHARE_TFEC": 38.842846,
                 "SOLAR_CONSUM": 0.02,
-                "WIND_CONSUM": 12.21
+                "WIND_CONSUM": 12.21,
+                "EG.FEC.RNEW.ZS": 41.7
             },
             "2015": {
                 "BIOFUEL_PROD": 218.91077,
@@ -717,7 +742,8 @@
                 "MOD_RENEW_CONSUM": 431.30773940999995,
                 "RENEW_SHARE_TFEC": 40.033836,
                 "SOLAR_CONSUM": 0.06,
-                "WIND_CONSUM": 21.63
+                "WIND_CONSUM": 21.63,
+                "EG.FEC.RNEW.ZS": 43.7
             },
             "2016": {
                 "BIOFUEL_PROD": 206.00305,
@@ -726,7 +752,8 @@
                 "MOD_RENEW_CONSUM": 465.81978159000005,
                 "RENEW_SHARE_TFEC": 42.97847,
                 "SOLAR_CONSUM": 0.09,
-                "WIND_CONSUM": 33.49
+                "WIND_CONSUM": 33.49,
+                "EG.FEC.RNEW.ZS": 45.4
             },
             "2017": {
                 "BIOFUEL_PROD": 207.05112,
@@ -735,7 +762,8 @@
                 "MOD_RENEW_CONSUM": 467.0236364,
                 "RENEW_SHARE_TFEC": 42.650604,
                 "SOLAR_CONSUM": 0.83,
-                "WIND_CONSUM": 42.37
+                "WIND_CONSUM": 42.37,
+                "EG.FEC.RNEW.ZS": 45.3
             },
             "2018": {
                 "BIOFUEL_PROD": 248.83961,
@@ -744,7 +772,8 @@
                 "MOD_RENEW_CONSUM": 495.2898778,
                 "RENEW_SHARE_TFEC": 45.428116,
                 "SOLAR_CONSUM": 3.46,
-                "WIND_CONSUM": 48.48
+                "WIND_CONSUM": 48.48,
+                "EG.FEC.RNEW.ZS": 46.9
             },
             "2019": {
                 "BIOFUEL_PROD": 266.04663,
@@ -753,7 +782,8 @@
                 "MOD_RENEW_CONSUM": 515.438117,
                 "RENEW_SHARE_TFEC": 46.808254,
                 "SOLAR_CONSUM": 6.65,
-                "WIND_CONSUM": 55.99
+                "WIND_CONSUM": 55.99,
+                "EG.FEC.RNEW.ZS": 47.5
             },
             "2020": {
                 "BIOFUEL_PROD": 255.50471,
@@ -762,7 +792,8 @@
                 "MOD_RENEW_CONSUM": 522.922095,
                 "RENEW_SHARE_TFEC": 48.693333,
                 "SOLAR_CONSUM": 10.75,
-                "WIND_CONSUM": 57.05
+                "WIND_CONSUM": 57.05,
+                "EG.FEC.RNEW.ZS": 50.0
             },
             "2021": {
                 "BIOFUEL_PROD": 242.87822,
@@ -771,7 +802,8 @@
                 "MOD_RENEW_CONSUM": 507.58093099999996,
                 "RENEW_SHARE_TFEC": 44.914055,
                 "SOLAR_CONSUM": 16.75,
-                "WIND_CONSUM": 72.29
+                "WIND_CONSUM": 72.29,
+                "EG.FEC.RNEW.ZS": 46.5
             },
             "2022": {
                 "BIOFUEL_PROD": 241.87132,
@@ -1436,7 +1468,8 @@
                 "MOD_RENEW_CONSUM": 35.846587,
                 "RENEW_SHARE_TFEC": 4.9202223,
                 "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.25
+                "WIND_CONSUM": 0.25,
+                "EG.FEC.RNEW.ZS": 9.5
             },
             "2008": {
                 "BIOFUEL_PROD": 0.0,
@@ -1445,7 +1478,8 @@
                 "MOD_RENEW_CONSUM": 47.394065,
                 "RENEW_SHARE_TFEC": 6.2076354,
                 "SOLAR_CONSUM": 0.02,
-                "WIND_CONSUM": 0.25
+                "WIND_CONSUM": 0.25,
+                "EG.FEC.RNEW.ZS": 9.8
             },
             "2009": {
                 "BIOFUEL_PROD": 0.0,
@@ -1454,7 +1488,8 @@
                 "MOD_RENEW_CONSUM": 34.892427760000004,
                 "RENEW_SHARE_TFEC": 4.631896,
                 "SOLAR_CONSUM": 0.03,
-                "WIND_CONSUM": 0.6
+                "WIND_CONSUM": 0.6,
+                "EG.FEC.RNEW.ZS": 9.2
             },
             "2010": {
                 "BIOFUEL_PROD": 0.0,
@@ -1463,7 +1498,8 @@
                 "MOD_RENEW_CONSUM": 46.466290099999995,
                 "RENEW_SHARE_TFEC": 6.1123457,
                 "SOLAR_CONSUM": 0.03,
-                "WIND_CONSUM": 1.24
+                "WIND_CONSUM": 1.24,
+                "EG.FEC.RNEW.ZS": 9.4
             },
             "2011": {
                 "BIOFUEL_PROD": 0.0,
@@ -1472,7 +1508,8 @@
                 "MOD_RENEW_CONSUM": 45.923215400000004,
                 "RENEW_SHARE_TFEC": 5.743796,
                 "SOLAR_CONSUM": 0.04,
-                "WIND_CONSUM": 1.65
+                "WIND_CONSUM": 1.65,
+                "EG.FEC.RNEW.ZS": 9.1
             },
             "2012": {
                 "BIOFUEL_PROD": 0.0,
@@ -1481,7 +1518,8 @@
                 "MOD_RENEW_CONSUM": 43.059792,
                 "RENEW_SHARE_TFEC": 5.3235054,
                 "SOLAR_CONSUM": 0.07,
-                "WIND_CONSUM": 3.69
+                "WIND_CONSUM": 3.69,
+                "EG.FEC.RNEW.ZS": 9.0
             },
             "2013": {
                 "BIOFUEL_PROD": 0.0,
@@ -1490,7 +1528,8 @@
                 "MOD_RENEW_CONSUM": 40.121745000000004,
                 "RENEW_SHARE_TFEC": 4.936131,
                 "SOLAR_CONSUM": 0.11,
-                "WIND_CONSUM": 4.18
+                "WIND_CONSUM": 4.18,
+                "EG.FEC.RNEW.ZS": 9.2
             },
             "2014": {
                 "BIOFUEL_PROD": 0.0,
@@ -1499,7 +1538,8 @@
                 "MOD_RENEW_CONSUM": 53.636906100000004,
                 "RENEW_SHARE_TFEC": 6.612726,
                 "SOLAR_CONSUM": 0.22,
-                "WIND_CONSUM": 6.43
+                "WIND_CONSUM": 6.43,
+                "EG.FEC.RNEW.ZS": 9.8
             },
             "2015": {
                 "BIOFUEL_PROD": 0.0,
@@ -1508,7 +1548,8 @@
                 "MOD_RENEW_CONSUM": 48.2360865,
                 "RENEW_SHARE_TFEC": 5.9951878,
                 "SOLAR_CONSUM": 0.2,
-                "WIND_CONSUM": 8.75
+                "WIND_CONSUM": 8.75,
+                "EG.FEC.RNEW.ZS": 9.2
             },
             "2016": {
                 "BIOFUEL_PROD": 0.1182428,
@@ -1517,7 +1558,8 @@
                 "MOD_RENEW_CONSUM": 48.977756119999995,
                 "RENEW_SHARE_TFEC": 5.9304824,
                 "SOLAR_CONSUM": 0.25,
-                "WIND_CONSUM": 10.38
+                "WIND_CONSUM": 10.38,
+                "EG.FEC.RNEW.ZS": 9.2
             },
             "2017": {
                 "BIOFUEL_PROD": 0.17736419,
@@ -1526,7 +1568,8 @@
                 "MOD_RENEW_CONSUM": 50.777206699999994,
                 "RENEW_SHARE_TFEC": 6.0061207,
                 "SOLAR_CONSUM": 1.19,
-                "WIND_CONSUM": 10.62
+                "WIND_CONSUM": 10.62,
+                "EG.FEC.RNEW.ZS": 10.1
             },
             "2018": {
                 "BIOFUEL_PROD": 0.295607,
@@ -1535,7 +1578,8 @@
                 "MOD_RENEW_CONSUM": 55.242452,
                 "RENEW_SHARE_TFEC": 6.582444,
                 "SOLAR_CONSUM": 3.21,
-                "WIND_CONSUM": 12.44
+                "WIND_CONSUM": 12.44,
+                "EG.FEC.RNEW.ZS": 10.3
             },
             "2019": {
                 "BIOFUEL_PROD": 0.295607,
@@ -1544,7 +1588,8 @@
                 "MOD_RENEW_CONSUM": 57.506301699999995,
                 "RENEW_SHARE_TFEC": 6.9041133,
                 "SOLAR_CONSUM": 9.96,
-                "WIND_CONSUM": 16.73
+                "WIND_CONSUM": 16.73,
+                "EG.FEC.RNEW.ZS": 10.3
             },
             "2020": {
                 "BIOFUEL_PROD": 0.2364856,
@@ -1553,7 +1598,8 @@
                 "MOD_RENEW_CONSUM": 69.3652804,
                 "RENEW_SHARE_TFEC": 9.102366,
                 "SOLAR_CONSUM": 15.84,
-                "WIND_CONSUM": 19.7
+                "WIND_CONSUM": 19.7,
+                "EG.FEC.RNEW.ZS": 12.3
             },
             "2021": {
                 "BIOFUEL_PROD": 0.35472837,
@@ -1562,7 +1608,8 @@
                 "MOD_RENEW_CONSUM": 82.09325899999999,
                 "RENEW_SHARE_TFEC": 10.009288,
                 "SOLAR_CONSUM": 20.19,
-                "WIND_CONSUM": 21.07
+                "WIND_CONSUM": 21.07,
+                "EG.FEC.RNEW.ZS": 13.0
             },
             "2022": {
                 "BIOFUEL_PROD": 0.4138498,
@@ -1776,7 +1823,8 @@
                 "MOD_RENEW_CONSUM": 29.606944000000002,
                 "RENEW_SHARE_TFEC": 6.590639,
                 "SOLAR_CONSUM": 0.001,
-                "WIND_CONSUM": 0.001
+                "WIND_CONSUM": 0.001,
+                "EG.FEC.RNEW.ZS": 14.4
             },
             "1991": {
                 "HYDRO_CONSUM": 22.625263,
@@ -1784,7 +1832,8 @@
                 "MOD_RENEW_CONSUM": 28.4607754,
                 "RENEW_SHARE_TFEC": 6.1577377,
                 "SOLAR_CONSUM": 0.002,
-                "WIND_CONSUM": 0.001
+                "WIND_CONSUM": 0.001,
+                "EG.FEC.RNEW.ZS": 13.2
             },
             "1992": {
                 "HYDRO_CONSUM": 26.813694,
@@ -1792,7 +1841,8 @@
                 "MOD_RENEW_CONSUM": 33.183217,
                 "RENEW_SHARE_TFEC": 7.0486536,
                 "SOLAR_CONSUM": 0.003,
-                "WIND_CONSUM": 0.001
+                "WIND_CONSUM": 0.001,
+                "EG.FEC.RNEW.ZS": 13.4
             },
             "1993": {
                 "HYDRO_CONSUM": 26.65493,
@@ -1800,7 +1850,8 @@
                 "MOD_RENEW_CONSUM": 33.1596906,
                 "RENEW_SHARE_TFEC": 7.037548,
                 "SOLAR_CONSUM": 0.004,
-                "WIND_CONSUM": 0.001
+                "WIND_CONSUM": 0.001,
+                "EG.FEC.RNEW.ZS": 13.3
             },
             "1994": {
                 "HYDRO_CONSUM": 20.27132,
@@ -1808,7 +1859,8 @@
                 "MOD_RENEW_CONSUM": 26.499845399999998,
                 "RENEW_SHARE_TFEC": 5.314392,
                 "SOLAR_CONSUM": 0.005,
-                "WIND_CONSUM": 0.005
+                "WIND_CONSUM": 0.005,
+                "EG.FEC.RNEW.ZS": 11.9
             },
             "1995": {
                 "HYDRO_CONSUM": 27.598667,
@@ -1816,7 +1868,8 @@
                 "MOD_RENEW_CONSUM": 34.0251105,
                 "RENEW_SHARE_TFEC": 6.955266,
                 "SOLAR_CONSUM": 0.005,
-                "WIND_CONSUM": 0.007
+                "WIND_CONSUM": 0.007,
+                "EG.FEC.RNEW.ZS": 13.3
             },
             "1996": {
                 "HYDRO_CONSUM": 31.336277,
@@ -1824,7 +1877,8 @@
                 "MOD_RENEW_CONSUM": 37.532832,
                 "RENEW_SHARE_TFEC": 7.4756436,
                 "SOLAR_CONSUM": 0.006,
-                "WIND_CONSUM": 0.006
+                "WIND_CONSUM": 0.006,
+                "EG.FEC.RNEW.ZS": 13.1
             },
             "1997": {
                 "HYDRO_CONSUM": 26.362097,
@@ -1832,7 +1886,8 @@
                 "MOD_RENEW_CONSUM": 32.2633434,
                 "RENEW_SHARE_TFEC": 6.27008,
                 "SOLAR_CONSUM": 0.006,
-                "WIND_CONSUM": 0.012
+                "WIND_CONSUM": 0.012,
+                "EG.FEC.RNEW.ZS": 12.7
             },
             "1998": {
                 "HYDRO_CONSUM": 24.592945,
@@ -1840,7 +1895,8 @@
                 "MOD_RENEW_CONSUM": 30.753531,
                 "RENEW_SHARE_TFEC": 5.741135,
                 "SOLAR_CONSUM": 0.007,
-                "WIND_CONSUM": 0.015
+                "WIND_CONSUM": 0.015,
+                "EG.FEC.RNEW.ZS": 12.2
             },
             "1999": {
                 "HYDRO_CONSUM": 32.71232,
@@ -1848,7 +1904,8 @@
                 "MOD_RENEW_CONSUM": 38.7963214,
                 "RENEW_SHARE_TFEC": 7.147567,
                 "SOLAR_CONSUM": 0.007,
-                "WIND_CONSUM": 0.017
+                "WIND_CONSUM": 0.017,
+                "EG.FEC.RNEW.ZS": 12.8
             },
             "2000": {
                 "HYDRO_CONSUM": 33.07,
@@ -1856,7 +1913,8 @@
                 "MOD_RENEW_CONSUM": 39.459525,
                 "RENEW_SHARE_TFEC": 6.909237,
                 "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.02
+                "WIND_CONSUM": 0.02,
+                "EG.FEC.RNEW.ZS": 12.2
             },
             "2001": {
                 "HYDRO_CONSUM": 28.44,
@@ -1864,7 +1922,8 @@
                 "MOD_RENEW_CONSUM": 34.708827,
                 "RENEW_SHARE_TFEC": 6.096993,
                 "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.02
+                "WIND_CONSUM": 0.02,
+                "EG.FEC.RNEW.ZS": 11.3
             },
             "2002": {
                 "HYDRO_CONSUM": 24.86,
@@ -1872,7 +1931,8 @@
                 "MOD_RENEW_CONSUM": 30.96165,
                 "RENEW_SHARE_TFEC": 5.278122,
                 "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.02
+                "WIND_CONSUM": 0.02,
+                "EG.FEC.RNEW.ZS": 10.7
             },
             "2003": {
                 "HYDRO_CONSUM": 19.85,
@@ -1880,7 +1940,8 @@
                 "MOD_RENEW_CONSUM": 26.828917800000003,
                 "RENEW_SHARE_TFEC": 4.487341,
                 "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.02
+                "WIND_CONSUM": 0.02,
+                "EG.FEC.RNEW.ZS": 10.2
             },
             "2004": {
                 "HYDRO_CONSUM": 25.18,
@@ -1888,7 +1949,8 @@
                 "MOD_RENEW_CONSUM": 32.467228,
                 "RENEW_SHARE_TFEC": 5.093596,
                 "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.02
+                "WIND_CONSUM": 0.02,
+                "EG.FEC.RNEW.ZS": 10.2
             },
             "2005": {
                 "HYDRO_CONSUM": 27.71,
@@ -1896,7 +1958,8 @@
                 "MOD_RENEW_CONSUM": 35.874965,
                 "RENEW_SHARE_TFEC": 5.106224,
                 "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.02
+                "WIND_CONSUM": 0.02,
+                "EG.FEC.RNEW.ZS": 10.3
             },
             "2006": {
                 "HYDRO_CONSUM": 30.45,
@@ -1904,7 +1967,8 @@
                 "MOD_RENEW_CONSUM": 37.9888607,
                 "RENEW_SHARE_TFEC": 5.299336,
                 "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.05
+                "WIND_CONSUM": 0.05,
+                "EG.FEC.RNEW.ZS": 9.8
             }
         }
     },
@@ -2964,149 +3028,6 @@
             }
         }
     },
-    "Dominican Republic": {
-        "country_code": "DOM",
-        "yearly_data": {
-            "2000": {
-                "HYDRO_CONSUM": 0.75,
-                "MOD_RENEW_PROD": 0.91,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2001": {
-                "HYDRO_CONSUM": 0.7,
-                "MOD_RENEW_PROD": 0.86,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2002": {
-                "HYDRO_CONSUM": 0.87,
-                "MOD_RENEW_PROD": 1.04,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2003": {
-                "HYDRO_CONSUM": 1.19,
-                "MOD_RENEW_PROD": 1.3599999999999999,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2004": {
-                "HYDRO_CONSUM": 1.6,
-                "MOD_RENEW_PROD": 1.7400000000000002,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2005": {
-                "HYDRO_CONSUM": 1.91,
-                "MOD_RENEW_PROD": 2.06,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2006": {
-                "HYDRO_CONSUM": 1.75,
-                "MOD_RENEW_PROD": 1.91,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2007": {
-                "HYDRO_CONSUM": 1.7,
-                "MOD_RENEW_PROD": 1.8599999999999999,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2008": {
-                "HYDRO_CONSUM": 1.38,
-                "MOD_RENEW_PROD": 1.5399999999999998,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2009": {
-                "HYDRO_CONSUM": 1.46,
-                "MOD_RENEW_PROD": 1.6199999999999999,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2010": {
-                "HYDRO_CONSUM": 1.43,
-                "MOD_RENEW_PROD": 1.5899999999999999,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
-            },
-            "2011": {
-                "HYDRO_CONSUM": 1.53,
-                "MOD_RENEW_PROD": 1.7,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.01
-            },
-            "2012": {
-                "HYDRO_CONSUM": 1.78,
-                "MOD_RENEW_PROD": 2.0500000000000003,
-                "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.1
-            },
-            "2013": {
-                "HYDRO_CONSUM": 1.88,
-                "MOD_RENEW_PROD": 2.31,
-                "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.24
-            },
-            "2014": {
-                "HYDRO_CONSUM": 1.32,
-                "MOD_RENEW_PROD": 1.75,
-                "SOLAR_CONSUM": 0.02,
-                "WIND_CONSUM": 0.24
-            },
-            "2015": {
-                "HYDRO_CONSUM": 0.93,
-                "MOD_RENEW_PROD": 1.42,
-                "SOLAR_CONSUM": 0.03,
-                "WIND_CONSUM": 0.29
-            },
-            "2016": {
-                "HYDRO_CONSUM": 1.5,
-                "MOD_RENEW_PROD": 2.08,
-                "SOLAR_CONSUM": 0.08,
-                "WIND_CONSUM": 0.32
-            },
-            "2017": {
-                "HYDRO_CONSUM": 2.17,
-                "MOD_RENEW_PROD": 3.04,
-                "SOLAR_CONSUM": 0.14,
-                "WIND_CONSUM": 0.39
-            },
-            "2018": {
-                "HYDRO_CONSUM": 1.76,
-                "MOD_RENEW_PROD": 2.94,
-                "SOLAR_CONSUM": 0.23,
-                "WIND_CONSUM": 0.5
-            },
-            "2019": {
-                "HYDRO_CONSUM": 0.97,
-                "MOD_RENEW_PROD": 2.5100000000000002,
-                "SOLAR_CONSUM": 0.36,
-                "WIND_CONSUM": 0.79
-            },
-            "2020": {
-                "HYDRO_CONSUM": 1.18,
-                "MOD_RENEW_PROD": 3.09,
-                "SOLAR_CONSUM": 0.43,
-                "WIND_CONSUM": 1.14
-            },
-            "2021": {
-                "HYDRO_CONSUM": 1.0,
-                "MOD_RENEW_PROD": 2.99,
-                "SOLAR_CONSUM": 0.53,
-                "WIND_CONSUM": 1.29
-            },
-            "2022": {
-                "HYDRO_CONSUM": 1.0,
-                "MOD_RENEW_PROD": 3.0600000000000005,
-                "SOLAR_CONSUM": 0.56,
-                "WIND_CONSUM": 1.32
-            }
-        }
-    },
     "Ecuador": {
         "country_code": "ECU",
         "yearly_data": {
@@ -3944,139 +3865,191 @@
                 "HYDRO_CONSUM": 0.28,
                 "MOD_RENEW_PROD": 0.28,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 80.8
             },
             "2001": {
                 "HYDRO_CONSUM": 0.28,
                 "MOD_RENEW_PROD": 0.28,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 80.9
             },
             "2002": {
                 "HYDRO_CONSUM": 0.26,
                 "MOD_RENEW_PROD": 0.26,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 79.1
             },
             "2003": {
                 "HYDRO_CONSUM": 0.25,
                 "MOD_RENEW_PROD": 0.25,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 79.0
             },
             "2004": {
                 "HYDRO_CONSUM": 0.26,
                 "MOD_RENEW_PROD": 0.26,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 81.1
             },
             "2005": {
                 "HYDRO_CONSUM": 0.26,
                 "MOD_RENEW_PROD": 0.26,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 81.1
             },
             "2006": {
                 "HYDRO_CONSUM": 0.27,
                 "MOD_RENEW_PROD": 0.27,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 81.4
             },
             "2007": {
                 "HYDRO_CONSUM": 0.15,
                 "MOD_RENEW_PROD": 0.15,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 79.3
             },
             "2008": {
                 "HYDRO_CONSUM": 0.18,
                 "MOD_RENEW_PROD": 0.18,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 79.6
             },
             "2009": {
                 "HYDRO_CONSUM": 0.2,
                 "MOD_RENEW_PROD": 0.2,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 80.3
             },
             "2010": {
                 "HYDRO_CONSUM": 0.17,
                 "MOD_RENEW_PROD": 0.17,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 79.0
             },
             "2011": {
                 "HYDRO_CONSUM": 0.12,
                 "MOD_RENEW_PROD": 0.12,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 79.0
             },
             "2012": {
                 "HYDRO_CONSUM": 0.22,
                 "MOD_RENEW_PROD": 0.22,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 82.2
             },
             "2013": {
                 "HYDRO_CONSUM": 0.14,
                 "MOD_RENEW_PROD": 0.14,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 80.4
             },
             "2014": {
                 "HYDRO_CONSUM": 0.09,
                 "MOD_RENEW_PROD": 0.09,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 77.8
             },
             "2015": {
                 "HYDRO_CONSUM": 0.08,
                 "MOD_RENEW_PROD": 0.08,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 76.1
             },
             "2016": {
                 "HYDRO_CONSUM": 0.07,
                 "MOD_RENEW_PROD": 0.07,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 76.1
             },
             "2017": {
                 "HYDRO_CONSUM": 0.13,
                 "MOD_RENEW_PROD": 0.13,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 76.2
             },
             "2018": {
                 "HYDRO_CONSUM": 0.19,
                 "MOD_RENEW_PROD": 0.19,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 76.2
             },
             "2019": {
                 "HYDRO_CONSUM": 0.17,
                 "MOD_RENEW_PROD": 0.17,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 76.4
             },
             "2020": {
                 "HYDRO_CONSUM": 0.14,
                 "MOD_RENEW_PROD": 0.14,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 76.3
             },
             "2021": {
                 "HYDRO_CONSUM": 0.13,
                 "MOD_RENEW_PROD": 0.13,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 76.7
             },
             "2022": {
                 "HYDRO_CONSUM": 0.14,
                 "MOD_RENEW_PROD": 0.14,
                 "SOLAR_CONSUM": 0.0,
                 "WIND_CONSUM": 0.0
+            },
+            "1990": {
+                "EG.FEC.RNEW.ZS": 87.2
+            },
+            "1991": {
+                "EG.FEC.RNEW.ZS": 87.5
+            },
+            "1992": {
+                "EG.FEC.RNEW.ZS": 87.7
+            },
+            "1993": {
+                "EG.FEC.RNEW.ZS": 89.4
+            },
+            "1994": {
+                "EG.FEC.RNEW.ZS": 96.7
+            },
+            "1995": {
+                "EG.FEC.RNEW.ZS": 87.0
+            },
+            "1996": {
+                "EG.FEC.RNEW.ZS": 86.0
+            },
+            "1997": {
+                "EG.FEC.RNEW.ZS": 84.6
+            },
+            "1998": {
+                "EG.FEC.RNEW.ZS": 83.3
+            },
+            "1999": {
+                "EG.FEC.RNEW.ZS": 82.0
             }
         }
     },
@@ -4477,139 +4450,191 @@
                 "HYDRO_CONSUM": 3.42,
                 "MOD_RENEW_PROD": 3.44,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 27.7
             },
             "2001": {
                 "HYDRO_CONSUM": 2.5,
                 "MOD_RENEW_PROD": 2.52,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 24.0
             },
             "2002": {
                 "HYDRO_CONSUM": 3.4,
                 "MOD_RENEW_PROD": 3.42,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 28.7
             },
             "2003": {
                 "HYDRO_CONSUM": 2.82,
                 "MOD_RENEW_PROD": 2.84,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 27.4
             },
             "2004": {
                 "HYDRO_CONSUM": 3.78,
                 "MOD_RENEW_PROD": 3.8,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 28.2
             },
             "2005": {
                 "HYDRO_CONSUM": 3.72,
                 "MOD_RENEW_PROD": 3.74,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 22.8
             },
             "2006": {
                 "HYDRO_CONSUM": 3.58,
                 "MOD_RENEW_PROD": 3.6,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 22.1
             },
             "2007": {
                 "HYDRO_CONSUM": 3.71,
                 "MOD_RENEW_PROD": 3.73,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 22.8
             },
             "2008": {
                 "HYDRO_CONSUM": 3.97,
                 "MOD_RENEW_PROD": 3.99,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 23.4
             },
             "2009": {
                 "HYDRO_CONSUM": 3.9,
                 "MOD_RENEW_PROD": 3.92,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 20.4
             },
             "2010": {
                 "HYDRO_CONSUM": 4.19,
                 "MOD_RENEW_PROD": 4.21,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 20.6
             },
             "2011": {
                 "HYDRO_CONSUM": 4.1,
                 "MOD_RENEW_PROD": 4.119999999999999,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 19.7
             },
             "2012": {
                 "HYDRO_CONSUM": 5.39,
                 "MOD_RENEW_PROD": 5.42,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 21.2
             },
             "2013": {
                 "HYDRO_CONSUM": 5.15,
                 "MOD_RENEW_PROD": 5.180000000000001,
                 "SOLAR_CONSUM": 0.0,
-                "WIND_CONSUM": 0.0
+                "WIND_CONSUM": 0.0,
+                "EG.FEC.RNEW.ZS": 20.7
             },
             "2014": {
                 "HYDRO_CONSUM": 5.03,
                 "MOD_RENEW_PROD": 5.19,
                 "SOLAR_CONSUM": 0.01,
-                "WIND_CONSUM": 0.12
+                "WIND_CONSUM": 0.12,
+                "EG.FEC.RNEW.ZS": 19.8
             },
             "2015": {
                 "HYDRO_CONSUM": 6.26,
                 "MOD_RENEW_PROD": 6.7299999999999995,
                 "SOLAR_CONSUM": 0.02,
-                "WIND_CONSUM": 0.42
+                "WIND_CONSUM": 0.42,
+                "EG.FEC.RNEW.ZS": 22.0
             },
             "2016": {
                 "HYDRO_CONSUM": 6.52,
                 "MOD_RENEW_PROD": 7.25,
                 "SOLAR_CONSUM": 0.07,
-                "WIND_CONSUM": 0.63
+                "WIND_CONSUM": 0.63,
+                "EG.FEC.RNEW.ZS": 22.1
             },
             "2017": {
                 "HYDRO_CONSUM": 7.25,
                 "MOD_RENEW_PROD": 7.930000000000001,
                 "SOLAR_CONSUM": 0.16,
-                "WIND_CONSUM": 0.49
+                "WIND_CONSUM": 0.49,
+                "EG.FEC.RNEW.ZS": 23.6
             },
             "2018": {
                 "HYDRO_CONSUM": 7.86,
                 "MOD_RENEW_PROD": 8.71,
                 "SOLAR_CONSUM": 0.23,
-                "WIND_CONSUM": 0.59
+                "WIND_CONSUM": 0.59,
+                "EG.FEC.RNEW.ZS": 24.5
             },
             "2019": {
                 "HYDRO_CONSUM": 5.1,
                 "MOD_RENEW_PROD": 6.14,
                 "SOLAR_CONSUM": 0.29,
-                "WIND_CONSUM": 0.72
+                "WIND_CONSUM": 0.72,
+                "EG.FEC.RNEW.ZS": 19.0
             },
             "2020": {
                 "HYDRO_CONSUM": 7.35,
                 "MOD_RENEW_PROD": 8.28,
                 "SOLAR_CONSUM": 0.32,
-                "WIND_CONSUM": 0.58
+                "WIND_CONSUM": 0.58,
+                "EG.FEC.RNEW.ZS": 28.5
             },
             "2021": {
                 "HYDRO_CONSUM": 8.34,
                 "MOD_RENEW_PROD": 9.489999999999998,
                 "SOLAR_CONSUM": 0.59,
-                "WIND_CONSUM": 0.53
+                "WIND_CONSUM": 0.53,
+                "EG.FEC.RNEW.ZS": 28.0
             },
             "2022": {
                 "HYDRO_CONSUM": 9.24,
                 "MOD_RENEW_PROD": 10.45,
                 "SOLAR_CONSUM": 0.65,
                 "WIND_CONSUM": 0.53
+            },
+            "1990": {
+                "EG.FEC.RNEW.ZS": 43.0
+            },
+            "1991": {
+                "EG.FEC.RNEW.ZS": 40.7
+            },
+            "1992": {
+                "EG.FEC.RNEW.ZS": 39.7
+            },
+            "1993": {
+                "EG.FEC.RNEW.ZS": 39.9
+            },
+            "1994": {
+                "EG.FEC.RNEW.ZS": 37.8
+            },
+            "1995": {
+                "EG.FEC.RNEW.ZS": 34.8
+            },
+            "1996": {
+                "EG.FEC.RNEW.ZS": 36.8
+            },
+            "1997": {
+                "EG.FEC.RNEW.ZS": 36.5
+            },
+            "1998": {
+                "EG.FEC.RNEW.ZS": 31.4
+            },
+            "1999": {
+                "EG.FEC.RNEW.ZS": 33.7
             }
         }
     },
@@ -5969,511 +5994,6 @@
                 "RENEW_SHARE_TFEC": 24.237406,
                 "SOLAR_CONSUM": 0.001307506,
                 "WIND_CONSUM": 0.0162215
-            }
-        }
-    },
-    "Brasil": {
-        "country_code": "BRA",
-        "yearly_data": {
-            "1990": {
-                "EG.FEC.RNEW.ZS": 49.8
-            },
-            "1991": {
-                "EG.FEC.RNEW.ZS": 48.9
-            },
-            "1992": {
-                "EG.FEC.RNEW.ZS": 48.7
-            },
-            "1993": {
-                "EG.FEC.RNEW.ZS": 48.2
-            },
-            "1994": {
-                "EG.FEC.RNEW.ZS": 48.3
-            },
-            "1995": {
-                "EG.FEC.RNEW.ZS": 46.1
-            },
-            "1996": {
-                "EG.FEC.RNEW.ZS": 44.5
-            },
-            "1997": {
-                "EG.FEC.RNEW.ZS": 43.7
-            },
-            "1998": {
-                "EG.FEC.RNEW.ZS": 43.8
-            },
-            "1999": {
-                "EG.FEC.RNEW.ZS": 44.0
-            },
-            "2000": {
-                "EG.FEC.RNEW.ZS": 42.7
-            },
-            "2001": {
-                "EG.FEC.RNEW.ZS": 41.3
-            },
-            "2002": {
-                "EG.FEC.RNEW.ZS": 42.9
-            },
-            "2003": {
-                "EG.FEC.RNEW.ZS": 45.1
-            },
-            "2004": {
-                "EG.FEC.RNEW.ZS": 45.2
-            },
-            "2005": {
-                "EG.FEC.RNEW.ZS": 46.1
-            },
-            "2006": {
-                "EG.FEC.RNEW.ZS": 46.7
-            },
-            "2007": {
-                "EG.FEC.RNEW.ZS": 47.2
-            },
-            "2008": {
-                "EG.FEC.RNEW.ZS": 47.0
-            },
-            "2009": {
-                "EG.FEC.RNEW.ZS": 48.9
-            },
-            "2010": {
-                "EG.FEC.RNEW.ZS": 46.8
-            },
-            "2011": {
-                "EG.FEC.RNEW.ZS": 45.2
-            },
-            "2012": {
-                "EG.FEC.RNEW.ZS": 43.5
-            },
-            "2013": {
-                "EG.FEC.RNEW.ZS": 42.3
-            },
-            "2014": {
-                "EG.FEC.RNEW.ZS": 41.7
-            },
-            "2015": {
-                "EG.FEC.RNEW.ZS": 43.7
-            },
-            "2016": {
-                "EG.FEC.RNEW.ZS": 45.4
-            },
-            "2017": {
-                "EG.FEC.RNEW.ZS": 45.3
-            },
-            "2018": {
-                "EG.FEC.RNEW.ZS": 46.9
-            },
-            "2019": {
-                "EG.FEC.RNEW.ZS": 47.5
-            },
-            "2020": {
-                "EG.FEC.RNEW.ZS": 50.0
-            },
-            "2021": {
-                "EG.FEC.RNEW.ZS": 46.5
-            }
-        }
-    },
-    "Haití": {
-        "country_code": "HTI",
-        "yearly_data": {
-            "1990": {
-                "EG.FEC.RNEW.ZS": 87.2
-            },
-            "1991": {
-                "EG.FEC.RNEW.ZS": 87.5
-            },
-            "1992": {
-                "EG.FEC.RNEW.ZS": 87.7
-            },
-            "1993": {
-                "EG.FEC.RNEW.ZS": 89.4
-            },
-            "1994": {
-                "EG.FEC.RNEW.ZS": 96.7
-            },
-            "1995": {
-                "EG.FEC.RNEW.ZS": 87.0
-            },
-            "1996": {
-                "EG.FEC.RNEW.ZS": 86.0
-            },
-            "1997": {
-                "EG.FEC.RNEW.ZS": 84.6
-            },
-            "1998": {
-                "EG.FEC.RNEW.ZS": 83.3
-            },
-            "1999": {
-                "EG.FEC.RNEW.ZS": 82.0
-            },
-            "2000": {
-                "EG.FEC.RNEW.ZS": 80.8
-            },
-            "2001": {
-                "EG.FEC.RNEW.ZS": 80.9
-            },
-            "2002": {
-                "EG.FEC.RNEW.ZS": 79.1
-            },
-            "2003": {
-                "EG.FEC.RNEW.ZS": 79.0
-            },
-            "2004": {
-                "EG.FEC.RNEW.ZS": 81.1
-            },
-            "2005": {
-                "EG.FEC.RNEW.ZS": 81.1
-            },
-            "2006": {
-                "EG.FEC.RNEW.ZS": 81.4
-            },
-            "2007": {
-                "EG.FEC.RNEW.ZS": 79.3
-            },
-            "2008": {
-                "EG.FEC.RNEW.ZS": 79.6
-            },
-            "2009": {
-                "EG.FEC.RNEW.ZS": 80.3
-            },
-            "2010": {
-                "EG.FEC.RNEW.ZS": 79.0
-            },
-            "2011": {
-                "EG.FEC.RNEW.ZS": 79.0
-            },
-            "2012": {
-                "EG.FEC.RNEW.ZS": 82.2
-            },
-            "2013": {
-                "EG.FEC.RNEW.ZS": 80.4
-            },
-            "2014": {
-                "EG.FEC.RNEW.ZS": 77.8
-            },
-            "2015": {
-                "EG.FEC.RNEW.ZS": 76.1
-            },
-            "2016": {
-                "EG.FEC.RNEW.ZS": 76.1
-            },
-            "2017": {
-                "EG.FEC.RNEW.ZS": 76.2
-            },
-            "2018": {
-                "EG.FEC.RNEW.ZS": 76.2
-            },
-            "2019": {
-                "EG.FEC.RNEW.ZS": 76.4
-            },
-            "2020": {
-                "EG.FEC.RNEW.ZS": 76.3
-            },
-            "2021": {
-                "EG.FEC.RNEW.ZS": 76.7
-            }
-        }
-    },
-    "México": {
-        "country_code": "MEX",
-        "yearly_data": {
-            "1990": {
-                "EG.FEC.RNEW.ZS": 14.4
-            },
-            "1991": {
-                "EG.FEC.RNEW.ZS": 13.2
-            },
-            "1992": {
-                "EG.FEC.RNEW.ZS": 13.4
-            },
-            "1993": {
-                "EG.FEC.RNEW.ZS": 13.3
-            },
-            "1994": {
-                "EG.FEC.RNEW.ZS": 11.9
-            },
-            "1995": {
-                "EG.FEC.RNEW.ZS": 13.3
-            },
-            "1996": {
-                "EG.FEC.RNEW.ZS": 13.1
-            },
-            "1997": {
-                "EG.FEC.RNEW.ZS": 12.7
-            },
-            "1998": {
-                "EG.FEC.RNEW.ZS": 12.2
-            },
-            "1999": {
-                "EG.FEC.RNEW.ZS": 12.8
-            },
-            "2000": {
-                "EG.FEC.RNEW.ZS": 12.2
-            },
-            "2001": {
-                "EG.FEC.RNEW.ZS": 11.3
-            },
-            "2002": {
-                "EG.FEC.RNEW.ZS": 10.7
-            },
-            "2003": {
-                "EG.FEC.RNEW.ZS": 10.2
-            },
-            "2004": {
-                "EG.FEC.RNEW.ZS": 10.2
-            },
-            "2005": {
-                "EG.FEC.RNEW.ZS": 10.3
-            },
-            "2006": {
-                "EG.FEC.RNEW.ZS": 9.8
-            },
-            "2007": {
-                "EG.FEC.RNEW.ZS": 9.5
-            },
-            "2008": {
-                "EG.FEC.RNEW.ZS": 9.8
-            },
-            "2009": {
-                "EG.FEC.RNEW.ZS": 9.2
-            },
-            "2010": {
-                "EG.FEC.RNEW.ZS": 9.4
-            },
-            "2011": {
-                "EG.FEC.RNEW.ZS": 9.1
-            },
-            "2012": {
-                "EG.FEC.RNEW.ZS": 9.0
-            },
-            "2013": {
-                "EG.FEC.RNEW.ZS": 9.2
-            },
-            "2014": {
-                "EG.FEC.RNEW.ZS": 9.8
-            },
-            "2015": {
-                "EG.FEC.RNEW.ZS": 9.2
-            },
-            "2016": {
-                "EG.FEC.RNEW.ZS": 9.2
-            },
-            "2017": {
-                "EG.FEC.RNEW.ZS": 10.1
-            },
-            "2018": {
-                "EG.FEC.RNEW.ZS": 10.3
-            },
-            "2019": {
-                "EG.FEC.RNEW.ZS": 10.3
-            },
-            "2020": {
-                "EG.FEC.RNEW.ZS": 12.3
-            },
-            "2021": {
-                "EG.FEC.RNEW.ZS": 13.0
-            }
-        }
-    },
-    "Panamá": {
-        "country_code": "PAN",
-        "yearly_data": {
-            "1990": {
-                "EG.FEC.RNEW.ZS": 43.0
-            },
-            "1991": {
-                "EG.FEC.RNEW.ZS": 40.7
-            },
-            "1992": {
-                "EG.FEC.RNEW.ZS": 39.7
-            },
-            "1993": {
-                "EG.FEC.RNEW.ZS": 39.9
-            },
-            "1994": {
-                "EG.FEC.RNEW.ZS": 37.8
-            },
-            "1995": {
-                "EG.FEC.RNEW.ZS": 34.8
-            },
-            "1996": {
-                "EG.FEC.RNEW.ZS": 36.8
-            },
-            "1997": {
-                "EG.FEC.RNEW.ZS": 36.5
-            },
-            "1998": {
-                "EG.FEC.RNEW.ZS": 31.4
-            },
-            "1999": {
-                "EG.FEC.RNEW.ZS": 33.7
-            },
-            "2000": {
-                "EG.FEC.RNEW.ZS": 27.7
-            },
-            "2001": {
-                "EG.FEC.RNEW.ZS": 24.0
-            },
-            "2002": {
-                "EG.FEC.RNEW.ZS": 28.7
-            },
-            "2003": {
-                "EG.FEC.RNEW.ZS": 27.4
-            },
-            "2004": {
-                "EG.FEC.RNEW.ZS": 28.2
-            },
-            "2005": {
-                "EG.FEC.RNEW.ZS": 22.8
-            },
-            "2006": {
-                "EG.FEC.RNEW.ZS": 22.1
-            },
-            "2007": {
-                "EG.FEC.RNEW.ZS": 22.8
-            },
-            "2008": {
-                "EG.FEC.RNEW.ZS": 23.4
-            },
-            "2009": {
-                "EG.FEC.RNEW.ZS": 20.4
-            },
-            "2010": {
-                "EG.FEC.RNEW.ZS": 20.6
-            },
-            "2011": {
-                "EG.FEC.RNEW.ZS": 19.7
-            },
-            "2012": {
-                "EG.FEC.RNEW.ZS": 21.2
-            },
-            "2013": {
-                "EG.FEC.RNEW.ZS": 20.7
-            },
-            "2014": {
-                "EG.FEC.RNEW.ZS": 19.8
-            },
-            "2015": {
-                "EG.FEC.RNEW.ZS": 22.0
-            },
-            "2016": {
-                "EG.FEC.RNEW.ZS": 22.1
-            },
-            "2017": {
-                "EG.FEC.RNEW.ZS": 23.6
-            },
-            "2018": {
-                "EG.FEC.RNEW.ZS": 24.5
-            },
-            "2019": {
-                "EG.FEC.RNEW.ZS": 19.0
-            },
-            "2020": {
-                "EG.FEC.RNEW.ZS": 28.5
-            },
-            "2021": {
-                "EG.FEC.RNEW.ZS": 28.0
-            }
-        }
-    },
-    "Perú": {
-        "country_code": "PER",
-        "yearly_data": {
-            "1990": {
-                "EG.FEC.RNEW.ZS": 39.4
-            },
-            "1991": {
-                "EG.FEC.RNEW.ZS": 39.9
-            },
-            "1992": {
-                "EG.FEC.RNEW.ZS": 37.3
-            },
-            "1993": {
-                "EG.FEC.RNEW.ZS": 37.1
-            },
-            "1994": {
-                "EG.FEC.RNEW.ZS": 35.9
-            },
-            "1995": {
-                "EG.FEC.RNEW.ZS": 33.3
-            },
-            "1996": {
-                "EG.FEC.RNEW.ZS": 31.7
-            },
-            "1997": {
-                "EG.FEC.RNEW.ZS": 31.7
-            },
-            "1998": {
-                "EG.FEC.RNEW.ZS": 39.4
-            },
-            "1999": {
-                "EG.FEC.RNEW.ZS": 36.7
-            },
-            "2000": {
-                "EG.FEC.RNEW.ZS": 38.6
-            },
-            "2001": {
-                "EG.FEC.RNEW.ZS": 41.2
-            },
-            "2002": {
-                "EG.FEC.RNEW.ZS": 40.2
-            },
-            "2003": {
-                "EG.FEC.RNEW.ZS": 40.9
-            },
-            "2004": {
-                "EG.FEC.RNEW.ZS": 37.8
-            },
-            "2005": {
-                "EG.FEC.RNEW.ZS": 38.4
-            },
-            "2006": {
-                "EG.FEC.RNEW.ZS": 38.7
-            },
-            "2007": {
-                "EG.FEC.RNEW.ZS": 36.0
-            },
-            "2008": {
-                "EG.FEC.RNEW.ZS": 33.7
-            },
-            "2009": {
-                "EG.FEC.RNEW.ZS": 32.9
-            },
-            "2010": {
-                "EG.FEC.RNEW.ZS": 32.2
-            },
-            "2011": {
-                "EG.FEC.RNEW.ZS": 30.6
-            },
-            "2012": {
-                "EG.FEC.RNEW.ZS": 30.8
-            },
-            "2013": {
-                "EG.FEC.RNEW.ZS": 28.4
-            },
-            "2014": {
-                "EG.FEC.RNEW.ZS": 28.6
-            },
-            "2015": {
-                "EG.FEC.RNEW.ZS": 27.4
-            },
-            "2016": {
-                "EG.FEC.RNEW.ZS": 27.2
-            },
-            "2017": {
-                "EG.FEC.RNEW.ZS": 27.6
-            },
-            "2018": {
-                "EG.FEC.RNEW.ZS": 27.9
-            },
-            "2019": {
-                "EG.FEC.RNEW.ZS": 27.1
-            },
-            "2020": {
-                "EG.FEC.RNEW.ZS": 31.6
-            },
-            "2021": {
-                "EG.FEC.RNEW.ZS": 30.6
             }
         }
     },

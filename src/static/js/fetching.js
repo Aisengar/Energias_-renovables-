@@ -1,4 +1,4 @@
-const web_url_link =  'http://127.0.0.1:5000/process_data'
+const web_url_link =  'http://127.0.0.1:5000/api/unified_data'
 
 
 async function fetchData(url, options) {
@@ -22,15 +22,14 @@ async function fetchData(url, options) {
 // Main function to get and then process the biofuel data
 async function loadAndProcessBiofuelData() {
     try {
-        const biofuelData = await fetchData(web_url_link);
-        console.log("Biofuel data successfully fetched:", biofuelData);
-
-        const countries = getCountryList(biofuelData);
-        const uniqueYears = getUniqueYears(biofuelData);
-        const decadeSums = sumProductionByDecade(biofuelData);
+        const energyData = await fetchData(web_url_link);
+        console.log("Unified energy data successfully fetched:", energyData);
+        const countries = getCountryList(energyData);
+        const uniqueYears = getUniqueYears(energyData);
+        const decadeSums = sumProductionByDecade(energyData);
         // Devuelve los datos procesados para que puedan ser utilizados por otros scripts
         return {
-            biofuelData,
+            energyData,
             countries,
             uniqueYears,
             decadeSums
@@ -42,23 +41,24 @@ async function loadAndProcessBiofuelData() {
 }
 
 function getCountryList(jsonData) {
-    if (!jsonData || typeof jsonData.data_by_country!== 'object' || jsonData.data_by_country === null) {
-        console.error("Invalid JSON data: 'data_by_country' field is missing or not an object.");
+    if (!jsonData || typeof jsonData !== 'object' || jsonData === null) {
+        console.error("Invalid JSON data: Expected an object of countries.");
         return [];
     }
-    const countries = Object.keys(jsonData.data_by_country);
+    const countries = Object.keys(jsonData);
     console.log("List of countries:", countries);
     return countries;
 }
 
+
 function getUniqueYears(jsonData) {
-    if (!jsonData || typeof jsonData.data_by_country!== 'object' || jsonData.data_by_country === null) {
-        console.error("Invalid JSON data: 'data_by_country' field is missing or not an object.");
+    if (!jsonData || typeof jsonData !== 'object' || jsonData === null) {
+        console.error("Invalid JSON data: Expected an object of countries.");
         return;
     }
 
     const yearSet = new Set();
-    const countriesDataArray = Object.values(jsonData.data_by_country);
+    const countriesDataArray = Object.values(jsonData); // jsonData is now the country-keyed object
 
     countriesDataArray.forEach(countryData => {
         if (countryData && typeof countryData.yearly_data === 'object' && countryData.yearly_data!== null) {
@@ -73,19 +73,22 @@ function getUniqueYears(jsonData) {
 }
 
 function sumProductionByDecade(jsonData) {
-    if (!jsonData || typeof jsonData.data_by_country!== 'object' || jsonData.data_by_country === null) {
-        console.error("Invalid JSON data: 'data_by_country' field is missing or not an object.");
+    // This function will sum 'BIOFUEL_PROD' as an example from the unified data
+    if (!jsonData || typeof jsonData !== 'object' || jsonData === null) {
+        console.error("Invalid JSON data: Expected an object of countries for sumProductionByDecade.");
         return {};
     }
     const productionByDecade = {};
+    const indicatorToSum = 'BIOFUEL_PROD'; // Example: Summing biofuel production
 
-    const countriesDataArray = Object.values(jsonData.data_by_country);
+    const countriesDataArray = Object.values(jsonData); // jsonData is the country-keyed object
 
     countriesDataArray.forEach(countryData => {
         if (countryData && typeof countryData.yearly_data === 'object' && countryData.yearly_data!== null) {
-            for (const [yearStr, productionValue] of Object.entries(countryData.yearly_data)) {
+            for (const [yearStr, yearlyIndicators] of Object.entries(countryData.yearly_data)) {
                 const yearNum = parseInt(yearStr, 10);
-                // Ensure productionValue is a number and yearNum is valid
+                const productionValue = yearlyIndicators[indicatorToSum];
+                
                 if (!isNaN(yearNum) && typeof productionValue === 'number' && isFinite(productionValue)) {
                     const decadeStartYear = Math.floor(yearNum / 10) * 10;
                     const decadeKey = `${decadeStartYear}s`;
@@ -103,6 +106,7 @@ function sumProductionByDecade(jsonData) {
         productionByDecade[decade] = parseFloat(productionByDecade[decade].toFixed(3)); // Example: 3 decimal places
     }
 
-    console.log("Total biofuel production by decade (global):", productionByDecade);
+    console.log(`Total ${indicatorToSum} by decade (global):`, productionByDecade);
     return productionByDecade;
 }
+// console.log(loadAndProcessBiofuelData(web_url_link)) // Comentado o eliminado

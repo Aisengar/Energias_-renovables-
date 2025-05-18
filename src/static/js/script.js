@@ -23,61 +23,72 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         
         // Validar los datos recibidos
-        if (!data?.biofuelData?.data_by_country) {
-            console.error('Datos de biocombustibles no válidos o ausentes para poblar la tabla.');
+        if (!data || Object.keys(data).length === 0) {
+            console.error('Datos no válidos o ausentes para poblar la tabla.');
             renderEmptyTable(tablebody, 'No hay datos disponibles para mostrar.');
             return;
         }
         
         // Limpiar contenido previo
         tablebody.innerHTML = '';
-        
+
         // Procesar y mostrar los datos
-        const countriesData = data.biofuelData.data_by_country;
+        const countriesData = data; 
         const hasData = renderCountryData(tablebody, countriesData);
         
         if (!hasData) {
-            renderEmptyTable(tablebody, 'No se encontraron registros de producción de biocombustibles.');
+            renderEmptyTable(tablebody, 'No se encontraron registros para los indicadores seleccionados.');
         }
     }
 
     function renderCountryData(tableBody, countriesData) {
         let hasData = false;
-        
+        const biofuelIndicatorCode = 'BIOFUEL_PROD';
+
         // Iterar sobre los países
         Object.entries(countriesData).forEach(([countryName, countryDetails]) => {
             if (!countryDetails?.yearly_data) return;
             
             // Ordenar los datos anuales por año (ascendente)
             const sortedYearlyData = Object.entries(countryDetails.yearly_data)
-            .sort(([yearA], [yearB]) => parseInt(yearA) - parseInt(yearB));
+                .sort(([yearA], [yearB]) => parseInt(yearA) - parseInt(yearB));
             
-            sortedYearlyData.forEach(([year, production]) => {
-                hasData = true;
-                addDataRow(tableBody, year, countryName, production);
+            sortedYearlyData.forEach(([year, yearlyIndicators]) => {
+                // Extraer el valor del indicador de biocombustibles para este año
+                const biofuelProduction = yearlyIndicators[biofuelIndicatorCode];
+                if (typeof biofuelProduction === 'number' && isFinite(biofuelProduction)) {
+                    hasData = true;
+                    addDataRow(tableBody, year, countryName, yearlyIndicators); // Pasamos todos los indicadores del año
+                }
             });
         });
         
         return hasData;
     }
 
-    function addDataRow(tableBody, year, countryName, production) {
+    function addDataRow(tableBody, year, countryName, yearlyIndicators) {
         const row = tableBody.insertRow();
-        
+
+        const getValueOrDefault = (indicatorCode, defaultValue = 'N/A') => {
+            const value = yearlyIndicators[indicatorCode];
+            return (typeof value === 'number' && isFinite(value)) ? value.toFixed(3) : defaultValue;
+        };
+
         // Añadir celdas con datos
         row.insertCell().textContent = year;                 // Año
         row.insertCell().textContent = countryName;          // País
-        row.insertCell().textContent = 'N/A';                // Hidráulica
-        row.insertCell().textContent = 'N/A';                // Eólica
-        row.insertCell().textContent = 'N/A';                // Solar
+        row.insertCell().textContent = getValueOrDefault('HYDRO_CONSUM'); // Hidráulica
+        row.insertCell().textContent = getValueOrDefault('WIND_CONSUM');  // Eólica
+        row.insertCell().textContent = getValueOrDefault('SOLAR_CONSUM'); // Solar
         
         // Biocombustibles (TWh)
         const biofuelCell = row.insertCell();
-        biofuelCell.textContent = (typeof production === 'number' && isFinite(production)) 
-            ? production.toFixed(3) 
-            : 'N/A';
+        biofuelCell.textContent = getValueOrDefault('BIOFUEL_PROD');
         
-        row.insertCell().textContent = 'N/A';                // Geotérmica
+        // Geotérmica no está directamente en unified_renewable_data.json con un código simple.
+        // Si 'Other renewables including bioenergy - TWh' de 'modern_renewable_production' incluye geotérmica, se necesitaría ese mapeo.
+        // Por ahora, lo dejamos como N/A o podrías buscarlo si está en 'MOD_RENEW_PROD' o similar.
+        row.insertCell().textContent = 'N/A'; // Geotérmica (Placeholder)
     }
 
     function renderEmptyTable(tableBody, message) {
@@ -234,31 +245,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // CAMBIO DE REGIÓN FILTRADO DE TABLA
     function handleRegionChange() {
-        if (!allFetchedData || !allFetchedData.biofuelData || !allFetchedData.biofuelData.data_by_country) {
+        if (!allFetchedData || !allFetchedData.energyData) {
             console.warn("No hay datos cargados para filtrar o la estructura de datos es incorrecta.");
             if (tablebody) renderEmptyTable(tablebody, 'Datos no disponibles para filtrar. Intente cargar de nuevo.');
             return;
         }
         const selectedCountry = regions_lists.value;
         console.log("Region seleccionada:", selectedCountry);
+
+        // Limpiar la tabla antes de popularla o mostrar mensaje
+        if (tablebody) tablebody.innerHTML = '';
+
         if (selectedCountry === "none") {
             // Si se selecciona "none" mostrar todos los datos
-            tablebody.innerHTML = ''
-            renderEmptyTable(tablebody,'Seleccione un pais para ver los datos Historicos');
+            // populateDataTable(allFetchedData.energyData); // Opción para mostrar todos los países
+             renderEmptyTable(tablebody,'Seleccione un pais para ver los datos Historicos');
         } else {
             // Filtrar datos para el país seleccionado
-            const countrySpecificRawData = allFetchedData.biofuelData.data_by_country[selectedCountry];
+            const countrySpecificData = allFetchedData.energyData[selectedCountry];
             
-            if (countrySpecificRawData) {
+            if (countrySpecificData) {
                 // Crear un objeto de datos filtrados con la misma estructura que espera populateDataTable
                 const filteredData = {
-                    ...allFetchedData,
-                    biofuelData: {
-                        ...allFetchedData.biofuelData,
-                        data_by_country: {
-                            [selectedCountry]: countrySpecificRawData
-                        }
-                    }
+                    [selectedCountry]: countrySpecificData
                 };
                 populateDataTable(filteredData);
             } else {
@@ -271,12 +280,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     // CARGA INICIAL DE DATOS
     try {
         if (typeof loadAndProcessBiofuelData === 'function') {
-            const data = await loadAndProcessBiofuelData();
+            const result = await loadAndProcessBiofuelData(); // result = { energyData, countries, ... }
             
             // Poblar el dropdown de regiones
-            if (data?.countries) {
-                allFetchedData = data; // Almacenar los datos completos
-                populateRegionsDropdown(allFetchedData.countries);
+            if (result?.countries) {
+                allFetchedData = result; // Almacenar el objeto { energyData, countries, ... }
+                populateRegionsDropdown(result.countries);
             } else {
                 console.warn("No se recibieron datos de países de loadAndProcessBiofuelData.");
                 populateRegionsDropdown([]); // Array vacío para mostrar mensaje de "no disponibles"
