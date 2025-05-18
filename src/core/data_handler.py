@@ -256,5 +256,49 @@ def process_all_datasets():
             
     print(f"\n--- Procesamiento completado. {processed_files_count} archivos JSON generados. ---")
 
+
+def unify_processed_data():
+    """
+    Unifica los datos de todos los archivos JSON procesados (definidos en INDICATOR_MAPPINGS)
+    en un solo archivo JSON.
+    """
+    unified_data = {}
+
+    for logical_name in constants.INDICATOR_MAPPINGS.keys():
+        mapping_info = constants.INDICATOR_MAPPINGS[logical_name]
+        indicator_code_json = mapping_info['indicator_code_json']
+        json_path = constants.get_processed_json_path(logical_name)
+
+        print(f"Leyendo datos para '{indicator_code_json}' desde '{json_path}'...")
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            for country_name, country_details in data.get("data_by_country", {}).items():
+                country_name_stripped = str(country_name).strip()
+                if country_name_stripped not in unified_data:
+                    unified_data[country_name_stripped] = {
+                        "country_code": str(country_details.get("country_code", "N/A")).strip(),
+                        "yearly_data": {}
+                    }
+                
+                for year, value in country_details.get("yearly_data", {}).items():
+                    year_str = str(year).strip()
+                    if year_str not in unified_data[country_name_stripped]["yearly_data"]:
+                        unified_data[country_name_stripped]["yearly_data"][year_str] = {}
+                    unified_data[country_name_stripped]["yearly_data"][year_str][indicator_code_json] = value
+        except FileNotFoundError:
+            print(f"Advertencia: Archivo JSON no encontrado para '{logical_name}': {json_path}. Saltando.")
+        except Exception as e:
+            print(f"Error al procesar el archivo JSON para '{logical_name}': {e}")
+
+    unified_output_path = os.path.join(constants.PROCESSED_DATA_DIR, constants.UNIFIED_DATA_FILENAME)
+    os.makedirs(os.path.dirname(unified_output_path), exist_ok=True)
+    with open(unified_output_path, 'w', encoding='utf-8') as f:
+        json.dump(unified_data, f, ensure_ascii=False, indent=4)
+    print(f"Datos unificados guardados en: '{unified_output_path}'")
+    return unified_data
+
 if __name__ == "__main__":
     process_all_datasets()
+    unify_processed_data()

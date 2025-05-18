@@ -2,15 +2,6 @@
 
 Este proyecto es una aplicación web Flask diseñada para visualizar datos relacionados con las energías renovables en países de América Latina. Procesa archivos CSV de diversas fuentes, los transforma en formato JSON y los presenta a través de una interfaz web.
 
-## Tabla de Contenidos
-
-- [Prerrequisitos](#prerrequisitos)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Configuración](#configuración)
-- [Preparación de Datos](#preparación-de-datos)
-- [Procesar Datos Crudos](#procesar-datos-crudos)
-- [Ejecutar la Aplicación Web](#ejecutar-la-aplicación-web)
-
 ## Prerrequisitos
 
 Antes de comenzar, asegúrate de tener instalado lo siguiente:

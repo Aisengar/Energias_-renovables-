@@ -1,8 +1,5 @@
-# constants.py (o config.py)
 import os
-
-
-USER_BASE_DATA_DIR = '/Users/camilodelgado/Desktop/Pagina_Talento_Tech/data/'
+USER_BASE_DATA_DIR = 'data/'
 RAW_DATA_DIR = os.path.join(USER_BASE_DATA_DIR, 'row_data')
 PROCESSED_DATA_DIR = os.path.join(USER_BASE_DATA_DIR, 'processed_data')
 
@@ -34,7 +31,7 @@ INDICATOR_MAPPINGS = {
         'csv_code_col': 'Code',
         'csv_year_col': 'Year',
         'csv_value_col': 'Biofuels production - TWh', # Nombre de columna corregido
-        'output_json_filename': 'biofuel_production.json'
+        'output_json_filename': 'unir/biofuel_production.json'
     },
     'hydropower_consumption': {
         'indicator_name_json': 'Hydropower Consumption',
@@ -43,7 +40,7 @@ INDICATOR_MAPPINGS = {
         'csv_code_col': 'Code',
         'csv_year_col': 'Year',
         'csv_value_col': 'Electricity from hydro - TWh', # Nombre de columna corregido
-        'output_json_filename': 'hydropower_consumption.json'
+        'output_json_filename': 'unir/hydropower_consumption.json'
     },
     'modern_renewable_production': {
         'indicator_name_json': 'Modern Renewable Energy Production',
@@ -57,7 +54,7 @@ INDICATOR_MAPPINGS = {
             'Electricity from solar - TWh',
             'Other renewables including bioenergy - TWh'
         ],
-        'output_json_filename': 'modern_renewable_production.json'
+        'output_json_filename': 'unir/modern_renewable_production.json'
     },
     'modern_renewable_consumption': {
         'indicator_name_json': 'Modern Renewable Energy Consumption',
@@ -71,7 +68,7 @@ INDICATOR_MAPPINGS = {
             'Wind generation - TWh',
             'Hydro generation - TWh'
         ],
-        'output_json_filename': 'modern_renewable_consumption.json'
+        'output_json_filename': 'unir/modern_renewable_consumption.json'
     },
     'renewable_share_energy': {
         'indicator_name_json': 'Renewable Energy Share in Total Final Energy Consumption',
@@ -80,7 +77,7 @@ INDICATOR_MAPPINGS = {
         'csv_code_col': 'Code',
         'csv_year_col': 'Year',
         'csv_value_col': 'Renewables (% equivalent primary energy)',
-        'output_json_filename': 'renewable_share_energy.json'
+        'output_json_filename': 'unir/renewable_share_energy.json'
     },
     'solar_consumption': {
         'indicator_name_json': 'Solar Power Consumption',
@@ -89,7 +86,7 @@ INDICATOR_MAPPINGS = {
         'csv_code_col': 'Code',
         'csv_year_col': 'Year',
         'csv_value_col': 'Electricity from solar - TWh',
-        'output_json_filename': 'solar_consumption.json'
+        'output_json_filename': 'unir/solar_consumption.json'
     },
     'wind_consumption': {
         'indicator_name_json': 'Wind Power Consumption',
@@ -98,7 +95,7 @@ INDICATOR_MAPPINGS = {
         'csv_code_col': 'Code',
         'csv_year_col': 'Year',
         'csv_value_col': 'Electricity from wind - TWh',
-        'output_json_filename': 'wind_consumption.json'
+        'output_json_filename': 'unir/wind_consumption.json'
     },
     'consumo_energia_renovable': {
         'indicator_name_json': 'Consumo de energía renovable (% del consumo total de energía final)', # Tomado del CSV
@@ -114,10 +111,11 @@ INDICATOR_MAPPINGS = {
         },
         'post_melt_year_col': 'Year',
         'post_melt_value_col': 'Value',
-        'output_json_filename': 'consumo_energia_renovable.json'
+        'output_json_filename': 'unir/consumo_energia_renovable.json'
     }
-    # Añade aquí mapeos para otros archivos CSV que quieras procesar.
 }
+
+UNIFIED_DATA_FILENAME = 'unified_renewable_data.json'
 
 def get_processed_json_path(logical_name_or_filename):
     """
