@@ -98,6 +98,7 @@ a {
 }
 
 body.modo-oscuro #titulo-dashboard {
+    text-align: center;
     color: #fff;
 }
 
@@ -332,8 +333,8 @@ body.modo-oscuro .header-menu-link.activo {
 
 #contenedor-dashboard {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    /* grid-template-columns: repeat(2, 1fr);
+    gap: 1rem; */
 }
 
 .tarjeta-seccion {
