@@ -42,28 +42,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function renderCountryData(tableBody, countriesData) {
-        let hasData = false;
-        const biofuelIndicatorCode = 'BIOFUEL_PROD';
+        let anyRowWasRendered = false;
 
         // Iterar sobre los países
         Object.entries(countriesData).forEach(([countryName, countryDetails]) => {
-            if (!countryDetails?.yearly_data) return;
-            
             // Ordenar los datos anuales por año (ascendente)
             const sortedYearlyData = Object.entries(countryDetails.yearly_data)
                 .sort(([yearA], [yearB]) => parseInt(yearA) - parseInt(yearB));
             
             sortedYearlyData.forEach(([year, yearlyIndicators]) => {
-                // Extraer el valor del indicador de biocombustibles para este año
-                const biofuelProduction = yearlyIndicators[biofuelIndicatorCode];
-                if (typeof biofuelProduction === 'number' && isFinite(biofuelProduction)) {
-                    hasData = true;
-                    addDataRow(tableBody, year, countryName, yearlyIndicators); // Pasamos todos los indicadores del año
-                }
+                // addDataRow y su getValueOrDefault se encargarán de los 'N/A' para indicadores faltantes.
+                addDataRow(tableBody, year, countryName, yearlyIndicators);
+                anyRowWasRendered = true;
             });
         });
         
-        return hasData;
+        return anyRowWasRendered;
     }
 
     function addDataRow(tableBody, year, countryName, yearlyIndicators) {
@@ -71,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const getValueOrDefault = (indicatorCode, defaultValue = 'N/A') => {
             const value = yearlyIndicators[indicatorCode];
-            return (typeof value === 'number' && isFinite(value)) ? value.toFixed(3) : defaultValue;
+            return (typeof value === 'number' && isFinite(value)) ? value.toFixed(2) : defaultValue;
         };
 
         // Añadir celdas con datos
@@ -80,15 +74,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         row.insertCell().textContent = getValueOrDefault('HYDRO_CONSUM'); // Hidráulica
         row.insertCell().textContent = getValueOrDefault('WIND_CONSUM');  // Eólica
         row.insertCell().textContent = getValueOrDefault('SOLAR_CONSUM'); // Solar
-        
-        // Biocombustibles (TWh)
-        const biofuelCell = row.insertCell();
-        biofuelCell.textContent = getValueOrDefault('BIOFUEL_PROD');
-        
-        // Geotérmica no está directamente en unified_renewable_data.json con un código simple.
-        // Si 'Other renewables including bioenergy - TWh' de 'modern_renewable_production' incluye geotérmica, se necesitaría ese mapeo.
-        // Por ahora, lo dejamos como N/A o podrías buscarlo si está en 'MOD_RENEW_PROD' o similar.
-        row.insertCell().textContent = 'N/A'; // Geotérmica (Placeholder)
+        row.insertCell().textContent = getValueOrDefault('BIOFUEL_PROD'); // Biocombustible
+        row.insertCell().textContent = getValueOrDefault('EG.FEC.RNEW.ZS');// Energias usadas en un pais
     }
 
     function renderEmptyTable(tableBody, message) {

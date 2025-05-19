@@ -116,6 +116,7 @@ INDICATOR_MAPPINGS = {
 }
 
 UNIFIED_DATA_FILENAME = 'unified_renewable_data.json'
+graficos_data_file_path = 'data/processed_data/unified_renewable_data.json'
 
 def get_processed_json_path(logical_name_or_filename):
     """
