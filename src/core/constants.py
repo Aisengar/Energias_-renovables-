@@ -1,7 +1,19 @@
 import os
+
+
 USER_BASE_DATA_DIR = 'data/'
 RAW_DATA_DIR = os.path.join(USER_BASE_DATA_DIR, 'row_data')
 PROCESSED_DATA_DIR = os.path.join(USER_BASE_DATA_DIR, 'processed_data')
+
+#graficos.py
+SolarEnergy = os.path.join(RAW_DATA_DIR, 'solar-energy-consumption.csv')
+WindGeneration = os.path.join(RAW_DATA_DIR, 'wind-generation.csv')
+Hydropower = os.path.join(RAW_DATA_DIR, 'hydropower-consumption.csv')
+RenewShareEnergy = os.path.join(RAW_DATA_DIR, 'renewable-share-energy.csv')
+EnergyDataRenewCons = os.path.join(RAW_DATA_DIR, 'modern-renewable-energy-consumption.csv')
+EnergyRenewProd = os.path.join(RAW_DATA_DIR, 'modern-renewable-prod.csv')
+EnerConvCol = os.path.join(RAW_DATA_DIR, 'datos_energias_convencionales_Colombia.csv')
+
 
 
 LATIN_AMERICAN_COUNTRIES = [
