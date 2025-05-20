@@ -43,7 +43,7 @@ Energias_-renovables-/
 
 Sigue estos pasos para configurar el entorno del proyecto. Se recomienda ejecutar todos los comandos desde el directorio raíz del proyecto (`Energias_-renovables-/`).
 
-1.  **Clona el repositorio (si aún no lo has hecho):**
+1.  **Clona el repositorio:**
     ```bash
     git clone <URL_DEL_REPOSITORIO>
     cd Energias_-renovables-
@@ -66,37 +66,9 @@ Sigue estos pasos para configurar el entorno del proyecto. Se recomienda ejecuta
 
 3.  **Instala las dependencias:**
     ```bash
-    pip install Flask pandas
+    pip install Flask pandas matplotlib 
+   
     ```
-
-## Preparación de Datos
-
-1.  **Crea los directorios de datos:**
-    Si no existen, crea los directorios `data` y `data/row_data` en la raíz del proyecto:
-    ```bash
-    mkdir -p data/row_data
-    ```
-    El directorio `data/processed_data` será creado automáticamente por el script de procesamiento.
-
-2.  **Coloca los archivos CSV crudos:**
-    Asegúrate de que todos los archivos CSV fuente (listados en `src/core/constants.py` bajo `RAW_FILE_PATHS`) estén ubicados dentro del directorio `Energias_-renovables-/data/row_data/`.
-
-3.  **Verifica la configuración de rutas en `constants.py`:**
-    El archivo `/Users/camilodelgado/Desktop/pagina_talentotech/Energias_-renovables-/src/core/constants.py` define la variable `USER_BASE_DATA_DIR`. Para una portabilidad óptima y para que coincida con la estructura de directorios recomendada, esta variable debería estar configurada como:
-    ```python
-    USER_BASE_DATA_DIR = 'data/'
-    ```
-    Si has clonado el proyecto recientemente y se ha aplicado la modificación sugerida anteriormente, este valor ya debería ser el correcto. Si no, por favor actualízalo. Esto asegura que el script de procesamiento busque los datos en `Energias_-renovables-/data/row_data/` y guarde los resultados en `Energias_-renovables-/data/processed_data/`.
-
-## Procesar Datos Crudos
-
-Una vez que los datos crudos estén en su lugar y las dependencias instaladas, ejecuta el script de procesamiento de datos. Este script leerá los CSV, los filtrará y transformará, y guardará los resultados como archivos JSON.
-
-**Desde el directorio raíz del proyecto (`Energias_-renovables-/`)**, ejecuta:
-```bash
-python src/core/data_handler.py
-```
-Deberías ver mensajes en la consola indicando el progreso del procesamiento para cada archivo. Los archivos JSON resultantes se guardarán en `Energias_-renovables-/data/processed_data/`.
 
 ## Ejecutar la Aplicación Web
 
@@ -106,6 +78,6 @@ Después de procesar los datos, puedes iniciar la aplicación Flask.
 ```bash
 python src/app.py
 ```
-La aplicación se ejecutará (por defecto) en `http://127.0.0.1:5000/`. Abre esta URL en tu navegador web para ver la página.
+La aplicación se ejecutará por defecto en `http://127.0.0.1:5000/`. Abre esta URL en tu navegador web para ver la página.
 
 Para detener la aplicación, presiona `Ctrl+C` en la terminal donde se está ejecutando.

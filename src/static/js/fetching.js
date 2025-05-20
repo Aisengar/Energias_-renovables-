@@ -1,34 +1,39 @@
-const url_base = 'http://127.0.0.1:5000'
-const web_url_link =  'http://127.0.0.1:5000/api/unified_data'
-
+const web_url_link = 'http://127.0.0.1:5000/api/unified_data';
+const base_api_url = 'http://127.0.0.1:5000';
 
 async function fetchData(url, options) {
     const respuesta = await fetch(url, options);
-    //... (as defined in user's fetching.js)...
     if (!respuesta.ok) {
         let errorDatos = { message: respuesta.statusText };
         try {
             errorDatos = await respuesta.json();
         } catch (e) {
-            console.warn("La respuesta de error no contenía JSON válido.");
+            console.warn("La respuesta de error no contenía JSON válido.", e);
         }
-        const error = new Error(`Error HTTP: ${respuesta.status} - ${errorDatos.message || respuesta.statusText}`);
+        const errorMessage = (errorDatos && errorDatos.error) ? errorDatos.error : (errorDatos.message || respuesta.statusText);
+        const error = new Error(`Error HTTP: ${respuesta.status} - ${errorMessage}`);
         error.status = respuesta.status;
-        error.data = errorDatos;
+        error.data = errorDatos; 
         throw error;
     }
-    return await respuesta.json();
+    
+    try {
+        return await respuesta.json();
+    } catch (e) {
+        console.error("Error al parsear la respuesta JSON:", e);
+        const error = new Error("La respuesta del servidor no es JSON válido a pesar de un estado OK.");
+        error.status = respuesta.status;
+        throw error;
+    }
 }
 
-// Main function to get and then process the biofuel data
-async function loadAndProcessBiofuelData() {
+async function loadInitialUnifiedData() {
     try {
         const energyData = await fetchData(web_url_link);
-        console.log("Unified energy data successfully fetched:", energyData);
         const countries = getCountryList(energyData);
         const uniqueYears = getUniqueYears(energyData);
         const decadeSums = sumProductionByDecade(energyData);
-        // Devuelve los datos procesados para que puedan ser utilizados por otros scripts
+        
         return {
             energyData,
             countries,
@@ -36,62 +41,78 @@ async function loadAndProcessBiofuelData() {
             decadeSums
         };
     } catch (error) {
-        console.error("Failed to load or process biofuel data:", error.message);
-        throw error;
+        console.error("Fallo al cargar o procesar datos unificados iniciales:", error.message, error.data ? error.data : '');
+        throw error; 
     }
 }
 
 function getCountryList(jsonData) {
-    if (!jsonData || typeof jsonData !== 'object' || jsonData === null) {
-        console.error("Invalid JSON data: Expected an object of countries.");
+    try {
+        return Object.keys(jsonData);
+    } catch (error) {
+        console.error("Error en getCountryList:", error.message);
         return [];
     }
-    const countries = Object.keys(jsonData);
-    console.log("List of countries:", countries);
-    return countries;
 }
 
-
 function getUniqueYears(jsonData) {
-    if (!jsonData || typeof jsonData !== 'object' || jsonData === null) {
-        console.error("Invalid JSON data: Expected an object of countries.");
-        return;
-    }
-
-    const yearSet = new Set();
-    const countriesDataArray = Object.values(jsonData); // jsonData is now the country-keyed object
-
-    countriesDataArray.forEach(countryData => {
-        if (countryData && typeof countryData.yearly_data === 'object' && countryData.yearly_data!== null) {
-            const yearsForCountry = Object.keys(countryData.yearly_data);
+    try {
+        const yearSet = new Set();
+        
+        Object.values(jsonData).forEach(countryData => {
+            const yearsForCountry = Object.keys(countryData.yearly_data || {});
             yearsForCountry.forEach(year => yearSet.add(year));
-        }
-    });
+        });
+        
+        return Array.from(yearSet).sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+    } catch (error) {
+        console.error("Error en getUniqueYears:", error.message);
+        return [];
+    }
+}
 
-    const uniqueYears = Array.from(yearSet).sort((a, b) => parseInt(a) - parseInt(b)); // Sort numerically
-    console.log("Unique years:", uniqueYears);
-    return uniqueYears;
+function sumProductionByDecade(jsonData) {
+    try {
+        const productionByDecade = {};
+        const indicatorToSum = 'BIOFUEL_PROD';
+
+        Object.values(jsonData).forEach(countryData => {
+            Object.entries(countryData.yearly_data || {}).forEach(([yearStr, yearlyIndicators]) => {
+                const yearNum = parseInt(yearStr, 10);
+                const productionValue = yearlyIndicators?.[indicatorToSum];
+                
+                if (!isNaN(yearNum) && typeof productionValue === 'number' && isFinite(productionValue)) {
+                    const decadeStartYear = Math.floor(yearNum / 10) * 10;
+                    const decadeKey = `${decadeStartYear}s`;
+                    
+                    productionByDecade[decadeKey] = (productionByDecade[decadeKey] || 0) + productionValue;
+                }
+            });
+        });
+        
+        // Redondear valores a 3 decimales
+        Object.keys(productionByDecade).forEach(decade => {
+            productionByDecade[decade] = parseFloat(productionByDecade[decade].toFixed(3));
+        });
+        
+        return productionByDecade;
+    } catch (error) {
+        console.error("Error en sumProductionByDecade:", error.message);
+        return {};
+    }
 }
 
 async function fetchDashboardChartImage(chartEndpoint, country) {
-    let url = `${base_api_url}/grafico/${chartEndpoint}`;
-    if (country) {
-        url += `?country=${encodeURIComponent(country)}`;
-    }
-    
     try {
-        const data = await fetchData(url);
-        if (data && data.imagen) {
-            return data.imagen;
-        } else {
-            // Log the error if present in server's JSON response but not an HTTP error
-            console.error(`No se recibió imagen para ${chartEndpoint} desde ${url}. Respuesta:`, data.error || 'Respuesta inesperada');
-            return null; // Or throw new Error(data.error || 'Respuesta inesperada');
+        let url = `${base_api_url}/grafico/${chartEndpoint}`;
+        if (country) {
+            url += `?country=${encodeURIComponent(country)}`;
         }
+        
+        const data = await fetchData(url);
+        return data.imagen || null;
     } catch (error) {
-        // fetchData already logs details of HTTP errors.
-        // This catch is for logging context specific to chart fetching.
-        console.error(`Error al solicitar gráfico ${chartEndpoint} desde ${url}:`, error.message);
-        return null; // Gracefully return null so UI can use default.
+        console.error(`Error al solicitar gráfico ${chartEndpoint}:`, error.message);
+        return null;
     }
 }

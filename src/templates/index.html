@@ -312,17 +312,41 @@
             <section id="dashboard" class="seccion-pagina">
                 <h2 id="titulo-dashboard">Dashboard</h2>
                 <div id="contenedor-dashboard">
-                    <article class="tarjeta-dashboard">
-                        <img src="static/images/GraficaBarras.png" alt="grafico-barras" width=80% height=auto>
+                    <article class="tarjeta-seccion">
+                        <div class="chart-controls">
+                            <label for="bar-chart-country-select">País:</label>
+                            <select id="bar-chart-country-select" class="chart-country-select">
+                                <!-- Opciones se poblarán dinámicamente -->
+                            </select>
+                        </div>
+                        <img id="dashboard-bar-chart-img" src="static/images/GraficaBarras.png" alt="Consumo Solar Países" style="width:90%; height:auto;">
                     </article>
-                    <article class="tarjeta-dashboard">
-                        <img src="static/images/GraficaPastel.png" alt="grafico-torta" width=60% height=auto>
+
+                    <article class="tarjeta-seccion">
+                        <div class="chart-controls">
+                            <label for="pie-chart-country-select">País:</label>
+                            <select id="pie-chart-country-select" class="chart-country-select">
+                                <!-- Opciones se poblarán dinámicamente -->
+                            </select>
+                        </div>
+                        <img id="dashboard-pie-chart-img" src="static/images/GraficaPastel.png" alt="Participación Energías Renovables" style="width:70%; height:auto;">
                     </article>
-                    <article class="tarjeta-dashboard">
-                        <img src="static/images/GraficaLineas.png" alt="grafico-lineas" width=60% height=auto>
+
+                    <article class="tarjeta-seccion">
+                        <div class="chart-controls">
+                            <label for="line-chart-country-select">País:</label>
+                            <select id="line-chart-country-select" class="chart-country-select">
+                                <!-- Opciones se poblarán dinámicamente -->
+                            </select>
+                        </div>
+                        <img id="dashboard-line-chart-img" src="static/images/GraficaLineas.png" alt="Evolución Generación Energía" style="width:90%; height:auto;">
                     </article>
-                    <article class="tarjeta-dashboard">
-                        <img src="static/images/GraficoArea.png" alt="grafico-area" width=60% height=auto>
+                    <!-- El gráfico de área está comentado, si se reactiva, necesitaría un cambio similar -->
+                    <article class="tarjeta-seccion">
+                        <div class="chart-controls">
+                            <!-- <label for="area-chart-country-select">País:</label> <select id="area-chart-country-select"></select> -->
+                        </div>
+                        <img id="dashboard-area-chart-img" src="static/images/GraficoArea.png" alt="Comparativa Energía" style="width:90%; height:auto;">
                     </article>
                 </div>
             </section>

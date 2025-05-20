@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', async () => { //
     
     let allFetchedData = null; 
 
+    // Referencias a los <select> de los gráficos del dashboard
+    const barChartCountrySelect = document.getElementById('bar-chart-country-select');
+    const pieChartCountrySelect = document.getElementById('pie-chart-country-select');
+    const lineChartCountrySelect = document.getElementById('line-chart-country-select');
+
     // Referencias a los <img> del dashboard
     const dashboardBarChartImg = document.getElementById('dashboard-bar-chart-img');
     const dashboardPieChartImg = document.getElementById('dashboard-pie-chart-img');
@@ -140,56 +145,88 @@ document.addEventListener('DOMContentLoaded', async () => { //
     function setupDropdownMenu() { /* ... tu lógica ... */ }
 
 
-    // --- ACTUALIZAR GRÁFICOS DEL DASHBOARD ---
-    async function updateDashboard(selectedCountry) {
-        // Si no se selecciona país, o se selecciona "none", mostrar imágenes por defecto
-        if (!selectedCountry || selectedCountry === "none") {
-            if(dashboardBarChartImg) dashboardBarChartImg.src = defaultImageSources.bar;
-            if(dashboardPieChartImg) dashboardPieChartImg.src = defaultImageSources.pie;
-            if(dashboardLineChartImg) dashboardLineChartImg.src = defaultImageSources.line;
-            // if(dashboardAreaChartImg) dashboardAreaChartImg.src = defaultImageSources.area;
+    // --- FUNCIONES PARA POBLAR Y ACTUALIZAR GRÁFICOS INDIVIDUALES DEL DASHBOARD ---
+
+    function populateChartCountrySelect(selectElement, countries, includeAllOption, defaultText = "Seleccione un país...") {
+        if (!selectElement) return;
+
+        selectElement.innerHTML = ''; // Limpiar opciones existentes
+
+        // Opción Placeholder
+        const placeholderOption = document.createElement('option');
+        placeholderOption.value = "none";
+        placeholderOption.textContent = defaultText;
+        selectElement.appendChild(placeholderOption);
+
+        if (includeAllOption) {
+            const allOption = document.createElement('option');
+            allOption.value = "ALL"; // "ALL" para indicar que se quieren datos de todos los países (si el backend lo soporta)
+            allOption.textContent = "Todos los Países";
+            selectElement.appendChild(allOption);
+        }
+
+        if (countries && countries.length > 0) {
+            countries.sort().forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                selectElement.appendChild(option);
+            });
+        }
+        selectElement.value = "none"; // Establecer el placeholder como seleccionado por defecto
+    }
+
+    async function updateBarChart() {
+        if (!dashboardBarChartImg || !barChartCountrySelect) return;
+        const selectedCountry = barChartCountrySelect.value;
+
+        if (selectedCountry === "none") {
+            dashboardBarChartImg.src = defaultImageSources.bar;
+            return;
+        }
+        
+        dashboardBarChartImg.src = 'static/images/loading.gif';
+        // Para el gráfico de barras, "ALL" podría ser una opción válida si el backend lo maneja
+        // o si selectedCountry es "" o null cuando "ALL" se interpreta como "sin filtro de país específico".
+        const countryParam = (selectedCountry === "ALL") ? null : selectedCountry; // Backend podría esperar null/undefined para "todos"
+        const barImgBase64 = await fetchDashboardChartImage('consumo_solar_latam', countryParam);
+        dashboardBarChartImg.src = barImgBase64 ? `data:image/png;base64,${barImgBase64}` : defaultImageSources.bar;
+    }
+
+    async function updatePieChart() {
+        if (!dashboardPieChartImg || !pieChartCountrySelect) return;
+        const selectedCountry = pieChartCountrySelect.value;
+
+        // Gráfico de torta usualmente no tiene sentido para "ALL", requiere un país específico.
+        if (selectedCountry === "none" || selectedCountry === "ALL") {
+            dashboardPieChartImg.src = defaultImageSources.pie;
             return;
         }
 
-        // Cargar y mostrar Gráfico de Barras (Consumo Solar)
-        if (dashboardBarChartImg && typeof fetchDashboardChartImage === 'function') {
-            dashboardBarChartImg.src = 'static/images/loading.gif'; // Temporalmente muestra un loader
-            const barImgBase64 = await fetchDashboardChartImage('consumo_solar_latam', selectedCountry); // 'selectedCountry' puede ser "ALL"
-            dashboardBarChartImg.src = barImgBase64 ? `data:image/png;base64,${barImgBase64}` : defaultImageSources.bar;
+        dashboardPieChartImg.src = 'static/images/loading.gif';
+        const pieImgBase64 = await fetchDashboardChartImage('participacion_renovable', selectedCountry);
+        dashboardPieChartImg.src = pieImgBase64 ? `data:image/png;base64,${pieImgBase64}` : defaultImageSources.pie;
+    }
+
+    async function updateLineChart() {
+        if (!dashboardLineChartImg || !lineChartCountrySelect) return;
+        const selectedCountry = lineChartCountrySelect.value;
+
+        // Gráfico de líneas usualmente para un país específico.
+        if (selectedCountry === "none" || selectedCountry === "ALL") {
+            dashboardLineChartImg.src = defaultImageSources.line;
+            return;
         }
 
-        // Cargar y mostrar Gráfico de Torta (Participación Renovable)
-        // Este gráfico usualmente no tiene sentido para "ALL", requiere un país específico.
-        if (dashboardPieChartImg && typeof fetchDashboardChartImage === 'function') {
-            if (selectedCountry === "ALL") {
-                dashboardPieChartImg.src = defaultImageSources.pie; // Mostrar default si "ALL"
-            } else {
-                dashboardPieChartImg.src = 'static/images/loading.gif';
-                const pieImgBase64 = await fetchDashboardChartImage('participacion_renovable', selectedCountry);
-                dashboardPieChartImg.src = pieImgBase64 ? `data:image/png;base64,${pieImgBase64}` : defaultImageSources.pie;
-            }
-        }
-
-        // Cargar y mostrar Gráfico de Líneas (Evolución por tipo)
-        // Similar al de torta, usualmente para un país específico.
-        if (dashboardLineChartImg && typeof fetchDashboardChartImage === 'function') {
-            if (selectedCountry === "ALL") {
-                dashboardLineChartImg.src = defaultImageSources.line; 
-            } else {
-                dashboardLineChartImg.src = 'static/images/loading.gif';
-                const lineImgBase64 = await fetchDashboardChartImage('evolucion_energia_tipos', selectedCountry);
-                dashboardLineChartImg.src = lineImgBase64 ? `data:image/png;base64,${lineImgBase64}` : defaultImageSources.line;
-            }
-        }
-        
-        // Añade aquí la lógica para otros gráficos (ej. Area Chart) si los implementas.
+        dashboardLineChartImg.src = 'static/images/loading.gif';
+        const lineImgBase64 = await fetchDashboardChartImage('evolucion_energia_tipos', selectedCountry);
+        dashboardLineChartImg.src = lineImgBase64 ? `data:image/png;base64,${lineImgBase64}` : defaultImageSources.line;
     }
 
 
-    // CAMBIO DE REGIÓN Y ACTUALIZACIÓN DE TABLA/GRÁFICOS (modificado)
+    // CAMBIO DE REGIÓN EN EL DROPDOWN PRINCIPAL (SOLO AFECTA LA TABLA DE DATOS HISTÓRICOS)
     async function handleRegionChange() {
         const selectedCountry = regions_lists.value;
-        // console.log("Región seleccionada:", selectedCountry);
 
         if (tablebody) tablebody.innerHTML = ''; 
 
@@ -198,8 +235,6 @@ document.addEventListener('DOMContentLoaded', async () => { //
         } else if (allFetchedData && allFetchedData.energyData) {
             let dataToDisplayForTable;
             if (selectedCountry === "ALL") {
-                // Para la tabla, si se selecciona "ALL", podrías mostrar datos de todos los países
-                // o un mensaje. Aquí asumimos mostrar todos.
                 dataToDisplayForTable = allFetchedData.energyData;
             } else {
                 const countrySpecificData = allFetchedData.energyData[selectedCountry];
@@ -209,10 +244,43 @@ document.addEventListener('DOMContentLoaded', async () => { //
         } else {
             if (tablebody) renderEmptyTable(tablebody, 'Datos no disponibles para filtrar.');
         }
-        
-        // Actualizar los gráficos del dashboard con el país seleccionado (puede ser "ALL")
-        await updateDashboard(selectedCountry);
+        // Ya no se actualizan los gráficos del dashboard desde aquí.
     }
+        // CONFIGURACIÓN DEL MENÚ DESPLEGABLE
+    if (opcionDesplegable && contenedorDesplegable) {
+        let timeoutId;
+        opcionDesplegable.addEventListener('mouseenter', () => {
+            clearTimeout(timeoutId);
+            contenedorDesplegable.style.visibility = 'visible';
+            contenedorDesplegable.style.opacity = '1';
+            contenedorDesplegable.style.pointerEvents = 'auto';
+        });
+    
+
+        // Al salir del menú principal
+        opcionDesplegable.addEventListener('mouseleave', () => {
+            timeoutId = setTimeout(() => {
+                if (!contenedorDesplegable.matches(':hover')) {
+                    contenedorDesplegable.style.visibility = 'hidden';
+                    contenedorDesplegable.style.opacity = '0';
+                    contenedorDesplegable.style.pointerEvents = 'none';
+                }
+            }, 50); // Retraso de 50ms
+        });
+
+        // Al salir del menú desplegable
+        contenedorDesplegable.addEventListener('mouseleave', () => {
+            timeoutId = setTimeout(() => {
+                // Solo ocultamos si el ratón no está sobre el menú principal
+                if (!opcionDesplegable.matches(':hover')) {
+                    contenedorDesplegable.style.visibility = 'hidden';
+                    contenedorDesplegable.style.opacity = '0';
+                    contenedorDesplegable.style.pointerEvents = 'none';
+                }
+            }, 50); // Retraso de 300ms
+        });
+    }
+    
     
     // --- INICIALIZACIÓN ---
     applyInitialDarkMode();
@@ -229,14 +297,27 @@ document.addEventListener('DOMContentLoaded', async () => { //
             allFetchedData = await loadInitialUnifiedData(); 
             
             if (allFetchedData && allFetchedData.countries) {
-                populateRegionsDropdown(allFetchedData.countries, true); // true para añadir "Todos los Países"
+                const countries = allFetchedData.countries;
+                populateRegionsDropdown(countries, true); // Dropdown principal para la tabla
+
+                // Poblar dropdowns de los gráficos
+                populateChartCountrySelect(barChartCountrySelect, countries, true, "País (Todos por defecto)"); // true para "Todos los Países"
+                populateChartCountrySelect(pieChartCountrySelect, countries, false, "Seleccione un país");   // false, no tiene sentido "Todos" para pie
+                populateChartCountrySelect(lineChartCountrySelect, countries, false, "Seleccione un país");  // false, no tiene sentido "Todos" para line
+
             } else {
                 populateRegionsDropdown([], false);
+                populateChartCountrySelect(barChartCountrySelect, [], true);
+                populateChartCountrySelect(pieChartCountrySelect, [], false);
+                populateChartCountrySelect(lineChartCountrySelect, [], false);
             }
             
             if (tablebody) renderEmptyTable(tablebody, 'Seleccione un país para ver los datos históricos.');
-            await updateDashboard(regions_lists.value); // Cargar gráficos con la selección inicial ("none" o "ALL")
-
+            
+            // Cargar gráficos iniciales basados en el estado por defecto de sus dropdowns
+            await updateBarChart();
+            await updatePieChart();
+            await updateLineChart();
         } else {
             console.error('La función loadInitialUnifiedData no está definida.');
             populateRegionsDropdown([], false);
@@ -249,4 +330,9 @@ document.addEventListener('DOMContentLoaded', async () => { //
     }
 
     if (regions_lists) regions_lists.addEventListener('change', handleRegionChange);
+
+    // Event listeners para los dropdowns de los gráficos
+    if (barChartCountrySelect) barChartCountrySelect.addEventListener('change', updateBarChart);
+    if (pieChartCountrySelect) pieChartCountrySelect.addEventListener('change', updatePieChart);
+    if (lineChartCountrySelect) lineChartCountrySelect.addEventListener('change', updateLineChart);
 });
