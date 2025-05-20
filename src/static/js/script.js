@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => { //
     function applyInitialDarkMode() {if (localStorage.getItem('darkMode') === 'enabled') document.body.classList.add('modo-oscuro');}
     function onSubmitCalculator(ev) {
         ev.preventDefault();
-        const PORCENTAGE = 0.37;
+        const PORCENTAGE = 0.29;
         const userInput = document.getElementById('consumo-usuario');
         const resultContainer = document.getElementById('resultado-calculadora');
         const resultElement = document.getElementById('consumo-resultado');
