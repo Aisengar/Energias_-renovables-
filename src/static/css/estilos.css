@@ -304,6 +304,7 @@ body.modo-oscuro .header-menu-link.activo {
 
 #dashboard {
     background-image: url("/static/images/Fondo_inicio.webp");
+
 }
 
 #inicio h1 {
@@ -333,8 +334,15 @@ body.modo-oscuro .header-menu-link.activo {
 
 #contenedor-dashboard {
     display: grid;
-    /* grid-template-columns: repeat(2, 1fr);
-    gap: 1rem; */
+}
+
+.tarjeta-dashboard {
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 1rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.12);
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .tarjeta-seccion {
@@ -418,6 +426,7 @@ body.modo-oscuro .header-menu-link.activo {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 1rem;
 }
 
 /* Estilos de la sección Datos Históricos */
