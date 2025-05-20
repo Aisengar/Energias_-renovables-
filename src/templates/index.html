@@ -352,22 +352,24 @@
             </section>
             <section id="calcular-consumo" class="seccion-pagina">
                 <div class="calcular-contenedor">
-                    <h2>Calcula tu consumo</h2>
-                    <form id="consumo-form">
-                        <div>
-                            <label for="id_consumo">Ingresa tu consumo eléctrico total por año en kWh</label>
+                    <article class="tarjeta-seccion">
+                        <h2>Calcula tu consumo</h2>
+                        <form id="consumo-form">
                             <div>
-                                <input type="number" id="consumo-usuario" class="input-calcular" name="consumo"
-                                type="number"
-                                min="1"
-                                required>
-                                <button type="submit">Calcular</button>
+                                <label for="id_consumo">Ingresa tu consumo eléctrico total por año en kWh</label>
+                                <div>
+                                    <input type="number" id="consumo-usuario" class="input-calcular" name="consumo"
+                                    type="number"
+                                    min="1"
+                                    required>
+                                    <button type="submit">Calcular</button>
+                                </div>
                             </div>
+                        </form>
+                        <div id="resultado-calculadora">
+                            De tu cosumo, <strong id="consumo-resultado"></strong> provienen de energías renovables.    
                         </div>
-                    </form>
-                    <div id="resultado-calculadora">
-                        De tu cosumo, <strong id="consumo-resultado"></strong> provienen de energías renovables.    
-                    </div>
+                    </article>
                 </div>
             </section>
             <footer class="footer">
