@@ -61,44 +61,42 @@ body.modo-oscuro .tarjeta-seccion {
 }
 /* Asegura que el título del desplegable sea blanco en modo oscuro */
 body.modo-oscuro .opcion-desplegable .title {
-    color: #fff; 
+    color: #fff;
 }
 /* Asegura que los enlaces dentro del desplegable sean blancos en modo oscuro */
 body.modo-oscuro .contenedor-desplegable .link {
-    color: #fff; 
+    color: #fff;
 }
 
 body.modo-oscuro .opcion-desplegable {
-    color: #fff;
+    color: #fff; /* Applied to the container, children .title specifically styled */
     background-color: #23816f;
 }
 
 body.modo-oscuro .contenedor-desplegable {
     background-color: #333;
-    color: #fff;
+    color: #fff; /* Applied to the container, children .link specifically styled */
 }
 
-
-
+/* Removed duplicated block:
 body.modo-oscuro .opcion-desplegable .title {
     color: #fff;
 }
-
 body.modo-oscuro .contenedor-desplegable {
     background-color: #333;
     color: #fff;
 }
-
 body.modo-oscuro .contenedor-desplegable .link {
     color: #fff;
 }
+*/
 
 a {
     text-decoration: none;
 }
 
 body.modo-oscuro #titulo-dashboard {
-    text-align: center;
+    /* text-align: center; Removed as it's in the general #titulo-dashboard rule */
     color: #fff;
 }
 
@@ -210,7 +208,7 @@ body.modo-oscuro .header-menu-link.activo {
     width: 200px;
     box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.12);
     border-radius: 10px;
-    transition: visibility 0s 0.3s, opacity 0.3s; 
+    transition: visibility 0s 0.3s, opacity 0.3s;
     pointer-events: none;
     display: block;
 }
@@ -226,7 +224,7 @@ body.modo-oscuro .header-menu-link.activo {
     color: var(--color-texto-header);
     font-size: 1rem;
     font-weight: bold;
-    transition: color 0.3s ease-in-out; 
+    transition: color 0.3s ease-in-out;
     padding: 0.25rem 0.5rem;
 }
 
@@ -276,6 +274,54 @@ body.modo-oscuro .header-menu-link.activo {
     border: 1px solid var(--color-texto-header);
     cursor: pointer;
     border-radius: 8px;
+}
+/*////////////////////////////////////////*/
+/*botones dropdown de select*/
+select {
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* Top/Bottom, Right (for arrow), Left */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    font-family: "Raleway", sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    appearance: none; /* Remove default system appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23333'%3E%3Cpath d='M8 11.5a.5.5 0 0 1-.354-.146l-3-3a.5.5 0 0 1 .708-.708L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3A.5.5 0 0 1 8 11.5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    min-width: 180px; /* Minimum width for selects */
+}
+
+select:hover {
+    border-color: var(--color-texto-header); /* Use theme color */
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--color-texto-header);
+    box-shadow: 0 0 0 0.2rem rgba(35, 129, 111, 0.25); /* Use theme color with alpha */
+}
+
+/* Select Styles in Dark Mode (NEW) */
+body.modo-oscuro select {
+    background-color: #444;
+    color: #f0f0f0;
+    border-color: #555;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f0f0f0'%3E%3Cpath d='M8 11.5a.5.5 0 0 1-.354-.146l-3-3a.5.5 0 0 1 .708-.708L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3A.5.5 0 0 1 8 11.5z'/%3E%3C/svg%3E");
+}
+
+body.modo-oscuro select:hover {
+    border-color: #78bb44; /* Green accent for dark mode hover */
+}
+
+body.modo-oscuro select:focus {
+    border-color: #78bb44;
+    box-shadow: 0 0 0 0.2rem rgba(120, 187, 68, 0.25); /* Green accent shadow */
 }
 
 /*//////////////////////////////////////*/
@@ -412,6 +458,20 @@ body.modo-oscuro .header-menu-link.activo {
 }
 
 /*//////////////////////////////////////*/
+/*Estilo Claculadora*/
+#calcular-consumo {
+    background-image: url("/static/images/Energia_Biomasa.jpg");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#calcular-consumo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+}
 
 /* Estilos del footer */
 .footer {
@@ -609,7 +669,7 @@ body.modo-oscuro .data-table tbody tr:hover {
     .header-menu-logo-responsive {
         display: block;
     }
-    
+
     .header-menu-logo-responsive img {
         width: 96px;
     }
@@ -620,18 +680,184 @@ body.modo-oscuro .data-table tbody tr:hover {
 }
 
 @media (max-width: 767.98px) {
-    
+
 }
 
 @media (max-width: 575.98px) {
-    .header-logo { 
+    .header-logo {
         padding-left: 0.5rem
     }
     .header-logo img {
         width: 50px;
     }
-    
+
     .header-logo .header-title {
         font-size: 1.5rem;
+    }
+}
+/*Dashboard Improvements */
+#titulo-dashboard {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    color: var(--color-texto-header); /* Default color for light mode */
+}
+/* body.modo-oscuro #titulo-dashboard { color: #fff; } -- This is already in original CSS */
+
+#contenedor-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+    gap: 2rem;
+}
+
+#contenedor-dashboard .tarjeta-seccion { /* Style for individual chart cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem; 
+}
+
+.chart-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.chart-controls label {
+    margin-bottom: 0.75rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+body.modo-oscuro .chart-controls label {
+    color: #f0f0f0;
+}
+
+#contenedor-dashboard .tarjeta-seccion img {
+    width: 90%; /* As per original inline style */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+body.modo-oscuro #contenedor-dashboard .tarjeta-seccion img {
+    box-shadow: 0 4px 8px rgba(255,255,255,0.05);
+}
+
+/* === Media Query Adjustments (Selected new/modified parts) === */
+@media (max-width: 991.98px) {
+    .contenedor-tarjetas { /* For energy type sections */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        /* padding-bottom is existing */
+    }
+
+    #contenedor-dashboard { /* Dashboard specific grid for medium screens */
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+    }
+
+    .header-menu {
+        /* position, top, left, flex-direction, justify-content, height, width are existing */
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem 0;
+        transition: left 0.3s ease-in-out; /* Ensure this was specified if modified */
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+    }
+    /* .header-menu.show is existing */
+
+    .header-menu-logo-responsive {
+        /* display is existing */
+        margin-bottom: 2rem;
+    }
+    /* .header-menu-logo-responsive img width is existing */
+
+    .header-menu-btn {
+        /* display is existing */
+        z-index: 1001;
+        margin-right: 1rem;
+    }
+
+    .opcion-desplegable { /* In responsive menu */
+        width: 100%;
+        text-align: center;
+    }
+    .contenedor-desplegable { /* In responsive menu */
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        margin-top: 0.5rem;
+        background-color: rgba(0,0,0,0.1);
+    }
+    body.modo-oscuro .contenedor-desplegable { /* In responsive menu */
+        background-color: rgba(255,255,255,0.1);
+    }
+}
+
+@media (max-width: 767.98px) {
+    #inicio h1 {
+        font-size: 32px;
+    }
+    #inicio p {
+        font-size: 17px;
+    }
+
+    .seccion-pagina {
+        padding-left: 1rem; /* Original was 2rem */
+        padding-right: 1rem; /* Original was 2rem */
+        padding-top: calc(var(--alto-header) * 0.75); /* Example adjustment */
+    }
+
+    #contenedor-dashboard { /* Dashboard specific grid for small screens */
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta-seccion { /* General card padding adjustment */
+        padding: 1rem 1.25rem;
+    }
+    /* .header-logo img width, .header-logo .header-title font-size are existing */
+}
+
+@media (max-width: 575.98px) {
+    :root {
+        --alto-header: 70px;
+    }
+    html {
+        font-size: 15px;
+    }
+    /* .header-logo padding-left is existing */
+
+    #datos .upload-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    #datos .upload-container button,
+    #datos .upload-container select { /* Target select if it's a direct child */
+        width: 100%;
+    }
+    #datos .form-group { /* If select is inside form-group */
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%; /* Make form-group take full width */
+    }
+    #datos .form-group select { /* Ensure select inside takes full width */
+        width: 100%;
+    }
+
+    .input-calcular {
+        width: calc(100% - 1.5rem); /* Accounts for its own padding if box-sizing is border-box */
+        margin-right: 0;
+    }
+    .calcular-contenedor form div div { /* Target inner div for input and button */
+        display: flex;
+        flex-direction: column;
+    }
+    .calcular-contenedor button {
+        width: 100%;
+        margin-top: 0.5rem;
     }
 }
