@@ -13,6 +13,8 @@ RenewShareEnergy = os.path.join(RAW_DATA_DIR, 'renewable-share-energy.csv')
 EnergyDataRenewCons = os.path.join(RAW_DATA_DIR, 'modern-renewable-energy-consumption.csv')
 EnergyRenewProd = os.path.join(RAW_DATA_DIR, 'modern-renewable-prod.csv')
 EnerConvCol = os.path.join(RAW_DATA_DIR, 'datos_energias_convencionales_Colombia.csv')
+# Colores para gráficos
+COLORS = ['#1F806B', '#F4A401', '#68B8E7', '#75B943', '#D9534F', '#5BC0DE', '#E67E22']
 
 
 

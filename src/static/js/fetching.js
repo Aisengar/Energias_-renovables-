@@ -1,3 +1,4 @@
+const url_base = 'http://127.0.0.1:5000'
 const web_url_link =  'http://127.0.0.1:5000/api/unified_data'
 
 
@@ -72,41 +73,25 @@ function getUniqueYears(jsonData) {
     return uniqueYears;
 }
 
-function sumProductionByDecade(jsonData) {
-    // This function will sum 'BIOFUEL_PROD' as an example from the unified data
-    if (!jsonData || typeof jsonData !== 'object' || jsonData === null) {
-        console.error("Invalid JSON data: Expected an object of countries for sumProductionByDecade.");
-        return {};
+async function fetchDashboardChartImage(chartEndpoint, country) {
+    let url = `${base_api_url}/grafico/${chartEndpoint}`;
+    if (country) {
+        url += `?country=${encodeURIComponent(country)}`;
     }
-    const productionByDecade = {};
-    const indicatorToSum = 'BIOFUEL_PROD'; // Example: Summing biofuel production
-
-    const countriesDataArray = Object.values(jsonData); // jsonData is the country-keyed object
-
-    countriesDataArray.forEach(countryData => {
-        if (countryData && typeof countryData.yearly_data === 'object' && countryData.yearly_data!== null) {
-            for (const [yearStr, yearlyIndicators] of Object.entries(countryData.yearly_data)) {
-                const yearNum = parseInt(yearStr, 10);
-                const productionValue = yearlyIndicators[indicatorToSum];
-                
-                if (!isNaN(yearNum) && typeof productionValue === 'number' && isFinite(productionValue)) {
-                    const decadeStartYear = Math.floor(yearNum / 10) * 10;
-                    const decadeKey = `${decadeStartYear}s`;
-
-                    if (!productionByDecade[decadeKey]) {
-                        productionByDecade[decadeKey] = 0;
-                    }
-                    productionByDecade[decadeKey] += productionValue;
-                }
-            }
+    
+    try {
+        const data = await fetchData(url);
+        if (data && data.imagen) {
+            return data.imagen;
+        } else {
+            // Log the error if present in server's JSON response but not an HTTP error
+            console.error(`No se recibió imagen para ${chartEndpoint} desde ${url}. Respuesta:`, data.error || 'Respuesta inesperada');
+            return null; // Or throw new Error(data.error || 'Respuesta inesperada');
         }
-    });
-
-    for (const decade in productionByDecade) {
-        productionByDecade[decade] = parseFloat(productionByDecade[decade].toFixed(3)); // Example: 3 decimal places
+    } catch (error) {
+        // fetchData already logs details of HTTP errors.
+        // This catch is for logging context specific to chart fetching.
+        console.error(`Error al solicitar gráfico ${chartEndpoint} desde ${url}:`, error.message);
+        return null; // Gracefully return null so UI can use default.
     }
-
-    console.log(`Total ${indicatorToSum} by decade (global):`, productionByDecade);
-    return productionByDecade;
 }
-// console.log(loadAndProcessBiofuelData(web_url_link)) // Comentado o eliminado

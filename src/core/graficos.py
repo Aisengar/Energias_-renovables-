@@ -1,285 +1,182 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import os
-from constants import *
+import io
+import base64
+from core.constants import *
 
-# Carga de datos
-DataSolarEnergy = pd.read_csv(SolarEnergy)
-DataWind = pd.read_csv(WindGeneration)
-DataHydro = pd.read_csv(Hydropower)
-DataRenewShareEnergy = pd.read_csv(RenewShareEnergy)
-DataRenewCons = pd.read_csv(EnergyDataRenewCons)
-DataRenewProd = pd.read_csv(EnergyRenewProd)
-DataEnerConvCol = pd.read_csv(EnerConvCol)
+# Carga de datos con nombres más descriptivos
+solar_data = pd.read_csv(SolarEnergy)
+wind_data = pd.read_csv(WindGeneration)
+hydro_data = pd.read_csv(Hydropower)
+renewable_share_data = pd.read_csv(RenewShareEnergy)
+renewable_consumption_data = pd.read_csv(EnergyDataRenewCons)
+renewable_production_data = pd.read_csv(EnergyRenewProd)
+conventional_energy_data = pd.read_csv(EnerConvCol)
 
 
-def plot_bar_chart(data, x, y, title, xlabel, ylabel, figsize=(15, 5), rotation=45, country=None):
+def create_bar_chart(data, title, x_label, y_label, figsize=(10, 6), rotation=45, country=None):
     """
-    Crea un gráfico de barras genérico
+    Crea un gráfico de barras y devuelve la imagen como base64.
+    """
+    plot_data = data.copy()
+    chart_title = title
     
-    Args:
-        data: DataFrame o Series con los datos
-        x: Valores para el eje x
-        y: Valores para el eje y
-        title: Título del gráfico
-        xlabel: Etiqueta del eje x
-        ylabel: Etiqueta del eje y
-        figsize: Tamaño de la figura
-        rotation: Rotación de las etiquetas del eje x
-        country: País específico a filtrar (None para todos)
-    """
-    # Filtrar por país si se proporciona
-    if country:
-        if country in x:
-            mask = x == country
-            x = x[mask]
-            y = y[mask]
-            title = f"{title} - {country}"
+    if country and country != "ALL":
+        plot_data = plot_data.loc[[country]]
+        chart_title = f"{title} - {country}"
+        
+    fig, ax = plt.subplots(figsize=figsize)
+    plot_data.plot(kind='bar', ax=ax, color=COLORS[0])
+    ax.set_title(chart_title)
+    ax.tick_params(axis='x', labelsize=10)
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=rotation, ha="right")
+    ax.set_ylabel(y_label)
+    ax.set_xlabel(x_label)
+    ax.grid(True, linestyle='--', alpha=0.7)
+
+    fig.tight_layout()
     
-    plt.figure(figsize=figsize)
-    plt.bar(x, y)
-    plt.title(title)
-    plt.tick_params(axis='x', labelsize=10)
-    plt.xticks(rotation=rotation, ha="right")
-    plt.ylabel(ylabel)
-    plt.xlabel(xlabel)
-    plt.grid()
-    plt.show()
+    return convert_to_base64(fig)
 
-
-def plot_grouped_bar_chart(data, title, ylabel, xlabel='Países', figsize=(20, 10), 
-                           width=0.8, rotation=45, legend_title='Tipos de Energía', country=None):
+def create_grouped_bar_chart(data, title, y_label, x_label='Países', figsize=(18, 9),
+                             width=0.8, rotation=45, legend_title='Tipos de Energía', country=None):
     """
-    Crea un grafico de barras agrupadas
-
-    arg:
-        data: dataframe
-        title: título del grafico
-        ylabel: etiqueta del eje y
-        xlabel: etiqueta del eje x
-        figsize: tamaño del grafico
-        width: ancho de las barras
-        rotation: angulo de rotacion de las etiquetas del eje x
-        legend_title: titulo de la leyenda
-        country: país específico a filtrar (None para todos)
+    Crea un gráfico de barras agrupadas y devuelve la imagen como base64.
     """
-    data_copy = data.copy()
+    plot_data = data.copy()
+    chart_title = title
     
-    # Filtrar por país si se proporciona
-    if country:
-        if country in data_copy.index:
-            data_copy = data_copy.loc[[country]]
-            title = f"{title} - {country}"
+    if country and country != "ALL":
+        plot_data = plot_data.loc[[country]]
+        chart_title = f"{title} - {country}"
     
     fig, ax = plt.subplots(figsize=figsize)
-    data_copy.plot(kind='bar', width=width, ax=ax)
+    plot_data.plot(kind='bar', width=width, ax=ax, color=COLORS)
+    ax.set_title(chart_title)
+    ax.set_ylabel(y_label)
+    ax.set_xlabel(x_label)
+    ax.legend(title=legend_title, fontsize='small')
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=rotation, ha="right")
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
     
-    plt.title(title)
-    plt.ylabel(ylabel)
-    plt.xlabel(xlabel)
-    plt.legend(title=legend_title)
-    plt.xticks(rotation=rotation, ha="right")
-    plt.grid(axis='y', linestyle='--')
-    plt.tight_layout()
-    plt.show()
-
-
-def plot_renewable_pie_chart(pais, porcentaje_renovables, año, figsize=(8, 8)):
-    """
-    Crea un gráfico de torta para mostrar la participación de energías renovables
+    fig.tight_layout()
     
-    Args:
-        pais: Nombre del país
-        porcentaje_renovables: Porcentaje de energías renovables
-        año: Año de los datos
-        figsize: Tamaño de la figura
+    return convert_to_base64(fig)
+
+def create_pie_chart(country, renewable_percentage, year, figsize=(8, 8)):
     """
-    porcentaje_no_renovables = 100.0 - porcentaje_renovables
-    etiquetas_torta = ['Energías Renovables', 'Energías convencionales']
-    valores_torta = [porcentaje_renovables, porcentaje_no_renovables]
-    colores_torta = ['#F4A401', '#1F7D6A']
-    explode_torta = (0.08, 0)
-
-    plt.figure(figsize=figsize)
-    plt.pie(valores_torta, explode=explode_torta, labels=etiquetas_torta, 
-            colors=colores_torta, autopct='%1.1f%%', startangle=90, 
-            wedgeprops={'linewidth': 3, 'edgecolor': "#013120"})
-    plt.title(f'Porcentaje Energías Renovables {pais}\n vs Energías Tradicionales en el {año}', 
-              fontsize=13)
-    plt.axis('equal')
-    plt.show()
-
-
-def plot_energy_time_series(data, country, columns, title, ylabel='Generación en TWh', 
-                           xlabel='Años', figsize=(10, 6)):
+    Crea un gráfico circular de participación renovable vs no renovable.
     """
-    Crea un gráfico de líneas para mostrar la evolución de la generación de energía
+    non_renewable_percentage = 100.0 - renewable_percentage
+    labels = ['Energías Renovables', 'Energías No Renovables']
+    values = [renewable_percentage, non_renewable_percentage]
+    colors = [COLORS[1], COLORS[0]]
+    explode = (0.08, 0)
+
+    fig, ax = plt.subplots(figsize=figsize)
+    ax.pie(values, explode=explode, labels=labels,
+           colors=colors, autopct='%1.1f%%', startangle=90,
+           wedgeprops={'linewidth': 2, 'edgecolor': "#013120"})
+    ax.set_title(f'Participación Renovables {country}\nvs No Renovables en {year}', fontsize=13)
+    ax.axis('equal')
     
-    Args:
-        data: DataFrame con los datos
-        country: País a analizar
-        columns: Columnas a incluir en el gráfico
-        title: Título del gráfico
-        ylabel: Etiqueta del eje y
-        xlabel: Etiqueta del eje x
-        figsize: Tamaño de la figura
-    """
-    color = ['#1F806B', '#F4A401', '#68B8E7', '#75B943']
-    
-    country_data = data[data['Entity'] == country].dropna()
-    
-    if not country_data.empty:
-        plt.figure(figsize=figsize)
-        data_to_plot = country_data[columns]
-        data_to_plot.plot(color=color)
-        plt.title(f"{title} - {country}")
-        plt.ylabel(ylabel)
-        plt.xlabel(xlabel)
-        plt.legend()
-        plt.grid()
-        plt.show()
+    fig.tight_layout()
 
+    return convert_to_base64(fig)
 
-def plot_stackarea_chart(conventional_data, renewable_data, country, figsize=(14, 8)):
+def create_time_series(data, country, columns_to_plot, title_prefix, 
+                      y_label='Generación (TWh)', x_label='Año', figsize=(12, 7)):
     """
-    Crea un gráfico de área apilada que muestra la comparación entre energía convencional y renovable
+    Crea un gráfico de líneas para la evolución de energía.
+    """
+    country_data = data[data['Entity'] == country].copy()
+    chart_title = f"{title_prefix} - {country}"
     
-    Args:
-        conventional_data: DataFrame con datos de energía convencional
-        renewable_data: DataFrame con datos de energía renovable
-        country: País a visualizar
-        figsize: Tamaño de la figura
+    country_data['Year'] = pd.to_numeric(country_data['Year'], errors='coerce')
+    country_data = country_data.dropna(subset=['Year'])
+    country_data = country_data.sort_values('Year').set_index('Year')
+    
+    fig, ax = plt.subplots(figsize=figsize)
+    
+    for i, column in enumerate(columns_to_plot):
+        if column in country_data.columns:
+            # Simplificar etiquetas para la leyenda
+            clean_label = column.replace(' - TWh', '').replace('Electricity from ', '').replace('generation', '').strip()
+            ax.plot(country_data.index, country_data[column], 
+                    label=clean_label, color=COLORS[i % len(COLORS)])
+
+    ax.set_title(chart_title)
+    ax.set_ylabel(y_label)
+    ax.set_xlabel(x_label)
+    ax.legend(fontsize='medium')
+    ax.grid(True, linestyle='--', alpha=0.7)
+    
+    fig.tight_layout()
+    
+    return convert_to_base64(fig)
+
+def create_stacked_area_chart(conventional_data, renewable_data, country, figsize=(14, 7)):
     """
-    # Preparar datos para Colombia (caso especial con datos disponibles)
-    if country == 'Colombia':
-        DataEnerConvCol_country = conventional_data[['Year', 'Total_Conventional_TWh']].copy()
-        DataEnerConvCol_country.rename(columns={'Total_Conventional_TWh': 'Conventional_TWh'}, inplace=True)
+    Crea un gráfico de área apilada mostrando energía renovable vs convencional.
+    """
+    chart_title = f'Consumo Energético en {country}: Renovable vs. Convencional'
+    
+    # Preparar datos convencionales
+    if country == 'Colombia' and 'Total_Conventional_TWh' in conventional_data.columns:
+        conv_df = conventional_data[['Year', 'Total_Conventional_TWh']].copy()
+        conv_df.rename(columns={'Total_Conventional_TWh': 'Conventional_TWh'}, inplace=True)
     else:
-        # Para otros países, creamos un DataFrame vacío o con datos estimados
-        # En un caso real, se cargarían los datos específicos del país
-        years = renewable_data[renewable_data['Entity'] == country]['Year'].unique()
-        DataEnerConvCol_country = pd.DataFrame({'Year': years, 'Conventional_TWh': 0})
+        conv_col_name = next(col for col in conventional_data.columns if 'conventional' in col.lower())
+        conv_df = conventional_data[conventional_data['Entity'] == country][['Year', conv_col_name]].copy()
+        conv_df.rename(columns={conv_col_name: 'Conventional_TWh'}, inplace=True)
     
-    # Datos de energía renovable para el país seleccionado
-    DataRenewConsCountry = renewable_data[renewable_data['Entity'] == country].copy()
+    # Preparar datos renovables
+    renew_df = renewable_data[renewable_data['Entity'] == country].copy()
+    renewable_cols = [
+        'Other renewables (including geothermal and biomass) electricity generation - TWh',
+        'Solar generation - TWh',
+        'Wind generation - TWh',
+        'Hydro generation - TWh'
+    ]
     
-    renewable_cols_map = {
-        'Other renewables (including geothermal and biomass) electricity generation - TWh': 'Other_Renewables_TWh',
-        'Solar generation - TWh': 'Solar_TWh',
-        'Wind generation - TWh': 'Wind_TWh',
-        'Hydro generation - TWh': 'Hydro_TWh'
-    }
+    available_cols = [col for col in renewable_cols if col in renew_df.columns]
     
-    # Comprobamos qué columnas están disponibles en el DataFrame
-    available_cols = []
-    for old_col, new_col in renewable_cols_map.items():
-        if old_col in DataRenewConsCountry.columns:
-            DataRenewConsCountry[new_col] = pd.to_numeric(DataRenewConsCountry[old_col], errors='coerce').fillna(0)
-            available_cols.append(new_col)
+    for col in available_cols:
+        renew_df[col] = pd.to_numeric(renew_df[col], errors='coerce').fillna(0)
     
-    # Si no hay columnas disponibles, no continuamos
-    if not available_cols:
-        print(f"No hay datos de energía renovable disponibles para {country}")
-        return
+    renew_df['Renewable_TWh'] = renew_df[available_cols].sum(axis=1)
+    renew_df = renew_df[['Year', 'Renewable_TWh']]
     
-    # Calculamos el total de energía renovable
-    DataRenewConsCountry['Renewable_TWh'] = DataRenewConsCountry[available_cols].sum(axis=1)
-    DataRenewConsCountry = DataRenewConsCountry[['Year', 'Renewable_TWh']]
+    # Unir datos
+    merged_df = pd.merge(conv_df, renew_df, on='Year', how='outer').fillna(0)
+    merged_df = merged_df.sort_values('Year').drop_duplicates(subset=['Year'], keep='first')
     
-    # Mezclamos los datos de energía convencional y renovable
-    df_merged = pd.merge(DataEnerConvCol_country, DataRenewConsCountry, on='Year', how='outer')
-    df_merged['Conventional_TWh'] = df_merged['Conventional_TWh'].fillna(0)
-    df_merged['Renewable_TWh'] = df_merged['Renewable_TWh'].fillna(0)
-    
-    # Ordenamos por año
-    df_merged = df_merged.sort_values('Year')
-    
-    # Creamos el gráfico de área apilada
+    # Crear gráfico
     fig, ax = plt.subplots(figsize=figsize)
-    ax.stackplot(df_merged['Year'],
-                df_merged['Conventional_TWh'],
-                df_merged['Renewable_TWh'],
+    ax.stackplot(merged_df['Year'],
+                merged_df['Conventional_TWh'],
+                merged_df['Renewable_TWh'],
                 labels=['Energía Convencional (TWh)', 'Energía Renovable (TWh)'],
-                colors=['#F4A401', '#1F7D6A'],
+                colors=[COLORS[1], COLORS[0]],
                 alpha=0.8)
     
-    ax.set_title(f'Consumo de Energía en {country}: Renovable vs. Convencional', fontsize=16)
+    ax.set_title(chart_title, fontsize=16)
     ax.set_xlabel('Año', fontsize=14)
     ax.set_ylabel('Consumo de Energía (TWh)', fontsize=14)
-    plt.legend()
-    plt.grid(alpha=0.3)
-    plt.show()
+    ax.legend(loc='upper left')
+    ax.grid(True, linestyle='--', alpha=0.7)
+    fig.tight_layout()
 
+    return convert_to_base64(fig)
 
-def visualizar_energia_renovable(pais=None):
+def convert_to_base64(fig):
     """
-    Visualiza estadísticas de energía renovable para un país específico o todos los países.
-    
-    Args:
-        pais: País específico a visualizar. Si es None, se muestran todos los países.
+    Convierte una figura de matplotlib a una imagen en formato base64.
     """
-    # Gráfico 1: Consumo de Energía Solar LATAM
-    EnergySolarCons = DataSolarEnergy[DataSolarEnergy['Entity'].isin(LATIN_AMERICAN_COUNTRIES)]
-    TotalEnergySolarCons = EnergySolarCons.groupby('Entity').sum().iloc[:,2]
-    
-    plot_bar_chart(
-        data=TotalEnergySolarCons,
-        x=TotalEnergySolarCons.index,
-        y=TotalEnergySolarCons.values,
-        title='Consumo de Energía Solar 1965 - 2022',
-        xlabel='Países LATAM',
-        ylabel='Consumo TWh',
-        country=pais
-    )
-
-    # Gráfico 2: Producción de Energía Renovable por Fuente
-    EnergyRenewConsLATAM = DataRenewProd[DataRenewProd['Entity'].isin(LATIN_AMERICAN_COUNTRIES)]
-    TotalRenewProdByCountry = EnergyRenewConsLATAM.groupby('Entity').sum(numeric_only=True)
-    energy_columns = ['Electricity from wind - TWh', 'Electricity from hydro - TWh',
-                      'Electricity from solar - TWh', 'Other renewables including bioenergy - TWh']
-    DataAllCountries = TotalRenewProdByCountry[energy_columns]
-    
-    plot_grouped_bar_chart(
-        data=DataAllCountries,
-        title='Producción Total de Energía Renovable por Tipo y País en LATAM',
-        ylabel='Generación Total en TWh',
-        country=pais
-    )
-
-    # Gráfico 3: Participación de Energías Renovables (gráficos de torta)
-    countries_to_plot = [pais] if pais else LATIN_AMERICAN_COUNTRIES
-    
-    for pais_act in countries_to_plot:
-        PaisSel = DataRenewShareEnergy[DataRenewShareEnergy['Entity'] == pais_act].copy()
-        if not PaisSel.empty:
-            PaisSelOrd = PaisSel.sort_values(by='Year', ascending=False)
-            
-            dato_mas_reciente_pais = PaisSelOrd.iloc[0]
-            año_analizado = int(dato_mas_reciente_pais['Year'])
-            porcentaje_renovables_pais = dato_mas_reciente_pais['Renewables (% equivalent primary energy)']
-            
-            plot_renewable_pie_chart(pais_act, porcentaje_renovables_pais, año_analizado)
-
-    # Gráfico 4: Serie de tiempo de generación de energía
-    columns = ['Electricity from wind - TWh', 'Electricity from hydro - TWh',
-               'Electricity from solar - TWh', 'Other renewables including bioenergy - TWh']
-    
-    countries_to_plot = [pais] if pais else LATIN_AMERICAN_COUNTRIES
-    
-    for pais_act in countries_to_plot:
-        plot_energy_time_series(
-            data=DataRenewProd,
-            country=pais_act,
-            columns=columns,
-            title='Generación de Energía'
-        )
-        
-    # Gráfico 5: Gráfico de área apilada para energía convencional vs renovable
-    if pais:
-        plot_stackarea_chart(DataEnerConvCol, DataRenewCons, pais)
-    else:
-        for pais_act in LATIN_AMERICAN_COUNTRIES:
-            plot_stackarea_chart(DataEnerConvCol, DataRenewCons, pais_act)
-
-visualizar_energia_renovable('Colombia')
-
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+    img_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
+    buf.close()
+    plt.close(fig)
+    return img_base64

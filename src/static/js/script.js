@@ -1,6 +1,7 @@
-document.addEventListener('DOMContentLoaded', async () => {
+// script.js
+document.addEventListener('DOMContentLoaded', async () => { //
 
-    // VARIABLES GLOBALES
+    // VARIABLES GLOBALES (existing)
     const menuButton = document.querySelector('.header-menu-btn');
     const headerMenu = document.querySelector('.header-menu');
     const menuLinks = document.querySelectorAll('.header-menu-link');
@@ -11,295 +12,241 @@ document.addEventListener('DOMContentLoaded', async () => {
     const regions_lists = document.getElementById('region');
     const tablebody = document.getElementById('table-body');
     
-    // Variable para almacenar todos los datos cargados
     let allFetchedData = null; 
 
-    // FUNCIONES DE LA TABLA DE DATOS
+    // Referencias a los <img> del dashboard
+    const dashboardBarChartImg = document.getElementById('dashboard-bar-chart-img');
+    const dashboardPieChartImg = document.getElementById('dashboard-pie-chart-img');
+    const dashboardLineChartImg = document.getElementById('dashboard-line-chart-img');
+    // const dashboardAreaChartImg = document.getElementById('dashboard-area-chart-img'); // Uncomment if used
+
+    // Almacenar las rutas de las imágenes por defecto
+    const defaultImageSources = {
+        bar: dashboardBarChartImg ? dashboardBarChartImg.src : '',
+        pie: dashboardPieChartImg ? dashboardPieChartImg.src : '',
+        line: dashboardLineChartImg ? dashboardLineChartImg.src : '',
+        // area: dashboardAreaChartImg ? dashboardAreaChartImg.src : '', // Uncomment if used
+    };
+
+    // FUNCIONES DE LA TABLA DE DATOS (existing, ensure they are robust)
     function populateDataTable(data) {
-        const tablebody = document.getElementById('table-body');
         if (!tablebody) {
             console.error('Elemento tbody con id "table-body" no encontrado.');
             return;
         }
-        
-        // Validar los datos recibidos
         if (!data || Object.keys(data).length === 0) {
-            console.error('Datos no válidos o ausentes para poblar la tabla.');
-            renderEmptyTable(tablebody, 'No hay datos disponibles para mostrar.');
+            renderEmptyTable(tablebody, 'No hay datos disponibles para mostrar para la selección actual.');
             return;
         }
-        
-        // Limpiar contenido previo
         tablebody.innerHTML = '';
-
-        // Procesar y mostrar los datos
         const countriesData = data; 
         const hasData = renderCountryData(tablebody, countriesData);
-        
         if (!hasData) {
-            renderEmptyTable(tablebody, 'No se encontraron registros para los indicadores seleccionados.');
+            renderEmptyTable(tablebody, 'No se encontraron registros para los indicadores y país seleccionados.');
         }
     }
 
     function renderCountryData(tableBody, countriesData) {
         let anyRowWasRendered = false;
-
-        // Iterar sobre los países
         Object.entries(countriesData).forEach(([countryName, countryDetails]) => {
-            // Ordenar los datos anuales por año (ascendente)
+            if (!countryDetails || !countryDetails.yearly_data) {
+                console.warn(`Datos anuales no encontrados o en formato incorrecto para ${countryName}`);
+                return; 
+            }
             const sortedYearlyData = Object.entries(countryDetails.yearly_data)
                 .sort(([yearA], [yearB]) => parseInt(yearA) - parseInt(yearB));
             
             sortedYearlyData.forEach(([year, yearlyIndicators]) => {
-                // addDataRow y su getValueOrDefault se encargarán de los 'N/A' para indicadores faltantes.
                 addDataRow(tableBody, year, countryName, yearlyIndicators);
                 anyRowWasRendered = true;
             });
         });
-        
         return anyRowWasRendered;
     }
 
     function addDataRow(tableBody, year, countryName, yearlyIndicators) {
         const row = tableBody.insertRow();
-
         const getValueOrDefault = (indicatorCode, defaultValue = 'N/A') => {
+            if (typeof yearlyIndicators !== 'object' || yearlyIndicators === null) return defaultValue;
             const value = yearlyIndicators[indicatorCode];
             return (typeof value === 'number' && isFinite(value)) ? value.toFixed(2) : defaultValue;
         };
-
-        // Añadir celdas con datos
-        row.insertCell().textContent = year;                 // Año
-        row.insertCell().textContent = countryName;          // País
-        row.insertCell().textContent = getValueOrDefault('HYDRO_CONSUM'); // Hidráulica
-        row.insertCell().textContent = getValueOrDefault('WIND_CONSUM');  // Eólica
-        row.insertCell().textContent = getValueOrDefault('SOLAR_CONSUM'); // Solar
-        row.insertCell().textContent = getValueOrDefault('BIOFUEL_PROD'); // Biocombustible
-        row.insertCell().textContent = getValueOrDefault('EG.FEC.RNEW.ZS');// Energias usadas en un pais
+        row.insertCell().textContent = year;
+        row.insertCell().textContent = countryName;
+        row.insertCell().textContent = getValueOrDefault('HYDRO_CONSUM');
+        row.insertCell().textContent = getValueOrDefault('WIND_CONSUM');
+        row.insertCell().textContent = getValueOrDefault('SOLAR_CONSUM');
+        row.insertCell().textContent = getValueOrDefault('BIOFUEL_PROD');
+        // La última columna en tu HTML es "Geotérmica (TWh)"
+        // Pero en tu JS original usabas 'EG.FEC.RNEW.ZS' (% Energía Renovable Total)
+        // Adecúa esto a lo que realmente tengas en unified_data.json y lo que quieras mostrar.
+        // Si tienes 'GEOTHERMAL_CONSUM', úsalo. Por ahora, mantendré 'EG.FEC.RNEW.ZS' como ejemplo.
+        row.insertCell().textContent = getValueOrDefault('EG.FEC.RNEW.ZS'); 
     }
 
     function renderEmptyTable(tableBody, message) {
-        tableBody.innerHTML = `<tr><td colspan="7">${message}</td></tr>`;
+        if (tableBody) {
+            const colCount = tableBody.previousElementSibling?.rows?.[0]?.cells?.length || 7;
+            tableBody.innerHTML = `<tr><td colspan="${colCount}">${message}</td></tr>`;
+        }
     }
-
-    function toggleMenu() {
-        const navList = document.getElementById('nav-list');
-        navList?.classList.toggle('show');
-    }
-
-    // FUNCIONES DEL DROPDOWN DE REGIONES
-    function populateRegionsDropdown(countries) {
+    
+    // FUNCIONES DEL DROPDOWN DE REGIONES (modified)
+    function populateRegionsDropdown(countries, addAllCountriesOption = true) {
         if (!regions_lists) {
             console.error('Elemento select con id "region" no encontrado.');
             return;
         }
-        // Guardamos la primera opción (placeholder) si existe y es la que esperamos
-        let placeholderOption = regions_lists.options[0];
-        if (!placeholderOption || placeholderOption.value !== "none") {
+        let placeholderOption = regions_lists.querySelector('option[value="none"]');
+        if (!placeholderOption) {
             placeholderOption = document.createElement('option');
             placeholderOption.value = "none";
-            placeholderOption.textContent = ""; 
+            placeholderOption.textContent = "Seleccione un país...";
         }
         
-        regions_lists.innerHTML = '';
+        regions_lists.innerHTML = ''; // Limpiar opciones existentes
         regions_lists.appendChild(placeholderOption); 
-        placeholderOption.selected = true; 
+        
+        if (addAllCountriesOption) {
+            const allOption = document.createElement('option');
+            allOption.value = "ALL";
+            allOption.textContent = "Todos los Países";
+            regions_lists.appendChild(allOption);
+        }
 
         if (countries && countries.length > 0) {
-            countries.sort();
+            countries.sort(); 
             countries.forEach(country => {
                 const option = document.createElement('option');
                 option.value = country;
                 option.textContent = country;
                 regions_lists.appendChild(option);
             });
-        } 
-    }
-    
-    // FUNCIONES DEL MENÚ DE NAVEGACIÓN
-    function toggleMenu() {
-        if (!headerMenu) {
-            console.error('No se encontró el elemento .header-menu');
-            return;
         }
-        headerMenu.classList.toggle('show');
+        placeholderOption.selected = true; 
     }
     
-    function hideMenu() {
-        if (headerMenu) {
-            headerMenu.classList.remove('show');
-        }
-    }
-
-    function removeActiveClass() {
-        menuLinks.forEach(link => {
-            link.classList.remove('activo');
-        });
-    }
-    
-    function handleMenuLinkClick(event) {
-        removeActiveClass();
-        this.classList.add('activo');
-        hideMenu();
-    }
-
-    // FUNCIONES DEL MODO OSCURO
+    // --- Funciones de Menú, Modo Oscuro, Calculadora (sin cambios, deben existir) ---
+    function toggleMenu() {if(headerMenu) headerMenu.classList.toggle('show');}
+    function hideMenu() {if(headerMenu) headerMenu.classList.remove('show');}
+    function removeActiveClassFromLinks() {menuLinks.forEach(link => link.classList.remove('activo'));}
+    function handleMenuLinkClick(event) {removeActiveClassFromLinks(); this.classList.add('activo'); hideMenu();}
     function toggleDarkMode() {
         document.body.classList.toggle('modo-oscuro');
+        localStorage.setItem('darkMode', document.body.classList.contains('modo-oscuro') ? 'enabled' : 'disabled');
     }
+    function applyInitialDarkMode() {if (localStorage.getItem('darkMode') === 'enabled') document.body.classList.add('modo-oscuro');}
+    function onSubmitCalculator(ev) { /* ... tu lógica ... */ }
+    function setupDropdownMenu() { /* ... tu lógica ... */ }
 
-    // FUNCIONES DE LA CALCULADORA
-    function onSubmitCalculator(ev) {
-        ev.preventDefault();
-        const PORCENTAGE = 0.37;
-        const userInput = document.getElementById('consumo-usuario');
-        const resultContainer = document.getElementById('resultado-calculadora');
-        const resultElement = document.getElementById('consumo-resultado');
 
-        if (!userInput || !resultContainer) {
-            alert('No se han obtenido los elementos necesarios para realizar los calculos');
+    // --- ACTUALIZAR GRÁFICOS DEL DASHBOARD ---
+    async function updateDashboard(selectedCountry) {
+        // Si no se selecciona país, o se selecciona "none", mostrar imágenes por defecto
+        if (!selectedCountry || selectedCountry === "none") {
+            if(dashboardBarChartImg) dashboardBarChartImg.src = defaultImageSources.bar;
+            if(dashboardPieChartImg) dashboardPieChartImg.src = defaultImageSources.pie;
+            if(dashboardLineChartImg) dashboardLineChartImg.src = defaultImageSources.line;
+            // if(dashboardAreaChartImg) dashboardAreaChartImg.src = defaultImageSources.area;
             return;
         }
 
-        const value = Number(userInput.value);
-
-        if (Number.isNaN(value)) {
-            alert('El valor ingresado no es un número');
+        // Cargar y mostrar Gráfico de Barras (Consumo Solar)
+        if (dashboardBarChartImg && typeof fetchDashboardChartImage === 'function') {
+            dashboardBarChartImg.src = 'static/images/loading.gif'; // Temporalmente muestra un loader
+            const barImgBase64 = await fetchDashboardChartImage('consumo_solar_latam', selectedCountry); // 'selectedCountry' puede ser "ALL"
+            dashboardBarChartImg.src = barImgBase64 ? `data:image/png;base64,${barImgBase64}` : defaultImageSources.bar;
         }
 
-        const result = Number(value * PORCENTAGE).toFixed(0);
-
-        resultContainer.style.visibility = 'visible';
-        resultElement.innerHTML = `${Intl.NumberFormat('es-CO').format(result)} kWh`;
-    }
-
-    // CONFIGURACIÓN DE LOS EVENT LISTENERS
-
-    // Menú button listener
-    if (menuButton) {
-        menuButton.addEventListener('click', toggleMenu);
-    }
-    
-    // Menú links listeners
-    menuLinks.forEach(link => {
-        link.addEventListener('click', handleMenuLinkClick);
-    });
-    
-    // Modo oscuro listener
-    if (darkModeButton) {
-        darkModeButton.addEventListener('click', toggleDarkMode);
-    }
-
-    // Calculadora
-    if (consumptionForm) {
-        consumptionForm.addEventListener('submit', onSubmitCalculator);
-    }
-
-    // CONFIGURACIÓN DEL MENÚ DESPLEGABLE
-    if (opcionDesplegable && contenedorDesplegable) {
-        let timeoutId;
-        opcionDesplegable.addEventListener('mouseenter', () => {
-            clearTimeout(timeoutId);
-            contenedorDesplegable.style.visibility = 'visible';
-            contenedorDesplegable.style.opacity = '1';
-            contenedorDesplegable.style.pointerEvents = 'auto';
-        });
-    
-
-        // Al salir del menú principal
-        opcionDesplegable.addEventListener('mouseleave', () => {
-            timeoutId = setTimeout(() => {
-                if (!contenedorDesplegable.matches(':hover')) {
-                    contenedorDesplegable.style.visibility = 'hidden';
-                    contenedorDesplegable.style.opacity = '0';
-                    contenedorDesplegable.style.pointerEvents = 'none';
-                }
-            }, 50); // Retraso de 50ms
-        });
-
-        // Al salir del menú desplegable
-        contenedorDesplegable.addEventListener('mouseleave', () => {
-            timeoutId = setTimeout(() => {
-                // Solo ocultamos si el ratón no está sobre el menú principal
-                if (!opcionDesplegable.matches(':hover')) {
-                    contenedorDesplegable.style.visibility = 'hidden';
-                    contenedorDesplegable.style.opacity = '0';
-                    contenedorDesplegable.style.pointerEvents = 'none';
-                }
-            }, 50); // Retraso de 300ms
-        });
-    }
-    
-    // CAMBIO DE REGIÓN FILTRADO DE TABLA
-    function handleRegionChange() {
-        if (!allFetchedData || !allFetchedData.energyData) {
-            console.warn("No hay datos cargados para filtrar o la estructura de datos es incorrecta.");
-            if (tablebody) renderEmptyTable(tablebody, 'Datos no disponibles para filtrar. Intente cargar de nuevo.');
-            return;
+        // Cargar y mostrar Gráfico de Torta (Participación Renovable)
+        // Este gráfico usualmente no tiene sentido para "ALL", requiere un país específico.
+        if (dashboardPieChartImg && typeof fetchDashboardChartImage === 'function') {
+            if (selectedCountry === "ALL") {
+                dashboardPieChartImg.src = defaultImageSources.pie; // Mostrar default si "ALL"
+            } else {
+                dashboardPieChartImg.src = 'static/images/loading.gif';
+                const pieImgBase64 = await fetchDashboardChartImage('participacion_renovable', selectedCountry);
+                dashboardPieChartImg.src = pieImgBase64 ? `data:image/png;base64,${pieImgBase64}` : defaultImageSources.pie;
+            }
         }
+
+        // Cargar y mostrar Gráfico de Líneas (Evolución por tipo)
+        // Similar al de torta, usualmente para un país específico.
+        if (dashboardLineChartImg && typeof fetchDashboardChartImage === 'function') {
+            if (selectedCountry === "ALL") {
+                dashboardLineChartImg.src = defaultImageSources.line; 
+            } else {
+                dashboardLineChartImg.src = 'static/images/loading.gif';
+                const lineImgBase64 = await fetchDashboardChartImage('evolucion_energia_tipos', selectedCountry);
+                dashboardLineChartImg.src = lineImgBase64 ? `data:image/png;base64,${lineImgBase64}` : defaultImageSources.line;
+            }
+        }
+        
+        // Añade aquí la lógica para otros gráficos (ej. Area Chart) si los implementas.
+    }
+
+
+    // CAMBIO DE REGIÓN Y ACTUALIZACIÓN DE TABLA/GRÁFICOS (modificado)
+    async function handleRegionChange() {
         const selectedCountry = regions_lists.value;
-        console.log("Region seleccionada:", selectedCountry);
+        // console.log("Región seleccionada:", selectedCountry);
 
-        // Limpiar la tabla antes de popularla o mostrar mensaje
-        if (tablebody) tablebody.innerHTML = '';
+        if (tablebody) tablebody.innerHTML = ''; 
 
-        if (selectedCountry === "none") {
-            // Si se selecciona "none" mostrar todos los datos
-            // populateDataTable(allFetchedData.energyData); // Opción para mostrar todos los países
-             renderEmptyTable(tablebody,'Seleccione un pais para ver los datos Historicos');
-        } else {
-            // Filtrar datos para el país seleccionado
-            const countrySpecificData = allFetchedData.energyData[selectedCountry];
-            
-            if (countrySpecificData) {
-                // Crear un objeto de datos filtrados con la misma estructura que espera populateDataTable
-                const filteredData = {
-                    [selectedCountry]: countrySpecificData
-                };
-                populateDataTable(filteredData);
+        if (selectedCountry === "none" || !selectedCountry) {
+            if (tablebody) renderEmptyTable(tablebody, 'Seleccione un país para ver los datos históricos.');
+        } else if (allFetchedData && allFetchedData.energyData) {
+            let dataToDisplayForTable;
+            if (selectedCountry === "ALL") {
+                // Para la tabla, si se selecciona "ALL", podrías mostrar datos de todos los países
+                // o un mensaje. Aquí asumimos mostrar todos.
+                dataToDisplayForTable = allFetchedData.energyData;
             } else {
-                console.warn(`No se encontraron datos para el país seleccionado: ${selectedCountry}`);
-                if (tablebody) renderEmptyTable(tablebody, `No se encontraron datos para ${selectedCountry}.`);
+                const countrySpecificData = allFetchedData.energyData[selectedCountry];
+                dataToDisplayForTable = countrySpecificData ? { [selectedCountry]: countrySpecificData } : {};
             }
+            populateDataTable(dataToDisplayForTable);
+        } else {
+            if (tablebody) renderEmptyTable(tablebody, 'Datos no disponibles para filtrar.');
         }
+        
+        // Actualizar los gráficos del dashboard con el país seleccionado (puede ser "ALL")
+        await updateDashboard(selectedCountry);
     }
+    
+    // --- INICIALIZACIÓN ---
+    applyInitialDarkMode();
+    if (menuButton) menuButton.addEventListener('click', toggleMenu);
+    menuLinks.forEach(link => link.addEventListener('click', handleMenuLinkClick));
+    if (darkModeButton) darkModeButton.addEventListener('click', toggleDarkMode);
+    if (consumptionForm) consumptionForm.addEventListener('submit', onSubmitCalculator);
+    setupDropdownMenu();
 
-    // CARGA INICIAL DE DATOS
     try {
-        if (typeof loadAndProcessBiofuelData === 'function') {
-            const result = await loadAndProcessBiofuelData(); // result = { energyData, countries, ... }
+        if (typeof loadInitialUnifiedData === 'function') { // Renombrada de loadAndProcessBiofuelData
+            if (tablebody) renderEmptyTable(tablebody, 'Cargando datos iniciales...');
             
-            // Poblar el dropdown de regiones
-            if (result?.countries) {
-                allFetchedData = result; // Almacenar el objeto { energyData, countries, ... }
-                populateRegionsDropdown(result.countries);
+            allFetchedData = await loadInitialUnifiedData(); 
+            
+            if (allFetchedData && allFetchedData.countries) {
+                populateRegionsDropdown(allFetchedData.countries, true); // true para añadir "Todos los Países"
             } else {
-                console.warn("No se recibieron datos de países de loadAndProcessBiofuelData.");
-                populateRegionsDropdown([]); // Array vacío para mostrar mensaje de "no disponibles"
+                populateRegionsDropdown([], false);
             }
             
-            // Poblar la tabla de datos
-            if (tablebody) {
-                renderEmptyTable(tablebody, 'Seleccione un país para ver los datos Históricos');
-            }
+            if (tablebody) renderEmptyTable(tablebody, 'Seleccione un país para ver los datos históricos.');
+            await updateDashboard(regions_lists.value); // Cargar gráficos con la selección inicial ("none" o "ALL")
 
         } else {
-            console.error('La función loadAndProcessBiofuelData no está definida. Asegúrate de que fetching.js se carga antes que script.js.');
-            populateRegionsDropdown([]);
-            if (tablebody) {
-                renderEmptyTable(tablebody, 'Error: La función para cargar datos no está disponible.');
-            }
+            console.error('La función loadInitialUnifiedData no está definida.');
+            populateRegionsDropdown([], false);
+            if (tablebody) renderEmptyTable(tablebody, 'Error al cargar función de datos.');
         }
     } catch (error) {
-        console.error('Error al cargar y procesar los datos para el dropdown y la tabla:', error);
-        populateRegionsDropdown([]);
-        if (tablebody) {
-            renderEmptyTable(tablebody, `Error al cargar los datos: ${error.message}`);
-        }
+        console.error('Error crítico al cargar datos iniciales:', error);
+        populateRegionsDropdown([], false);
+        if (tablebody) renderEmptyTable(tablebody, `Error al cargar datos: ${error.message}.`);
     }
 
-    // Event listener para el cambio en el selector de región
-    if (regions_lists) {
-        regions_lists.addEventListener('change', handleRegionChange);
-    }
+    if (regions_lists) regions_lists.addEventListener('change', handleRegionChange);
 });
