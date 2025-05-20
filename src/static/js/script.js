@@ -141,9 +141,29 @@ document.addEventListener('DOMContentLoaded', async () => { //
         localStorage.setItem('darkMode', document.body.classList.contains('modo-oscuro') ? 'enabled' : 'disabled');
     }
     function applyInitialDarkMode() {if (localStorage.getItem('darkMode') === 'enabled') document.body.classList.add('modo-oscuro');}
-    function onSubmitCalculator(ev) { /* ... tu lógica ... */ }
-    function setupDropdownMenu() { /* ... tu lógica ... */ }
+    function onSubmitCalculator(ev) {
+        ev.preventDefault();
+        const PORCENTAGE = 0.37;
+        const userInput = document.getElementById('consumo-usuario');
+        const resultContainer = document.getElementById('resultado-calculadora');
+        const resultElement = document.getElementById('consumo-resultado');
 
+        if (!userInput || !resultContainer) {
+            alert('No se han obtenido los elementos necesarios para realizar los calculos');
+            return;
+        }
+
+        const value = Number(userInput.value);
+
+        if (Number.isNaN(value)) {
+            alert('El valor ingresado no es un número');
+        }
+
+        const result = Number(value * PORCENTAGE).toFixed(0);
+
+        resultContainer.style.visibility = 'visible';
+        resultElement.innerHTML = `${Intl.NumberFormat('es-CO').format(result)} kWh`;
+    }
 
     // --- FUNCIONES PARA POBLAR Y ACTUALIZAR GRÁFICOS INDIVIDUALES DEL DASHBOARD ---
 
@@ -288,10 +308,9 @@ document.addEventListener('DOMContentLoaded', async () => { //
     menuLinks.forEach(link => link.addEventListener('click', handleMenuLinkClick));
     if (darkModeButton) darkModeButton.addEventListener('click', toggleDarkMode);
     if (consumptionForm) consumptionForm.addEventListener('submit', onSubmitCalculator);
-    setupDropdownMenu();
 
     try {
-        if (typeof loadInitialUnifiedData === 'function') { // Renombrada de loadAndProcessBiofuelData
+        if (typeof loadInitialUnifiedData === 'function') {
             if (tablebody) renderEmptyTable(tablebody, 'Cargando datos iniciales...');
             
             allFetchedData = await loadInitialUnifiedData(); 

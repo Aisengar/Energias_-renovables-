@@ -11,7 +11,7 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
 ## Estructura del Proyecto
 
-Asegúrate de que tu proyecto tenga la siguiente estructura de directorios. Los scripts de procesamiento y la aplicación esperan esta organización, especialmente para las rutas de datos.
+Asegúrate de que tu proyecto tenga la siguiente estructura de directorios.
 
 ```
 Energias_-renovables-/
@@ -28,15 +28,15 @@ Energias_-renovables-/
 │   └── processed_data/
 │       └── (Aquí se guardarán los archivos JSON generados)
 ├── src/
-│   ├── app.py                   # Aplicación principal Flask
+│   ├── app.py                   # Flask
 │   ├── core/
 │   │   ├── constants.py         # Constantes y mapeos de datos
 │   │   └── data_handler.py      # Lógica para procesar los CSV
 │   └── templates/
 │       ├── index.html           # Plantilla HTML principal
 │       └── 404.html             # Plantilla para página no encontrada
-├── venv/                        # (Opcional) Directorio del entorno virtual
-└── README.md                    # Este archivo
+├── venv/                        # Directorio del entorno virtual
+└── README.md                    # Readme.md
 ```
 
 ## Configuración
@@ -45,7 +45,7 @@ Sigue estos pasos para configurar el entorno del proyecto. Se recomienda ejecuta
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone <URL_DEL_REPOSITORIO>
+    git clone <URL_DEL_REPOSITORIO> # Reemplaza <URL_DEL_REPOSITORIO> con la URL del repositorio git.
     cd Energias_-renovables-
     ```
 

@@ -5,19 +5,7 @@ import os
 import matplotlib
 matplotlib.use('Agg')
 from core.constants import *
-from core.graficos import (
-    create_bar_chart,
-    create_pie_chart,
-    create_time_series,
-    create_grouped_bar_chart,
-    create_stacked_area_chart,
-    solar_data,
-    renewable_production_data,
-    renewable_share_data,
-    conventional_energy_data,
-    renewable_consumption_data,
-    LATIN_AMERICAN_COUNTRIES
-)
+from core.graficos import *
 
 
 # Inicializar la aplicacion Flask
@@ -116,6 +104,25 @@ def participacion_renovable_chart_route():
         
     except Exception as e:
         app.logger.error(f"Error en ruta /grafico/participacion_renovable para {country}: {e}")
+        return jsonify({'error': str(e)}), 500
+    
+
+@app.route('/graficos/comparativa_energias_renovable')
+def get_grouped_bar_chart():
+    try:
+        country = request.args.get('country')
+        if country == 'ALL' or country is None:
+            plot_data = renewable_production_data[renewable_production_data['Entity'].isin(LATIN_AMERICAN_COUNTRIES)]
+            chart_title = 'Generación de Electricidad Renovable por País y Tipo'
+        else:
+            plot_data = renewable_production_data[renewable_production_data['Entity'] == country]
+            chart_title = f'Generación de Electricidad Renovable por Tipo en {country}'
+        # Pivotar los datos para el gráfico de barras agrupadas
+        pivot_data = plot_data.pivot_table(index='Entity', columns='Variable', values='Value', aggfunc='sum')
+        image_base64 = create_grouped_bar_chart(pivot_data, chart_title, y_label='Generación (TWh)', rotation=0, legend_title='Tipo')  # rotation=0 para etiquetas horizontales
+        return jsonify({'imagen': image_base64})
+    except Exception as e:  # Specific exception handling for better debugging
+        app.logger.error(f"Error en /graficos/comparativa_energias_renovable: {e}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/grafico/evolucion_energia_tipos')
