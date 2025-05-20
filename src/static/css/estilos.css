@@ -492,7 +492,7 @@ body.modo-oscuro select:focus {
 /* Estilos de la sección Datos Históricos */
 
 body.modo-oscuro #datos .container {
-    color: #fff; /* Color de texto base para la sección en modo oscuro */
+    color: #fff; 
 }
 
 /* Contenedor para carga de archivos */
@@ -501,11 +501,11 @@ body.modo-oscuro #datos .container {
     align-items: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
-    flex-wrap: wrap; /* Para que se ajuste en pantallas pequeñas */
+    flex-wrap: wrap; 
 }
 
 #datos .upload-container p {
-    margin: 0; /* Ajuste para alineación vertical con otros elementos flex */
+    margin: 0; 
 }
 
 /* Botón de cargar datos */
@@ -527,10 +527,10 @@ body.modo-oscuro #datos .container {
 
 /* Input de archivo */
 #datos .upload-container .file-input {
-    padding: 0.35rem; /* Ajuste para que no sea tan alto como el botón */
+    padding: 0.35rem; 
     border-radius: 5px;
     border: 1px solid #ccc;
-    font-size: 0.9rem; /* Ligeramente más pequeño para que quepa el texto del botón interno */
+    font-size: 0.9rem; 
 }
 
 /* Estilos para el botón interno del file input (navegadores Webkit) */
@@ -539,7 +539,7 @@ body.modo-oscuro #datos .container {
     color: #333;
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 3px; /* Un poco menos redondeado que el contenedor */
+    border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-right: 0.5rem; /* Espacio entre el botón y el texto "No file chosen" */
@@ -589,6 +589,64 @@ body.modo-oscuro #datos .upload-container .file-input::file-selector-button:hove
     background-color: #666;
 }
 
+/* Estilos para el Modal de Imagen */
+.image-modal {
+  display: none;
+  position: fixed; 
+  z-index: 1000;
+  padding-top: 50px; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.85); 
+}
+
+.image-modal-content {
+  margin: auto;
+  display: block;
+  max-width: 85%; 
+  max-height: 85vh;
+  border-radius: 5px; 
+}
+
+/* Opcional: para añadir un caption si lo necesitas */
+#modalCaption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 50px;
+}
+
+.image-modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.image-modal-close-button:hover,
+.image-modal-close-button:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Añade esto a tus imágenes de gráficos para indicar que son clickables */
+.clickable-chart-img {
+  cursor: zoom-in;
+  transition: transform 0.2s ease-in-out; 
+}
+
 /* Contenedor de la tabla para posible scroll horizontal */
 #datos .table-container {
     overflow-x: auto;
@@ -629,7 +687,6 @@ body.modo-oscuro .data-table {
 body.modo-oscuro .data-table th,
 body.modo-oscuro .data-table td {
     border: 1px solid #555;
-    /* El color del texto se hereda de 'body.modo-oscuro #datos .container' */
 }
 
 body.modo-oscuro .data-table th {
@@ -642,7 +699,7 @@ body.modo-oscuro .data-table tbody tr:nth-child(even) {
 }
 
 body.modo-oscuro .data-table tbody tr:nth-child(odd) {
-    background-color: #333; /* O el color de fondo principal del modo oscuro */
+    background-color: #333; 
 }
 
 body.modo-oscuro .data-table tbody tr:hover {
@@ -695,14 +752,12 @@ body.modo-oscuro .data-table tbody tr:hover {
         font-size: 1.5rem;
     }
 }
-/*Dashboard Improvements */
 #titulo-dashboard {
     text-align: center;
     margin-bottom: 2.5rem;
     font-size: 2.5rem;
-    color: var(--color-texto-header); /* Default color for light mode */
+    color: var(--color-texto-header);
 }
-/* body.modo-oscuro #titulo-dashboard { color: #fff; } -- This is already in original CSS */
 
 #contenedor-dashboard {
     display: grid;
@@ -710,7 +765,7 @@ body.modo-oscuro .data-table tbody tr:hover {
     gap: 2rem;
 }
 
-#contenedor-dashboard .tarjeta-seccion { /* Style for individual chart cards */
+#contenedor-dashboard .tarjeta-seccion { 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -736,7 +791,7 @@ body.modo-oscuro .chart-controls label {
 }
 
 #contenedor-dashboard .tarjeta-seccion img {
-    width: 90%; /* As per original inline style */
+    width: 90%; 
     max-width: 100%;
     height: auto;
     display: block;
@@ -750,42 +805,36 @@ body.modo-oscuro #contenedor-dashboard .tarjeta-seccion img {
 
 /* === Media Query Adjustments (Selected new/modified parts) === */
 @media (max-width: 991.98px) {
-    .contenedor-tarjetas { /* For energy type sections */
+    .contenedor-tarjetas {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        /* padding-bottom is existing */
     }
 
-    #contenedor-dashboard { /* Dashboard specific grid for medium screens */
+    #contenedor-dashboard { 
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
     }
 
     .header-menu {
-        /* position, top, left, flex-direction, justify-content, height, width are existing */
         align-items: center;
         gap: 1.5rem;
         padding: 2rem 0;
         transition: left 0.3s ease-in-out; /* Ensure this was specified if modified */
         box-shadow: 5px 0 15px rgba(0,0,0,0.1);
     }
-    /* .header-menu.show is existing */
 
     .header-menu-logo-responsive {
-        /* display is existing */
         margin-bottom: 2rem;
     }
-    /* .header-menu-logo-responsive img width is existing */
 
     .header-menu-btn {
-        /* display is existing */
         z-index: 1001;
         margin-right: 1rem;
     }
 
-    .opcion-desplegable { /* In responsive menu */
+    .opcion-desplegable { 
         width: 100%;
         text-align: center;
     }
-    .contenedor-desplegable { /* In responsive menu */
+    .contenedor-desplegable { 
         position: static;
         width: 100%;
         box-shadow: none;
@@ -807,19 +856,18 @@ body.modo-oscuro #contenedor-dashboard .tarjeta-seccion img {
     }
 
     .seccion-pagina {
-        padding-left: 1rem; /* Original was 2rem */
-        padding-right: 1rem; /* Original was 2rem */
+        padding-left: 1rem; 
+        padding-right: 1rem; 
         padding-top: calc(var(--alto-header) * 0.75); /* Example adjustment */
     }
 
-    #contenedor-dashboard { /* Dashboard specific grid for small screens */
+    #contenedor-dashboard { 
         grid-template-columns: 1fr;
     }
 
-    .tarjeta-seccion { /* General card padding adjustment */
+    .tarjeta-seccion { 
         padding: 1rem 1.25rem;
     }
-    /* .header-logo img width, .header-logo .header-title font-size are existing */
 }
 
 @media (max-width: 575.98px) {
@@ -829,30 +877,29 @@ body.modo-oscuro #contenedor-dashboard .tarjeta-seccion img {
     html {
         font-size: 15px;
     }
-    /* .header-logo padding-left is existing */
 
     #datos .upload-container {
         flex-direction: column;
         align-items: stretch;
     }
     #datos .upload-container button,
-    #datos .upload-container select { /* Target select if it's a direct child */
+    #datos .upload-container select { 
         width: 100%;
     }
-    #datos .form-group { /* If select is inside form-group */
+    #datos .form-group { 
         flex-direction: column;
         align-items: flex-start;
-        width: 100%; /* Make form-group take full width */
+        width: 100%;
     }
-    #datos .form-group select { /* Ensure select inside takes full width */
+    #datos .form-group select { 
         width: 100%;
     }
 
     .input-calcular {
-        width: calc(100% - 1.5rem); /* Accounts for its own padding if box-sizing is border-box */
+        width: calc(100% - 1.5rem);
         margin-right: 0;
     }
-    .calcular-contenedor form div div { /* Target inner div for input and button */
+    .calcular-contenedor form div div {
         display: flex;
         flex-direction: column;
     }
