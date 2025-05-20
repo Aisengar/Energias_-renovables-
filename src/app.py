@@ -107,7 +107,7 @@ def participacion_renovable_chart_route():
         return jsonify({'error': str(e)}), 500
     
 
-@app.route('/graficos/comparativa_energias_renovable')
+@app.route('/grafico/comparativa_energias_renovable')
 def get_grouped_bar_chart():
     try:
         country = request.args.get('country')
@@ -117,11 +117,34 @@ def get_grouped_bar_chart():
         else:
             plot_data = renewable_production_data[renewable_production_data['Entity'] == country]
             chart_title = f'Generación de Electricidad Renovable por Tipo en {country}'
-        # Pivotar los datos para el gráfico de barras agrupadas
-        pivot_data = plot_data.pivot_table(index='Entity', columns='Variable', values='Value', aggfunc='sum')
-        image_base64 = create_grouped_bar_chart(pivot_data, chart_title, y_label='Generación (TWh)', rotation=0, legend_title='Tipo')  # rotation=0 para etiquetas horizontales
+
+        if 'Variable' not in plot_data.columns:
+            energy_columns = [col for col in plot_data.columns if any(term in col.lower() for term in ['wind', 'hydro', 'solar', 'renew', 'bioenergy'])]
+            
+            if not energy_columns:
+                return jsonify({'error': 'No se encontraron columnas de energía renovable.'}), 404
+                
+            pivot_data = pd.DataFrame(index=plot_data['Entity'].unique())
+            
+            for col in energy_columns:
+                pivot_data[col] = plot_data.groupby('Entity')[col].sum()
+                
+        else:
+            if 'Value' not in plot_data.columns:
+                value_col = next((col for col in plot_data.columns if col not in ['Entity', 'Code', 'Year', 'Variable'] and 
+                                pd.api.types.is_numeric_dtype(plot_data[col])), None)
+                
+                if value_col is None:
+                    return jsonify({'error': 'No se encontró columna de valores numéricos.'}), 404
+                    
+                pivot_data = plot_data.pivot_table(index='Entity', columns='Variable', values=value_col, aggfunc='sum')
+            else:
+                pivot_data = plot_data.pivot_table(index='Entity', columns='Variable', values='Value', aggfunc='sum')
+            
+        image_base64 = create_grouped_bar_chart(pivot_data, chart_title, y_label='Generación (TWh)', rotation=0, legend_title='Tipo')
         return jsonify({'imagen': image_base64})
-    except Exception as e:  # Specific exception handling for better debugging
+        
+    except Exception as e:
         app.logger.error(f"Error en /graficos/comparativa_energias_renovable: {e}")
         return jsonify({'error': str(e)}), 500
 

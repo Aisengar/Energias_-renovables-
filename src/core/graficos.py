@@ -180,3 +180,4 @@ def convert_to_base64(fig):
     buf.close()
     plt.close(fig)
     return img_base64
+

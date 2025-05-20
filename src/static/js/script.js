@@ -206,10 +206,8 @@ document.addEventListener('DOMContentLoaded', async () => { //
         }
         
         dashboardBarChartImg.src = 'static/images/loading.gif';
-        // Para el gráfico de barras, "ALL" podría ser una opción válida si el backend lo maneja
-        // o si selectedCountry es "" o null cuando "ALL" se interpreta como "sin filtro de país específico".
         const countryParam = (selectedCountry === "ALL") ? null : selectedCountry; // Backend podría esperar null/undefined para "todos"
-        const barImgBase64 = await fetchDashboardChartImage('consumo_solar_latam', countryParam);
+        const barImgBase64 = await fetchDashboardChartImage('comparativa_energias_renovable', countryParam);
         dashboardBarChartImg.src = barImgBase64 ? `data:image/png;base64,${barImgBase64}` : defaultImageSources.bar;
     }
 
